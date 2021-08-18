@@ -42,7 +42,7 @@ const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.htm
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`);
 const dataObj = JSON.parse(data);
 
-console.log(slugify("Fresh Avocados", {lower: true}));
+console.log(slugify("Fresh Avocados", { lower: true }));
 
 const server = http.createServer((req, res) => {
 
