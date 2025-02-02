@@ -1,15 +1,11 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/cart";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import data from "@/data-735-1.json";
 
 export default function Home() {
-  const [vaults, setVaults] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [chartData, setChartData] = useState([]);
   const [totalTvlUsd, setTotalTvlUsd] = useState<number>(0);
 
   useEffect(() => {
@@ -72,7 +68,6 @@ export default function Home() {
                     <p className="text-lg">
                       TVL (USD): ${vault.usd_tvl.toLocaleString()}
                     </p>
-                    {/* <p className="text-lg">Yield: {vault.yield}%</p> */}
                   </CardContent>
                 </Card>
               ),
