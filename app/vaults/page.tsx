@@ -66,7 +66,8 @@ export default function Home() {
                   </CardHeader>
                   <CardContent>
                     <p className="text-lg">
-                      TVL (Native): {vault.supported_mint_tvl} {vault.supported_mint_symbol}
+                      TVL (Native): {vault.supported_mint_tvl}{" "}
+                      {vault.supported_mint_symbol}
                     </p>
                     <p className="text-lg">
                       TVL (USD): ${vault.usd_tvl.toLocaleString()}
@@ -74,7 +75,7 @@ export default function Home() {
                     {/* <p className="text-lg">Yield: {vault.yield}%</p> */}
                   </CardContent>
                 </Card>
-              )
+              ),
           )}
         </div>
       </div>
