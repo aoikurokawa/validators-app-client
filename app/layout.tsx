@@ -1,23 +1,11 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
-// import AppWalletProvider from "@/components/AppWalletProvider";
 import Header from "@/components/Header";
 import { ClusterProvider } from "@/components/cluster/cluster-data-access";
 import { SolanaProvider } from "@/components/solana/solana-provider";
 import { ReactQueryProvider } from "./react-query-provider";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -54,7 +42,6 @@ export default function RootLayout({
                 </aside>
 
                 <div className="flex-1">
-                  {/* Header */}
                   <Header />
 
                   {/* Page Content */}
