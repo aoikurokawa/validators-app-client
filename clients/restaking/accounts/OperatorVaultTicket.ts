@@ -5,10 +5,10 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
-import { SlotToggle, slotToggleBeet } from '../types/SlotToggle'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
+import { SlotToggle, slotToggleBeet } from "../types/SlotToggle";
 
 /**
  * Arguments used to create {@link OperatorVaultTicket}
@@ -16,13 +16,13 @@ import { SlotToggle, slotToggleBeet } from '../types/SlotToggle'
  * @category generated
  */
 export type OperatorVaultTicketArgs = {
-  operator: web3.PublicKey
-  vault: web3.PublicKey
-  index: beet.bignum
-  state: SlotToggle
-  bump: number
-  reserved: number[] /* size: 263 */
-}
+  operator: web3.PublicKey;
+  vault: web3.PublicKey;
+  index: beet.bignum;
+  state: SlotToggle;
+  bump: number;
+  reserved: number[] /* size: 263 */;
+};
 /**
  * Holds the data for the {@link OperatorVaultTicket} Account and provides de/serialization
  * functionality for that data
@@ -37,7 +37,7 @@ export class OperatorVaultTicket implements OperatorVaultTicketArgs {
     readonly index: beet.bignum,
     readonly state: SlotToggle,
     readonly bump: number,
-    readonly reserved: number[] /* size: 263 */
+    readonly reserved: number[] /* size: 263 */,
   ) {}
 
   /**
@@ -50,8 +50,8 @@ export class OperatorVaultTicket implements OperatorVaultTicketArgs {
       args.index,
       args.state,
       args.bump,
-      args.reserved
-    )
+      args.reserved,
+    );
   }
 
   /**
@@ -60,9 +60,9 @@ export class OperatorVaultTicket implements OperatorVaultTicketArgs {
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [OperatorVaultTicket, number] {
-    return OperatorVaultTicket.deserialize(accountInfo.data, offset)
+    return OperatorVaultTicket.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -74,18 +74,18 @@ export class OperatorVaultTicket implements OperatorVaultTicketArgs {
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<OperatorVaultTicket> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
       throw new Error(
-        `Unable to find OperatorVaultTicket account at ${address}`
-      )
+        `Unable to find OperatorVaultTicket account at ${address}`,
+      );
     }
-    return OperatorVaultTicket.fromAccountInfo(accountInfo, 0)[0]
+    return OperatorVaultTicket.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -96,10 +96,10 @@ export class OperatorVaultTicket implements OperatorVaultTicketArgs {
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q'
-    )
+      "RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q",
+    ),
   ) {
-    return beetSolana.GpaBuilder.fromStruct(programId, operatorVaultTicketBeet)
+    return beetSolana.GpaBuilder.fromStruct(programId, operatorVaultTicketBeet);
   }
 
   /**
@@ -107,7 +107,7 @@ export class OperatorVaultTicket implements OperatorVaultTicketArgs {
    * @returns a tuple of the account data and the offset up to which the buffer was read to obtain it.
    */
   static deserialize(buf: Buffer, offset = 0): [OperatorVaultTicket, number] {
-    return operatorVaultTicketBeet.deserialize(buf, offset)
+    return operatorVaultTicketBeet.deserialize(buf, offset);
   }
 
   /**
@@ -115,7 +115,7 @@ export class OperatorVaultTicket implements OperatorVaultTicketArgs {
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return operatorVaultTicketBeet.serialize(this)
+    return operatorVaultTicketBeet.serialize(this);
   }
 
   /**
@@ -123,7 +123,7 @@ export class OperatorVaultTicket implements OperatorVaultTicketArgs {
    * {@link OperatorVaultTicket}
    */
   static get byteSize() {
-    return operatorVaultTicketBeet.byteSize
+    return operatorVaultTicketBeet.byteSize;
   }
 
   /**
@@ -134,12 +134,12 @@ export class OperatorVaultTicket implements OperatorVaultTicketArgs {
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       OperatorVaultTicket.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -147,7 +147,7 @@ export class OperatorVaultTicket implements OperatorVaultTicketArgs {
    * hold {@link OperatorVaultTicket} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === OperatorVaultTicket.byteSize
+    return buf.byteLength - offset === OperatorVaultTicket.byteSize;
   }
 
   /**
@@ -159,20 +159,20 @@ export class OperatorVaultTicket implements OperatorVaultTicketArgs {
       operator: this.operator.toBase58(),
       vault: this.vault.toBase58(),
       index: (() => {
-        const x = <{ toNumber: () => number }>this.index
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.index;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       state: this.state,
       bump: this.bump,
       reserved: this.reserved,
-    }
+    };
   }
 }
 
@@ -185,13 +185,13 @@ export const operatorVaultTicketBeet = new beet.BeetStruct<
   OperatorVaultTicketArgs
 >(
   [
-    ['operator', beetSolana.publicKey],
-    ['vault', beetSolana.publicKey],
-    ['index', beet.u64],
-    ['state', slotToggleBeet],
-    ['bump', beet.u8],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 263)],
+    ["operator", beetSolana.publicKey],
+    ["vault", beetSolana.publicKey],
+    ["index", beet.u64],
+    ["state", slotToggleBeet],
+    ["bump", beet.u8],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 263)],
   ],
   OperatorVaultTicket.fromArgs,
-  'OperatorVaultTicket'
-)
+  "OperatorVaultTicket",
+);

@@ -5,11 +5,11 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-type ErrorWithCode = Error & { code: number }
-type MaybeErrorWithCode = ErrorWithCode | null | undefined
+type ErrorWithCode = Error & { code: number };
+type MaybeErrorWithCode = ErrorWithCode | null | undefined;
 
-const createErrorFromCodeLookup: Map<number, () => ErrorWithCode> = new Map()
-const createErrorFromNameLookup: Map<string, () => ErrorWithCode> = new Map()
+const createErrorFromCodeLookup: Map<number, () => ErrorWithCode> = new Map();
+const createErrorFromNameLookup: Map<string, () => ErrorWithCode> = new Map();
 
 /**
  * BadEpochLength: 'Bad epoch length'
@@ -18,18 +18,21 @@ const createErrorFromNameLookup: Map<string, () => ErrorWithCode> = new Map()
  * @category generated
  */
 export class BadEpochLengthError extends Error {
-  readonly code: number = 0x0
-  readonly name: string = 'BadEpochLength'
+  readonly code: number = 0x0;
+  readonly name: string = "BadEpochLength";
   constructor() {
-    super('Bad epoch length')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, BadEpochLengthError)
+    super("Bad epoch length");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, BadEpochLengthError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x0, () => new BadEpochLengthError())
-createErrorFromNameLookup.set('BadEpochLength', () => new BadEpochLengthError())
+createErrorFromCodeLookup.set(0x0, () => new BadEpochLengthError());
+createErrorFromNameLookup.set(
+  "BadEpochLength",
+  () => new BadEpochLengthError(),
+);
 
 /**
  * VaultSlashUnderflow: 'VaultSlashUnderflow'
@@ -38,21 +41,21 @@ createErrorFromNameLookup.set('BadEpochLength', () => new BadEpochLengthError())
  * @category generated
  */
 export class VaultSlashUnderflowError extends Error {
-  readonly code: number = 0x3e8
-  readonly name: string = 'VaultSlashUnderflow'
+  readonly code: number = 0x3e8;
+  readonly name: string = "VaultSlashUnderflow";
   constructor() {
-    super('VaultSlashUnderflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultSlashUnderflowError)
+    super("VaultSlashUnderflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultSlashUnderflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3e8, () => new VaultSlashUnderflowError())
+createErrorFromCodeLookup.set(0x3e8, () => new VaultSlashUnderflowError());
 createErrorFromNameLookup.set(
-  'VaultSlashUnderflow',
-  () => new VaultSlashUnderflowError()
-)
+  "VaultSlashUnderflow",
+  () => new VaultSlashUnderflowError(),
+);
 
 /**
  * VaultInitialAmountFailed: 'VaultInitialAmountFailed'
@@ -61,21 +64,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultInitialAmountFailedError extends Error {
-  readonly code: number = 0x3e9
-  readonly name: string = 'VaultInitialAmountFailed'
+  readonly code: number = 0x3e9;
+  readonly name: string = "VaultInitialAmountFailed";
   constructor() {
-    super('VaultInitialAmountFailed')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultInitialAmountFailedError)
+    super("VaultInitialAmountFailed");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultInitialAmountFailedError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3e9, () => new VaultInitialAmountFailedError())
+createErrorFromCodeLookup.set(0x3e9, () => new VaultInitialAmountFailedError());
 createErrorFromNameLookup.set(
-  'VaultInitialAmountFailed',
-  () => new VaultInitialAmountFailedError()
-)
+  "VaultInitialAmountFailed",
+  () => new VaultInitialAmountFailedError(),
+);
 
 /**
  * VaultInsufficientFunds: 'VaultInsufficientFunds'
@@ -84,21 +87,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultInsufficientFundsError extends Error {
-  readonly code: number = 0x3ea
-  readonly name: string = 'VaultInsufficientFunds'
+  readonly code: number = 0x3ea;
+  readonly name: string = "VaultInsufficientFunds";
   constructor() {
-    super('VaultInsufficientFunds')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultInsufficientFundsError)
+    super("VaultInsufficientFunds");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultInsufficientFundsError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3ea, () => new VaultInsufficientFundsError())
+createErrorFromCodeLookup.set(0x3ea, () => new VaultInsufficientFundsError());
 createErrorFromNameLookup.set(
-  'VaultInsufficientFunds',
-  () => new VaultInsufficientFundsError()
-)
+  "VaultInsufficientFunds",
+  () => new VaultInsufficientFundsError(),
+);
 
 /**
  * VaultOverflow: 'VaultOverflow'
@@ -107,18 +110,18 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultOverflowError extends Error {
-  readonly code: number = 0x3eb
-  readonly name: string = 'VaultOverflow'
+  readonly code: number = 0x3eb;
+  readonly name: string = "VaultOverflow";
   constructor() {
-    super('VaultOverflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultOverflowError)
+    super("VaultOverflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultOverflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3eb, () => new VaultOverflowError())
-createErrorFromNameLookup.set('VaultOverflow', () => new VaultOverflowError())
+createErrorFromCodeLookup.set(0x3eb, () => new VaultOverflowError());
+createErrorFromNameLookup.set("VaultOverflow", () => new VaultOverflowError());
 
 /**
  * VaultOperatorAdminInvalid: 'VaultOperatorAdminInvalid'
@@ -127,21 +130,24 @@ createErrorFromNameLookup.set('VaultOverflow', () => new VaultOverflowError())
  * @category generated
  */
 export class VaultOperatorAdminInvalidError extends Error {
-  readonly code: number = 0x3ec
-  readonly name: string = 'VaultOperatorAdminInvalid'
+  readonly code: number = 0x3ec;
+  readonly name: string = "VaultOperatorAdminInvalid";
   constructor() {
-    super('VaultOperatorAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultOperatorAdminInvalidError)
+    super("VaultOperatorAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultOperatorAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3ec, () => new VaultOperatorAdminInvalidError())
+createErrorFromCodeLookup.set(
+  0x3ec,
+  () => new VaultOperatorAdminInvalidError(),
+);
 createErrorFromNameLookup.set(
-  'VaultOperatorAdminInvalid',
-  () => new VaultOperatorAdminInvalidError()
-)
+  "VaultOperatorAdminInvalid",
+  () => new VaultOperatorAdminInvalidError(),
+);
 
 /**
  * VaultAdminInvalid: 'VaultAdminInvalid'
@@ -150,21 +156,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultAdminInvalidError extends Error {
-  readonly code: number = 0x3ed
-  readonly name: string = 'VaultAdminInvalid'
+  readonly code: number = 0x3ed;
+  readonly name: string = "VaultAdminInvalid";
   constructor() {
-    super('VaultAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultAdminInvalidError)
+    super("VaultAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3ed, () => new VaultAdminInvalidError())
+createErrorFromCodeLookup.set(0x3ed, () => new VaultAdminInvalidError());
 createErrorFromNameLookup.set(
-  'VaultAdminInvalid',
-  () => new VaultAdminInvalidError()
-)
+  "VaultAdminInvalid",
+  () => new VaultAdminInvalidError(),
+);
 
 /**
  * VaultCapacityAdminInvalid: 'VaultCapacityAdminInvalid'
@@ -173,21 +179,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultCapacityAdminInvalidError extends Error {
-  readonly code: number = 0x3ee
-  readonly name: string = 'VaultCapacityAdminInvalid'
+  readonly code: number = 0x3ee;
+  readonly name: string = "VaultCapacityAdminInvalid";
   constructor() {
-    super('VaultCapacityAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultCapacityAdminInvalidError)
+    super("VaultCapacityAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultCapacityAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3ee, () => new VaultCapacityAdminInvalidError())
+createErrorFromCodeLookup.set(
+  0x3ee,
+  () => new VaultCapacityAdminInvalidError(),
+);
 createErrorFromNameLookup.set(
-  'VaultCapacityAdminInvalid',
-  () => new VaultCapacityAdminInvalidError()
-)
+  "VaultCapacityAdminInvalid",
+  () => new VaultCapacityAdminInvalidError(),
+);
 
 /**
  * VaultMintBurnAdminInvalid: 'VaultMintBurnAdminInvalid'
@@ -196,21 +205,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultMintBurnAdminInvalidError extends Error {
-  readonly code: number = 0x3ef
-  readonly name: string = 'VaultMintBurnAdminInvalid'
+  readonly code: number = 0x3ef;
+  readonly name: string = "VaultMintBurnAdminInvalid";
   constructor() {
-    super('VaultMintBurnAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultMintBurnAdminInvalidError)
+    super("VaultMintBurnAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultMintBurnAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3ef, () => new VaultMintBurnAdminInvalidError())
+createErrorFromCodeLookup.set(
+  0x3ef,
+  () => new VaultMintBurnAdminInvalidError(),
+);
 createErrorFromNameLookup.set(
-  'VaultMintBurnAdminInvalid',
-  () => new VaultMintBurnAdminInvalidError()
-)
+  "VaultMintBurnAdminInvalid",
+  () => new VaultMintBurnAdminInvalidError(),
+);
 
 /**
  * VaultDelegationAdminInvalid: 'VaultDelegationAdminInvalid'
@@ -219,24 +231,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultDelegationAdminInvalidError extends Error {
-  readonly code: number = 0x3f0
-  readonly name: string = 'VaultDelegationAdminInvalid'
+  readonly code: number = 0x3f0;
+  readonly name: string = "VaultDelegationAdminInvalid";
   constructor() {
-    super('VaultDelegationAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultDelegationAdminInvalidError)
+    super("VaultDelegationAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultDelegationAdminInvalidError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x3f0,
-  () => new VaultDelegationAdminInvalidError()
-)
+  () => new VaultDelegationAdminInvalidError(),
+);
 createErrorFromNameLookup.set(
-  'VaultDelegationAdminInvalid',
-  () => new VaultDelegationAdminInvalidError()
-)
+  "VaultDelegationAdminInvalid",
+  () => new VaultDelegationAdminInvalidError(),
+);
 
 /**
  * VaultDelegateAssetAdminInvalid: 'VaultDelegateAssetAdminInvalid'
@@ -245,24 +257,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultDelegateAssetAdminInvalidError extends Error {
-  readonly code: number = 0x3f1
-  readonly name: string = 'VaultDelegateAssetAdminInvalid'
+  readonly code: number = 0x3f1;
+  readonly name: string = "VaultDelegateAssetAdminInvalid";
   constructor() {
-    super('VaultDelegateAssetAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultDelegateAssetAdminInvalidError)
+    super("VaultDelegateAssetAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultDelegateAssetAdminInvalidError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x3f1,
-  () => new VaultDelegateAssetAdminInvalidError()
-)
+  () => new VaultDelegateAssetAdminInvalidError(),
+);
 createErrorFromNameLookup.set(
-  'VaultDelegateAssetAdminInvalid',
-  () => new VaultDelegateAssetAdminInvalidError()
-)
+  "VaultDelegateAssetAdminInvalid",
+  () => new VaultDelegateAssetAdminInvalidError(),
+);
 
 /**
  * VaultCapacityExceeded: 'VaultCapacityExceeded'
@@ -271,21 +283,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultCapacityExceededError extends Error {
-  readonly code: number = 0x3f2
-  readonly name: string = 'VaultCapacityExceeded'
+  readonly code: number = 0x3f2;
+  readonly name: string = "VaultCapacityExceeded";
   constructor() {
-    super('VaultCapacityExceeded')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultCapacityExceededError)
+    super("VaultCapacityExceeded");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultCapacityExceededError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3f2, () => new VaultCapacityExceededError())
+createErrorFromCodeLookup.set(0x3f2, () => new VaultCapacityExceededError());
 createErrorFromNameLookup.set(
-  'VaultCapacityExceeded',
-  () => new VaultCapacityExceededError()
-)
+  "VaultCapacityExceeded",
+  () => new VaultCapacityExceededError(),
+);
 
 /**
  * VaultSlasherAdminInvalid: 'VaultSlasherAdminInvalid'
@@ -294,21 +306,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultSlasherAdminInvalidError extends Error {
-  readonly code: number = 0x3f3
-  readonly name: string = 'VaultSlasherAdminInvalid'
+  readonly code: number = 0x3f3;
+  readonly name: string = "VaultSlasherAdminInvalid";
   constructor() {
-    super('VaultSlasherAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultSlasherAdminInvalidError)
+    super("VaultSlasherAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultSlasherAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3f3, () => new VaultSlasherAdminInvalidError())
+createErrorFromCodeLookup.set(0x3f3, () => new VaultSlasherAdminInvalidError());
 createErrorFromNameLookup.set(
-  'VaultSlasherAdminInvalid',
-  () => new VaultSlasherAdminInvalidError()
-)
+  "VaultSlasherAdminInvalid",
+  () => new VaultSlasherAdminInvalidError(),
+);
 
 /**
  * VaultNcnAdminInvalid: 'VaultNcnAdminInvalid'
@@ -317,21 +329,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultNcnAdminInvalidError extends Error {
-  readonly code: number = 0x3f4
-  readonly name: string = 'VaultNcnAdminInvalid'
+  readonly code: number = 0x3f4;
+  readonly name: string = "VaultNcnAdminInvalid";
   constructor() {
-    super('VaultNcnAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultNcnAdminInvalidError)
+    super("VaultNcnAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultNcnAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3f4, () => new VaultNcnAdminInvalidError())
+createErrorFromCodeLookup.set(0x3f4, () => new VaultNcnAdminInvalidError());
 createErrorFromNameLookup.set(
-  'VaultNcnAdminInvalid',
-  () => new VaultNcnAdminInvalidError()
-)
+  "VaultNcnAdminInvalid",
+  () => new VaultNcnAdminInvalidError(),
+);
 
 /**
  * VaultFeeAdminInvalid: 'VaultFeeAdminInvalid'
@@ -340,21 +352,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultFeeAdminInvalidError extends Error {
-  readonly code: number = 0x3f5
-  readonly name: string = 'VaultFeeAdminInvalid'
+  readonly code: number = 0x3f5;
+  readonly name: string = "VaultFeeAdminInvalid";
   constructor() {
-    super('VaultFeeAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultFeeAdminInvalidError)
+    super("VaultFeeAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultFeeAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3f5, () => new VaultFeeAdminInvalidError())
+createErrorFromCodeLookup.set(0x3f5, () => new VaultFeeAdminInvalidError());
 createErrorFromNameLookup.set(
-  'VaultFeeAdminInvalid',
-  () => new VaultFeeAdminInvalidError()
-)
+  "VaultFeeAdminInvalid",
+  () => new VaultFeeAdminInvalidError(),
+);
 
 /**
  * ConfigAdminInvalid: 'ConfigAdminInvalid'
@@ -363,21 +375,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class ConfigAdminInvalidError extends Error {
-  readonly code: number = 0x3f6
-  readonly name: string = 'ConfigAdminInvalid'
+  readonly code: number = 0x3f6;
+  readonly name: string = "ConfigAdminInvalid";
   constructor() {
-    super('ConfigAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, ConfigAdminInvalidError)
+    super("ConfigAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, ConfigAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3f6, () => new ConfigAdminInvalidError())
+createErrorFromCodeLookup.set(0x3f6, () => new ConfigAdminInvalidError());
 createErrorFromNameLookup.set(
-  'ConfigAdminInvalid',
-  () => new ConfigAdminInvalidError()
-)
+  "ConfigAdminInvalid",
+  () => new ConfigAdminInvalidError(),
+);
 
 /**
  * ConfigFeeAdminInvalid: 'ConfigFeeAdminInvalid'
@@ -386,21 +398,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class ConfigFeeAdminInvalidError extends Error {
-  readonly code: number = 0x3f7
-  readonly name: string = 'ConfigFeeAdminInvalid'
+  readonly code: number = 0x3f7;
+  readonly name: string = "ConfigFeeAdminInvalid";
   constructor() {
-    super('ConfigFeeAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, ConfigFeeAdminInvalidError)
+    super("ConfigFeeAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, ConfigFeeAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3f7, () => new ConfigFeeAdminInvalidError())
+createErrorFromCodeLookup.set(0x3f7, () => new ConfigFeeAdminInvalidError());
 createErrorFromNameLookup.set(
-  'ConfigFeeAdminInvalid',
-  () => new ConfigFeeAdminInvalidError()
-)
+  "ConfigFeeAdminInvalid",
+  () => new ConfigFeeAdminInvalidError(),
+);
 
 /**
  * VaultFeeCapExceeded: 'VaultFeeCapExceeded'
@@ -409,21 +421,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultFeeCapExceededError extends Error {
-  readonly code: number = 0x3f8
-  readonly name: string = 'VaultFeeCapExceeded'
+  readonly code: number = 0x3f8;
+  readonly name: string = "VaultFeeCapExceeded";
   constructor() {
-    super('VaultFeeCapExceeded')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultFeeCapExceededError)
+    super("VaultFeeCapExceeded");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultFeeCapExceededError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3f8, () => new VaultFeeCapExceededError())
+createErrorFromCodeLookup.set(0x3f8, () => new VaultFeeCapExceededError());
 createErrorFromNameLookup.set(
-  'VaultFeeCapExceeded',
-  () => new VaultFeeCapExceededError()
-)
+  "VaultFeeCapExceeded",
+  () => new VaultFeeCapExceededError(),
+);
 
 /**
  * VaultFeeChangeTooSoon: 'VaultFeeChangeTooSoon'
@@ -432,21 +444,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultFeeChangeTooSoonError extends Error {
-  readonly code: number = 0x3f9
-  readonly name: string = 'VaultFeeChangeTooSoon'
+  readonly code: number = 0x3f9;
+  readonly name: string = "VaultFeeChangeTooSoon";
   constructor() {
-    super('VaultFeeChangeTooSoon')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultFeeChangeTooSoonError)
+    super("VaultFeeChangeTooSoon");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultFeeChangeTooSoonError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3f9, () => new VaultFeeChangeTooSoonError())
+createErrorFromCodeLookup.set(0x3f9, () => new VaultFeeChangeTooSoonError());
 createErrorFromNameLookup.set(
-  'VaultFeeChangeTooSoon',
-  () => new VaultFeeChangeTooSoonError()
-)
+  "VaultFeeChangeTooSoon",
+  () => new VaultFeeChangeTooSoonError(),
+);
 
 /**
  * VaultFeeBumpTooLarge: 'VaultFeeBumpTooLarge'
@@ -455,21 +467,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultFeeBumpTooLargeError extends Error {
-  readonly code: number = 0x3fa
-  readonly name: string = 'VaultFeeBumpTooLarge'
+  readonly code: number = 0x3fa;
+  readonly name: string = "VaultFeeBumpTooLarge";
   constructor() {
-    super('VaultFeeBumpTooLarge')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultFeeBumpTooLargeError)
+    super("VaultFeeBumpTooLarge");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultFeeBumpTooLargeError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3fa, () => new VaultFeeBumpTooLargeError())
+createErrorFromCodeLookup.set(0x3fa, () => new VaultFeeBumpTooLargeError());
 createErrorFromNameLookup.set(
-  'VaultFeeBumpTooLarge',
-  () => new VaultFeeBumpTooLargeError()
-)
+  "VaultFeeBumpTooLarge",
+  () => new VaultFeeBumpTooLargeError(),
+);
 
 /**
  * VaultUnderflow: 'VaultUnderflow'
@@ -478,18 +490,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultUnderflowError extends Error {
-  readonly code: number = 0x3fb
-  readonly name: string = 'VaultUnderflow'
+  readonly code: number = 0x3fb;
+  readonly name: string = "VaultUnderflow";
   constructor() {
-    super('VaultUnderflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultUnderflowError)
+    super("VaultUnderflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultUnderflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3fb, () => new VaultUnderflowError())
-createErrorFromNameLookup.set('VaultUnderflow', () => new VaultUnderflowError())
+createErrorFromCodeLookup.set(0x3fb, () => new VaultUnderflowError());
+createErrorFromNameLookup.set(
+  "VaultUnderflow",
+  () => new VaultUnderflowError(),
+);
 
 /**
  * VaultUpdateNeeded: 'VaultUpdateNeeded'
@@ -498,21 +513,21 @@ createErrorFromNameLookup.set('VaultUnderflow', () => new VaultUnderflowError())
  * @category generated
  */
 export class VaultUpdateNeededError extends Error {
-  readonly code: number = 0x3fc
-  readonly name: string = 'VaultUpdateNeeded'
+  readonly code: number = 0x3fc;
+  readonly name: string = "VaultUpdateNeeded";
   constructor() {
-    super('VaultUpdateNeeded')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultUpdateNeededError)
+    super("VaultUpdateNeeded");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultUpdateNeededError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3fc, () => new VaultUpdateNeededError())
+createErrorFromCodeLookup.set(0x3fc, () => new VaultUpdateNeededError());
 createErrorFromNameLookup.set(
-  'VaultUpdateNeeded',
-  () => new VaultUpdateNeededError()
-)
+  "VaultUpdateNeeded",
+  () => new VaultUpdateNeededError(),
+);
 
 /**
  * VaultIsUpdated: 'VaultIsUpdated'
@@ -521,18 +536,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultIsUpdatedError extends Error {
-  readonly code: number = 0x3fd
-  readonly name: string = 'VaultIsUpdated'
+  readonly code: number = 0x3fd;
+  readonly name: string = "VaultIsUpdated";
   constructor() {
-    super('VaultIsUpdated')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultIsUpdatedError)
+    super("VaultIsUpdated");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultIsUpdatedError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3fd, () => new VaultIsUpdatedError())
-createErrorFromNameLookup.set('VaultIsUpdated', () => new VaultIsUpdatedError())
+createErrorFromCodeLookup.set(0x3fd, () => new VaultIsUpdatedError());
+createErrorFromNameLookup.set(
+  "VaultIsUpdated",
+  () => new VaultIsUpdatedError(),
+);
 
 /**
  * VaultOperatorDelegationUpdateNeeded: 'VaultOperatorDelegationUpdateNeeded'
@@ -541,24 +559,24 @@ createErrorFromNameLookup.set('VaultIsUpdated', () => new VaultIsUpdatedError())
  * @category generated
  */
 export class VaultOperatorDelegationUpdateNeededError extends Error {
-  readonly code: number = 0x3fe
-  readonly name: string = 'VaultOperatorDelegationUpdateNeeded'
+  readonly code: number = 0x3fe;
+  readonly name: string = "VaultOperatorDelegationUpdateNeeded";
   constructor() {
-    super('VaultOperatorDelegationUpdateNeeded')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultOperatorDelegationUpdateNeededError)
+    super("VaultOperatorDelegationUpdateNeeded");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultOperatorDelegationUpdateNeededError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x3fe,
-  () => new VaultOperatorDelegationUpdateNeededError()
-)
+  () => new VaultOperatorDelegationUpdateNeededError(),
+);
 createErrorFromNameLookup.set(
-  'VaultOperatorDelegationUpdateNeeded',
-  () => new VaultOperatorDelegationUpdateNeededError()
-)
+  "VaultOperatorDelegationUpdateNeeded",
+  () => new VaultOperatorDelegationUpdateNeededError(),
+);
 
 /**
  * VaultOperatorDelegationIsUpdated: 'VaultOperatorDelegationIsUpdated'
@@ -567,24 +585,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultOperatorDelegationIsUpdatedError extends Error {
-  readonly code: number = 0x3ff
-  readonly name: string = 'VaultOperatorDelegationIsUpdated'
+  readonly code: number = 0x3ff;
+  readonly name: string = "VaultOperatorDelegationIsUpdated";
   constructor() {
-    super('VaultOperatorDelegationIsUpdated')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultOperatorDelegationIsUpdatedError)
+    super("VaultOperatorDelegationIsUpdated");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultOperatorDelegationIsUpdatedError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x3ff,
-  () => new VaultOperatorDelegationIsUpdatedError()
-)
+  () => new VaultOperatorDelegationIsUpdatedError(),
+);
 createErrorFromNameLookup.set(
-  'VaultOperatorDelegationIsUpdated',
-  () => new VaultOperatorDelegationIsUpdatedError()
-)
+  "VaultOperatorDelegationIsUpdated",
+  () => new VaultOperatorDelegationIsUpdatedError(),
+);
 
 /**
  * VaultUpdateIncorrectIndex: 'VaultUpdateIncorrectIndex'
@@ -593,21 +611,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultUpdateIncorrectIndexError extends Error {
-  readonly code: number = 0x400
-  readonly name: string = 'VaultUpdateIncorrectIndex'
+  readonly code: number = 0x400;
+  readonly name: string = "VaultUpdateIncorrectIndex";
   constructor() {
-    super('VaultUpdateIncorrectIndex')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultUpdateIncorrectIndexError)
+    super("VaultUpdateIncorrectIndex");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultUpdateIncorrectIndexError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x400, () => new VaultUpdateIncorrectIndexError())
+createErrorFromCodeLookup.set(
+  0x400,
+  () => new VaultUpdateIncorrectIndexError(),
+);
 createErrorFromNameLookup.set(
-  'VaultUpdateIncorrectIndex',
-  () => new VaultUpdateIncorrectIndexError()
-)
+  "VaultUpdateIncorrectIndex",
+  () => new VaultUpdateIncorrectIndexError(),
+);
 
 /**
  * VaultUpdateStateNotFinishedUpdating: 'VaultUpdateStateNotFinishedUpdating'
@@ -616,24 +637,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultUpdateStateNotFinishedUpdatingError extends Error {
-  readonly code: number = 0x401
-  readonly name: string = 'VaultUpdateStateNotFinishedUpdating'
+  readonly code: number = 0x401;
+  readonly name: string = "VaultUpdateStateNotFinishedUpdating";
   constructor() {
-    super('VaultUpdateStateNotFinishedUpdating')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultUpdateStateNotFinishedUpdatingError)
+    super("VaultUpdateStateNotFinishedUpdating");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultUpdateStateNotFinishedUpdatingError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x401,
-  () => new VaultUpdateStateNotFinishedUpdatingError()
-)
+  () => new VaultUpdateStateNotFinishedUpdatingError(),
+);
 createErrorFromNameLookup.set(
-  'VaultUpdateStateNotFinishedUpdating',
-  () => new VaultUpdateStateNotFinishedUpdatingError()
-)
+  "VaultUpdateStateNotFinishedUpdating",
+  () => new VaultUpdateStateNotFinishedUpdatingError(),
+);
 
 /**
  * VaultSecurityOverflow: 'VaultSecurityOverflow'
@@ -642,21 +663,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultSecurityOverflowError extends Error {
-  readonly code: number = 0x402
-  readonly name: string = 'VaultSecurityOverflow'
+  readonly code: number = 0x402;
+  readonly name: string = "VaultSecurityOverflow";
   constructor() {
-    super('VaultSecurityOverflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultSecurityOverflowError)
+    super("VaultSecurityOverflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultSecurityOverflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x402, () => new VaultSecurityOverflowError())
+createErrorFromCodeLookup.set(0x402, () => new VaultSecurityOverflowError());
 createErrorFromNameLookup.set(
-  'VaultSecurityOverflow',
-  () => new VaultSecurityOverflowError()
-)
+  "VaultSecurityOverflow",
+  () => new VaultSecurityOverflowError(),
+);
 
 /**
  * VaultSlashIncomplete: 'VaultSlashIncomplete'
@@ -665,21 +686,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultSlashIncompleteError extends Error {
-  readonly code: number = 0x403
-  readonly name: string = 'VaultSlashIncomplete'
+  readonly code: number = 0x403;
+  readonly name: string = "VaultSlashIncomplete";
   constructor() {
-    super('VaultSlashIncomplete')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultSlashIncompleteError)
+    super("VaultSlashIncomplete");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultSlashIncompleteError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x403, () => new VaultSlashIncompleteError())
+createErrorFromCodeLookup.set(0x403, () => new VaultSlashIncompleteError());
 createErrorFromNameLookup.set(
-  'VaultSlashIncomplete',
-  () => new VaultSlashIncompleteError()
-)
+  "VaultSlashIncomplete",
+  () => new VaultSlashIncompleteError(),
+);
 
 /**
  * VaultSecurityUnderflow: 'VaultSecurityUnderflow'
@@ -688,21 +709,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultSecurityUnderflowError extends Error {
-  readonly code: number = 0x404
-  readonly name: string = 'VaultSecurityUnderflow'
+  readonly code: number = 0x404;
+  readonly name: string = "VaultSecurityUnderflow";
   constructor() {
-    super('VaultSecurityUnderflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultSecurityUnderflowError)
+    super("VaultSecurityUnderflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultSecurityUnderflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x404, () => new VaultSecurityUnderflowError())
+createErrorFromCodeLookup.set(0x404, () => new VaultSecurityUnderflowError());
 createErrorFromNameLookup.set(
-  'VaultSecurityUnderflow',
-  () => new VaultSecurityUnderflowError()
-)
+  "VaultSecurityUnderflow",
+  () => new VaultSecurityUnderflowError(),
+);
 
 /**
  * SlippageError: 'SlippageError'
@@ -711,18 +732,18 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class SlippageErrorError extends Error {
-  readonly code: number = 0x405
-  readonly name: string = 'SlippageError'
+  readonly code: number = 0x405;
+  readonly name: string = "SlippageError";
   constructor() {
-    super('SlippageError')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, SlippageErrorError)
+    super("SlippageError");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, SlippageErrorError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x405, () => new SlippageErrorError())
-createErrorFromNameLookup.set('SlippageError', () => new SlippageErrorError())
+createErrorFromCodeLookup.set(0x405, () => new SlippageErrorError());
+createErrorFromNameLookup.set("SlippageError", () => new SlippageErrorError());
 
 /**
  * VaultStakerWithdrawalTicketNotWithdrawable: 'VaultStakerWithdrawalTicketNotWithdrawable'
@@ -731,27 +752,27 @@ createErrorFromNameLookup.set('SlippageError', () => new SlippageErrorError())
  * @category generated
  */
 export class VaultStakerWithdrawalTicketNotWithdrawableError extends Error {
-  readonly code: number = 0x406
-  readonly name: string = 'VaultStakerWithdrawalTicketNotWithdrawable'
+  readonly code: number = 0x406;
+  readonly name: string = "VaultStakerWithdrawalTicketNotWithdrawable";
   constructor() {
-    super('VaultStakerWithdrawalTicketNotWithdrawable')
-    if (typeof Error.captureStackTrace === 'function') {
+    super("VaultStakerWithdrawalTicketNotWithdrawable");
+    if (typeof Error.captureStackTrace === "function") {
       Error.captureStackTrace(
         this,
-        VaultStakerWithdrawalTicketNotWithdrawableError
-      )
+        VaultStakerWithdrawalTicketNotWithdrawableError,
+      );
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x406,
-  () => new VaultStakerWithdrawalTicketNotWithdrawableError()
-)
+  () => new VaultStakerWithdrawalTicketNotWithdrawableError(),
+);
 createErrorFromNameLookup.set(
-  'VaultStakerWithdrawalTicketNotWithdrawable',
-  () => new VaultStakerWithdrawalTicketNotWithdrawableError()
-)
+  "VaultStakerWithdrawalTicketNotWithdrawable",
+  () => new VaultStakerWithdrawalTicketNotWithdrawableError(),
+);
 
 /**
  * VaultNcnSlasherTicketFailedCooldown: 'VaultNcnSlasherTicketFailedCooldown'
@@ -760,24 +781,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultNcnSlasherTicketFailedCooldownError extends Error {
-  readonly code: number = 0x407
-  readonly name: string = 'VaultNcnSlasherTicketFailedCooldown'
+  readonly code: number = 0x407;
+  readonly name: string = "VaultNcnSlasherTicketFailedCooldown";
   constructor() {
-    super('VaultNcnSlasherTicketFailedCooldown')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultNcnSlasherTicketFailedCooldownError)
+    super("VaultNcnSlasherTicketFailedCooldown");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultNcnSlasherTicketFailedCooldownError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x407,
-  () => new VaultNcnSlasherTicketFailedCooldownError()
-)
+  () => new VaultNcnSlasherTicketFailedCooldownError(),
+);
 createErrorFromNameLookup.set(
-  'VaultNcnSlasherTicketFailedCooldown',
-  () => new VaultNcnSlasherTicketFailedCooldownError()
-)
+  "VaultNcnSlasherTicketFailedCooldown",
+  () => new VaultNcnSlasherTicketFailedCooldownError(),
+);
 
 /**
  * VaultNcnSlasherTicketFailedWarmup: 'VaultNcnSlasherTicketFailedWarmup'
@@ -786,24 +807,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultNcnSlasherTicketFailedWarmupError extends Error {
-  readonly code: number = 0x408
-  readonly name: string = 'VaultNcnSlasherTicketFailedWarmup'
+  readonly code: number = 0x408;
+  readonly name: string = "VaultNcnSlasherTicketFailedWarmup";
   constructor() {
-    super('VaultNcnSlasherTicketFailedWarmup')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultNcnSlasherTicketFailedWarmupError)
+    super("VaultNcnSlasherTicketFailedWarmup");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultNcnSlasherTicketFailedWarmupError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x408,
-  () => new VaultNcnSlasherTicketFailedWarmupError()
-)
+  () => new VaultNcnSlasherTicketFailedWarmupError(),
+);
 createErrorFromNameLookup.set(
-  'VaultNcnSlasherTicketFailedWarmup',
-  () => new VaultNcnSlasherTicketFailedWarmupError()
-)
+  "VaultNcnSlasherTicketFailedWarmup",
+  () => new VaultNcnSlasherTicketFailedWarmupError(),
+);
 
 /**
  * VaultNcnTicketFailedCooldown: 'VaultNcnTicketFailedCooldown'
@@ -812,24 +833,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultNcnTicketFailedCooldownError extends Error {
-  readonly code: number = 0x409
-  readonly name: string = 'VaultNcnTicketFailedCooldown'
+  readonly code: number = 0x409;
+  readonly name: string = "VaultNcnTicketFailedCooldown";
   constructor() {
-    super('VaultNcnTicketFailedCooldown')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultNcnTicketFailedCooldownError)
+    super("VaultNcnTicketFailedCooldown");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultNcnTicketFailedCooldownError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x409,
-  () => new VaultNcnTicketFailedCooldownError()
-)
+  () => new VaultNcnTicketFailedCooldownError(),
+);
 createErrorFromNameLookup.set(
-  'VaultNcnTicketFailedCooldown',
-  () => new VaultNcnTicketFailedCooldownError()
-)
+  "VaultNcnTicketFailedCooldown",
+  () => new VaultNcnTicketFailedCooldownError(),
+);
 
 /**
  * VaultNcnTicketFailedWarmup: 'VaultNcnTicketFailedWarmup'
@@ -838,24 +859,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultNcnTicketFailedWarmupError extends Error {
-  readonly code: number = 0x40a
-  readonly name: string = 'VaultNcnTicketFailedWarmup'
+  readonly code: number = 0x40a;
+  readonly name: string = "VaultNcnTicketFailedWarmup";
   constructor() {
-    super('VaultNcnTicketFailedWarmup')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultNcnTicketFailedWarmupError)
+    super("VaultNcnTicketFailedWarmup");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultNcnTicketFailedWarmupError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x40a,
-  () => new VaultNcnTicketFailedWarmupError()
-)
+  () => new VaultNcnTicketFailedWarmupError(),
+);
 createErrorFromNameLookup.set(
-  'VaultNcnTicketFailedWarmup',
-  () => new VaultNcnTicketFailedWarmupError()
-)
+  "VaultNcnTicketFailedWarmup",
+  () => new VaultNcnTicketFailedWarmupError(),
+);
 
 /**
  * VaultNcnTicketUnslashable: 'VaultNcnTicketUnslashable'
@@ -864,21 +885,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultNcnTicketUnslashableError extends Error {
-  readonly code: number = 0x40b
-  readonly name: string = 'VaultNcnTicketUnslashable'
+  readonly code: number = 0x40b;
+  readonly name: string = "VaultNcnTicketUnslashable";
   constructor() {
-    super('VaultNcnTicketUnslashable')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultNcnTicketUnslashableError)
+    super("VaultNcnTicketUnslashable");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultNcnTicketUnslashableError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x40b, () => new VaultNcnTicketUnslashableError())
+createErrorFromCodeLookup.set(
+  0x40b,
+  () => new VaultNcnTicketUnslashableError(),
+);
 createErrorFromNameLookup.set(
-  'VaultNcnTicketUnslashable',
-  () => new VaultNcnTicketUnslashableError()
-)
+  "VaultNcnTicketUnslashable",
+  () => new VaultNcnTicketUnslashableError(),
+);
 
 /**
  * OperatorVaultTicketUnslashable: 'OperatorVaultTicketUnslashable'
@@ -887,24 +911,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class OperatorVaultTicketUnslashableError extends Error {
-  readonly code: number = 0x40c
-  readonly name: string = 'OperatorVaultTicketUnslashable'
+  readonly code: number = 0x40c;
+  readonly name: string = "OperatorVaultTicketUnslashable";
   constructor() {
-    super('OperatorVaultTicketUnslashable')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorVaultTicketUnslashableError)
+    super("OperatorVaultTicketUnslashable");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorVaultTicketUnslashableError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x40c,
-  () => new OperatorVaultTicketUnslashableError()
-)
+  () => new OperatorVaultTicketUnslashableError(),
+);
 createErrorFromNameLookup.set(
-  'OperatorVaultTicketUnslashable',
-  () => new OperatorVaultTicketUnslashableError()
-)
+  "OperatorVaultTicketUnslashable",
+  () => new OperatorVaultTicketUnslashableError(),
+);
 
 /**
  * NcnOperatorStateUnslashable: 'NcnOperatorStateUnslashable'
@@ -913,24 +937,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnOperatorStateUnslashableError extends Error {
-  readonly code: number = 0x40d
-  readonly name: string = 'NcnOperatorStateUnslashable'
+  readonly code: number = 0x40d;
+  readonly name: string = "NcnOperatorStateUnslashable";
   constructor() {
-    super('NcnOperatorStateUnslashable')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnOperatorStateUnslashableError)
+    super("NcnOperatorStateUnslashable");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnOperatorStateUnslashableError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x40d,
-  () => new NcnOperatorStateUnslashableError()
-)
+  () => new NcnOperatorStateUnslashableError(),
+);
 createErrorFromNameLookup.set(
-  'NcnOperatorStateUnslashable',
-  () => new NcnOperatorStateUnslashableError()
-)
+  "NcnOperatorStateUnslashable",
+  () => new NcnOperatorStateUnslashableError(),
+);
 
 /**
  * VaultNcnSlasherTicketUnslashable: 'VaultNcnSlasherTicketUnslashable'
@@ -939,24 +963,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultNcnSlasherTicketUnslashableError extends Error {
-  readonly code: number = 0x40e
-  readonly name: string = 'VaultNcnSlasherTicketUnslashable'
+  readonly code: number = 0x40e;
+  readonly name: string = "VaultNcnSlasherTicketUnslashable";
   constructor() {
-    super('VaultNcnSlasherTicketUnslashable')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultNcnSlasherTicketUnslashableError)
+    super("VaultNcnSlasherTicketUnslashable");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultNcnSlasherTicketUnslashableError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x40e,
-  () => new VaultNcnSlasherTicketUnslashableError()
-)
+  () => new VaultNcnSlasherTicketUnslashableError(),
+);
 createErrorFromNameLookup.set(
-  'VaultNcnSlasherTicketUnslashable',
-  () => new VaultNcnSlasherTicketUnslashableError()
-)
+  "VaultNcnSlasherTicketUnslashable",
+  () => new VaultNcnSlasherTicketUnslashableError(),
+);
 
 /**
  * NcnVaultTicketUnslashable: 'NcnVaultTicketUnslashable'
@@ -965,21 +989,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnVaultTicketUnslashableError extends Error {
-  readonly code: number = 0x40f
-  readonly name: string = 'NcnVaultTicketUnslashable'
+  readonly code: number = 0x40f;
+  readonly name: string = "NcnVaultTicketUnslashable";
   constructor() {
-    super('NcnVaultTicketUnslashable')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnVaultTicketUnslashableError)
+    super("NcnVaultTicketUnslashable");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnVaultTicketUnslashableError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x40f, () => new NcnVaultTicketUnslashableError())
+createErrorFromCodeLookup.set(
+  0x40f,
+  () => new NcnVaultTicketUnslashableError(),
+);
 createErrorFromNameLookup.set(
-  'NcnVaultTicketUnslashable',
-  () => new NcnVaultTicketUnslashableError()
-)
+  "NcnVaultTicketUnslashable",
+  () => new NcnVaultTicketUnslashableError(),
+);
 
 /**
  * NcnVaultSlasherTicketUnslashable: 'NcnVaultSlasherTicketUnslashable'
@@ -988,24 +1015,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnVaultSlasherTicketUnslashableError extends Error {
-  readonly code: number = 0x410
-  readonly name: string = 'NcnVaultSlasherTicketUnslashable'
+  readonly code: number = 0x410;
+  readonly name: string = "NcnVaultSlasherTicketUnslashable";
   constructor() {
-    super('NcnVaultSlasherTicketUnslashable')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnVaultSlasherTicketUnslashableError)
+    super("NcnVaultSlasherTicketUnslashable");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnVaultSlasherTicketUnslashableError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x410,
-  () => new NcnVaultSlasherTicketUnslashableError()
-)
+  () => new NcnVaultSlasherTicketUnslashableError(),
+);
 createErrorFromNameLookup.set(
-  'NcnVaultSlasherTicketUnslashable',
-  () => new NcnVaultSlasherTicketUnslashableError()
-)
+  "NcnVaultSlasherTicketUnslashable",
+  () => new NcnVaultSlasherTicketUnslashableError(),
+);
 
 /**
  * VaultMaxSlashedPerOperatorExceeded: 'VaultMaxSlashedPerOperatorExceeded'
@@ -1014,24 +1041,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultMaxSlashedPerOperatorExceededError extends Error {
-  readonly code: number = 0x411
-  readonly name: string = 'VaultMaxSlashedPerOperatorExceeded'
+  readonly code: number = 0x411;
+  readonly name: string = "VaultMaxSlashedPerOperatorExceeded";
   constructor() {
-    super('VaultMaxSlashedPerOperatorExceeded')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultMaxSlashedPerOperatorExceededError)
+    super("VaultMaxSlashedPerOperatorExceeded");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultMaxSlashedPerOperatorExceededError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x411,
-  () => new VaultMaxSlashedPerOperatorExceededError()
-)
+  () => new VaultMaxSlashedPerOperatorExceededError(),
+);
 createErrorFromNameLookup.set(
-  'VaultMaxSlashedPerOperatorExceeded',
-  () => new VaultMaxSlashedPerOperatorExceededError()
-)
+  "VaultMaxSlashedPerOperatorExceeded",
+  () => new VaultMaxSlashedPerOperatorExceededError(),
+);
 
 /**
  * VaultStakerWithdrawalTicketInvalidStaker: 'VaultStakerWithdrawalTicketInvalidStaker'
@@ -1040,27 +1067,27 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultStakerWithdrawalTicketInvalidStakerError extends Error {
-  readonly code: number = 0x412
-  readonly name: string = 'VaultStakerWithdrawalTicketInvalidStaker'
+  readonly code: number = 0x412;
+  readonly name: string = "VaultStakerWithdrawalTicketInvalidStaker";
   constructor() {
-    super('VaultStakerWithdrawalTicketInvalidStaker')
-    if (typeof Error.captureStackTrace === 'function') {
+    super("VaultStakerWithdrawalTicketInvalidStaker");
+    if (typeof Error.captureStackTrace === "function") {
       Error.captureStackTrace(
         this,
-        VaultStakerWithdrawalTicketInvalidStakerError
-      )
+        VaultStakerWithdrawalTicketInvalidStakerError,
+      );
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x412,
-  () => new VaultStakerWithdrawalTicketInvalidStakerError()
-)
+  () => new VaultStakerWithdrawalTicketInvalidStakerError(),
+);
 createErrorFromNameLookup.set(
-  'VaultStakerWithdrawalTicketInvalidStaker',
-  () => new VaultStakerWithdrawalTicketInvalidStakerError()
-)
+  "VaultStakerWithdrawalTicketInvalidStaker",
+  () => new VaultStakerWithdrawalTicketInvalidStakerError(),
+);
 
 /**
  * SlasherOverflow: 'SlasherOverflow'
@@ -1069,21 +1096,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class SlasherOverflowError extends Error {
-  readonly code: number = 0x413
-  readonly name: string = 'SlasherOverflow'
+  readonly code: number = 0x413;
+  readonly name: string = "SlasherOverflow";
   constructor() {
-    super('SlasherOverflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, SlasherOverflowError)
+    super("SlasherOverflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, SlasherOverflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x413, () => new SlasherOverflowError())
+createErrorFromCodeLookup.set(0x413, () => new SlasherOverflowError());
 createErrorFromNameLookup.set(
-  'SlasherOverflow',
-  () => new SlasherOverflowError()
-)
+  "SlasherOverflow",
+  () => new SlasherOverflowError(),
+);
 
 /**
  * NcnOverflow: 'NcnOverflow'
@@ -1092,18 +1119,18 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnOverflowError extends Error {
-  readonly code: number = 0x414
-  readonly name: string = 'NcnOverflow'
+  readonly code: number = 0x414;
+  readonly name: string = "NcnOverflow";
   constructor() {
-    super('NcnOverflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnOverflowError)
+    super("NcnOverflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnOverflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x414, () => new NcnOverflowError())
-createErrorFromNameLookup.set('NcnOverflow', () => new NcnOverflowError())
+createErrorFromCodeLookup.set(0x414, () => new NcnOverflowError());
+createErrorFromNameLookup.set("NcnOverflow", () => new NcnOverflowError());
 
 /**
  * OperatorOverflow: 'OperatorOverflow'
@@ -1112,21 +1139,21 @@ createErrorFromNameLookup.set('NcnOverflow', () => new NcnOverflowError())
  * @category generated
  */
 export class OperatorOverflowError extends Error {
-  readonly code: number = 0x415
-  readonly name: string = 'OperatorOverflow'
+  readonly code: number = 0x415;
+  readonly name: string = "OperatorOverflow";
   constructor() {
-    super('OperatorOverflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorOverflowError)
+    super("OperatorOverflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorOverflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x415, () => new OperatorOverflowError())
+createErrorFromCodeLookup.set(0x415, () => new OperatorOverflowError());
 createErrorFromNameLookup.set(
-  'OperatorOverflow',
-  () => new OperatorOverflowError()
-)
+  "OperatorOverflow",
+  () => new OperatorOverflowError(),
+);
 
 /**
  * VaultDelegationZero: 'VaultDelegationZero'
@@ -1135,21 +1162,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultDelegationZeroError extends Error {
-  readonly code: number = 0x416
-  readonly name: string = 'VaultDelegationZero'
+  readonly code: number = 0x416;
+  readonly name: string = "VaultDelegationZero";
   constructor() {
-    super('VaultDelegationZero')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultDelegationZeroError)
+    super("VaultDelegationZero");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultDelegationZeroError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x416, () => new VaultDelegationZeroError())
+createErrorFromCodeLookup.set(0x416, () => new VaultDelegationZeroError());
 createErrorFromNameLookup.set(
-  'VaultDelegationZero',
-  () => new VaultDelegationZeroError()
-)
+  "VaultDelegationZero",
+  () => new VaultDelegationZeroError(),
+);
 
 /**
  * VaultCooldownZero: 'VaultCooldownZero'
@@ -1158,21 +1185,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultCooldownZeroError extends Error {
-  readonly code: number = 0x417
-  readonly name: string = 'VaultCooldownZero'
+  readonly code: number = 0x417;
+  readonly name: string = "VaultCooldownZero";
   constructor() {
-    super('VaultCooldownZero')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultCooldownZeroError)
+    super("VaultCooldownZero");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultCooldownZeroError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x417, () => new VaultCooldownZeroError())
+createErrorFromCodeLookup.set(0x417, () => new VaultCooldownZeroError());
 createErrorFromNameLookup.set(
-  'VaultCooldownZero',
-  () => new VaultCooldownZeroError()
-)
+  "VaultCooldownZero",
+  () => new VaultCooldownZeroError(),
+);
 
 /**
  * VaultBurnZero: 'VaultBurnZero'
@@ -1181,18 +1208,18 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultBurnZeroError extends Error {
-  readonly code: number = 0x418
-  readonly name: string = 'VaultBurnZero'
+  readonly code: number = 0x418;
+  readonly name: string = "VaultBurnZero";
   constructor() {
-    super('VaultBurnZero')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultBurnZeroError)
+    super("VaultBurnZero");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultBurnZeroError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x418, () => new VaultBurnZeroError())
-createErrorFromNameLookup.set('VaultBurnZero', () => new VaultBurnZeroError())
+createErrorFromCodeLookup.set(0x418, () => new VaultBurnZeroError());
+createErrorFromNameLookup.set("VaultBurnZero", () => new VaultBurnZeroError());
 
 /**
  * VaultEnqueueWithdrawalAmountZero: 'VaultEnqueueWithdrawalAmountZero'
@@ -1201,24 +1228,24 @@ createErrorFromNameLookup.set('VaultBurnZero', () => new VaultBurnZeroError())
  * @category generated
  */
 export class VaultEnqueueWithdrawalAmountZeroError extends Error {
-  readonly code: number = 0x419
-  readonly name: string = 'VaultEnqueueWithdrawalAmountZero'
+  readonly code: number = 0x419;
+  readonly name: string = "VaultEnqueueWithdrawalAmountZero";
   constructor() {
-    super('VaultEnqueueWithdrawalAmountZero')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultEnqueueWithdrawalAmountZeroError)
+    super("VaultEnqueueWithdrawalAmountZero");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultEnqueueWithdrawalAmountZeroError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x419,
-  () => new VaultEnqueueWithdrawalAmountZeroError()
-)
+  () => new VaultEnqueueWithdrawalAmountZeroError(),
+);
 createErrorFromNameLookup.set(
-  'VaultEnqueueWithdrawalAmountZero',
-  () => new VaultEnqueueWithdrawalAmountZeroError()
-)
+  "VaultEnqueueWithdrawalAmountZero",
+  () => new VaultEnqueueWithdrawalAmountZeroError(),
+);
 
 /**
  * VaultMintZero: 'VaultMintZero'
@@ -1227,18 +1254,18 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultMintZeroError extends Error {
-  readonly code: number = 0x41a
-  readonly name: string = 'VaultMintZero'
+  readonly code: number = 0x41a;
+  readonly name: string = "VaultMintZero";
   constructor() {
-    super('VaultMintZero')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultMintZeroError)
+    super("VaultMintZero");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultMintZeroError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x41a, () => new VaultMintZeroError())
-createErrorFromNameLookup.set('VaultMintZero', () => new VaultMintZeroError())
+createErrorFromCodeLookup.set(0x41a, () => new VaultMintZeroError());
+createErrorFromNameLookup.set("VaultMintZero", () => new VaultMintZeroError());
 
 /**
  * VaultIsPaused: 'VaultIsPaused'
@@ -1247,18 +1274,18 @@ createErrorFromNameLookup.set('VaultMintZero', () => new VaultMintZeroError())
  * @category generated
  */
 export class VaultIsPausedError extends Error {
-  readonly code: number = 0x41b
-  readonly name: string = 'VaultIsPaused'
+  readonly code: number = 0x41b;
+  readonly name: string = "VaultIsPaused";
   constructor() {
-    super('VaultIsPaused')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultIsPausedError)
+    super("VaultIsPaused");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultIsPausedError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x41b, () => new VaultIsPausedError())
-createErrorFromNameLookup.set('VaultIsPaused', () => new VaultIsPausedError())
+createErrorFromCodeLookup.set(0x41b, () => new VaultIsPausedError());
+createErrorFromNameLookup.set("VaultIsPaused", () => new VaultIsPausedError());
 
 /**
  * InvalidDepositor: 'InvalidDepositor'
@@ -1267,21 +1294,21 @@ createErrorFromNameLookup.set('VaultIsPaused', () => new VaultIsPausedError())
  * @category generated
  */
 export class InvalidDepositorError extends Error {
-  readonly code: number = 0x41c
-  readonly name: string = 'InvalidDepositor'
+  readonly code: number = 0x41c;
+  readonly name: string = "InvalidDepositor";
   constructor() {
-    super('InvalidDepositor')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, InvalidDepositorError)
+    super("InvalidDepositor");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, InvalidDepositorError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x41c, () => new InvalidDepositorError())
+createErrorFromCodeLookup.set(0x41c, () => new InvalidDepositorError());
 createErrorFromNameLookup.set(
-  'InvalidDepositor',
-  () => new InvalidDepositorError()
-)
+  "InvalidDepositor",
+  () => new InvalidDepositorError(),
+);
 
 /**
  * InvalidDepositTokenAccount: 'InvalidDepositTokenAccount'
@@ -1290,24 +1317,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class InvalidDepositTokenAccountError extends Error {
-  readonly code: number = 0x41d
-  readonly name: string = 'InvalidDepositTokenAccount'
+  readonly code: number = 0x41d;
+  readonly name: string = "InvalidDepositTokenAccount";
   constructor() {
-    super('InvalidDepositTokenAccount')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, InvalidDepositTokenAccountError)
+    super("InvalidDepositTokenAccount");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, InvalidDepositTokenAccountError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x41d,
-  () => new InvalidDepositTokenAccountError()
-)
+  () => new InvalidDepositTokenAccountError(),
+);
 createErrorFromNameLookup.set(
-  'InvalidDepositTokenAccount',
-  () => new InvalidDepositTokenAccountError()
-)
+  "InvalidDepositTokenAccount",
+  () => new InvalidDepositTokenAccountError(),
+);
 
 /**
  * NoSupportedMintBalanceChange: 'NoSupportedMintBalanceChange'
@@ -1316,24 +1343,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NoSupportedMintBalanceChangeError extends Error {
-  readonly code: number = 0x41e
-  readonly name: string = 'NoSupportedMintBalanceChange'
+  readonly code: number = 0x41e;
+  readonly name: string = "NoSupportedMintBalanceChange";
   constructor() {
-    super('NoSupportedMintBalanceChange')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NoSupportedMintBalanceChangeError)
+    super("NoSupportedMintBalanceChange");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NoSupportedMintBalanceChangeError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x41e,
-  () => new NoSupportedMintBalanceChangeError()
-)
+  () => new NoSupportedMintBalanceChangeError(),
+);
 createErrorFromNameLookup.set(
-  'NoSupportedMintBalanceChange',
-  () => new NoSupportedMintBalanceChangeError()
-)
+  "NoSupportedMintBalanceChange",
+  () => new NoSupportedMintBalanceChangeError(),
+);
 
 /**
  * InvalidEpochLength: 'InvalidEpochLength'
@@ -1342,21 +1369,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class InvalidEpochLengthError extends Error {
-  readonly code: number = 0x41f
-  readonly name: string = 'InvalidEpochLength'
+  readonly code: number = 0x41f;
+  readonly name: string = "InvalidEpochLength";
   constructor() {
-    super('InvalidEpochLength')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, InvalidEpochLengthError)
+    super("InvalidEpochLength");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, InvalidEpochLengthError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x41f, () => new InvalidEpochLengthError())
+createErrorFromCodeLookup.set(0x41f, () => new InvalidEpochLengthError());
 createErrorFromNameLookup.set(
-  'InvalidEpochLength',
-  () => new InvalidEpochLengthError()
-)
+  "InvalidEpochLength",
+  () => new InvalidEpochLengthError(),
+);
 
 /**
  * VaultRewardFeeDeltaTooLarge: 'VaultRewardFeeDeltaTooLarge'
@@ -1365,24 +1392,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultRewardFeeDeltaTooLargeError extends Error {
-  readonly code: number = 0x420
-  readonly name: string = 'VaultRewardFeeDeltaTooLarge'
+  readonly code: number = 0x420;
+  readonly name: string = "VaultRewardFeeDeltaTooLarge";
   constructor() {
-    super('VaultRewardFeeDeltaTooLarge')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultRewardFeeDeltaTooLargeError)
+    super("VaultRewardFeeDeltaTooLarge");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultRewardFeeDeltaTooLargeError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x420,
-  () => new VaultRewardFeeDeltaTooLargeError()
-)
+  () => new VaultRewardFeeDeltaTooLargeError(),
+);
 createErrorFromNameLookup.set(
-  'VaultRewardFeeDeltaTooLarge',
-  () => new VaultRewardFeeDeltaTooLargeError()
-)
+  "VaultRewardFeeDeltaTooLarge",
+  () => new VaultRewardFeeDeltaTooLargeError(),
+);
 
 /**
  * VaultRewardFeeIsZero: 'VaultRewardFeeIsZero'
@@ -1391,21 +1418,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultRewardFeeIsZeroError extends Error {
-  readonly code: number = 0x421
-  readonly name: string = 'VaultRewardFeeIsZero'
+  readonly code: number = 0x421;
+  readonly name: string = "VaultRewardFeeIsZero";
   constructor() {
-    super('VaultRewardFeeIsZero')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultRewardFeeIsZeroError)
+    super("VaultRewardFeeIsZero");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultRewardFeeIsZeroError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x421, () => new VaultRewardFeeIsZeroError())
+createErrorFromCodeLookup.set(0x421, () => new VaultRewardFeeIsZeroError());
 createErrorFromNameLookup.set(
-  'VaultRewardFeeIsZero',
-  () => new VaultRewardFeeIsZeroError()
-)
+  "VaultRewardFeeIsZero",
+  () => new VaultRewardFeeIsZeroError(),
+);
 
 /**
  * VrtOutCannotBeZero: 'VrtOutCannotBeZero'
@@ -1414,21 +1441,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VrtOutCannotBeZeroError extends Error {
-  readonly code: number = 0x422
-  readonly name: string = 'VrtOutCannotBeZero'
+  readonly code: number = 0x422;
+  readonly name: string = "VrtOutCannotBeZero";
   constructor() {
-    super('VrtOutCannotBeZero')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VrtOutCannotBeZeroError)
+    super("VrtOutCannotBeZero");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VrtOutCannotBeZeroError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x422, () => new VrtOutCannotBeZeroError())
+createErrorFromCodeLookup.set(0x422, () => new VrtOutCannotBeZeroError());
 createErrorFromNameLookup.set(
-  'VrtOutCannotBeZero',
-  () => new VrtOutCannotBeZeroError()
-)
+  "VrtOutCannotBeZero",
+  () => new VrtOutCannotBeZeroError(),
+);
 
 /**
  * NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdate: 'NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdate'
@@ -1437,28 +1464,28 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdateError extends Error {
-  readonly code: number = 0x423
+  readonly code: number = 0x423;
   readonly name: string =
-    'NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdate'
+    "NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdate";
   constructor() {
-    super('NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdate')
-    if (typeof Error.captureStackTrace === 'function') {
+    super("NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdate");
+    if (typeof Error.captureStackTrace === "function") {
       Error.captureStackTrace(
         this,
-        NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdateError
-      )
+        NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdateError,
+      );
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x423,
-  () => new NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdateError()
-)
+  () => new NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdateError(),
+);
 createErrorFromNameLookup.set(
-  'NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdate',
-  () => new NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdateError()
-)
+  "NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdate",
+  () => new NonZeroAdditionalAssetsNeededForWithdrawalAtEndOfUpdateError(),
+);
 
 /**
  * ArithmeticOverflow: 'ArithmeticOverflow'
@@ -1467,21 +1494,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class ArithmeticOverflowError extends Error {
-  readonly code: number = 0xbb8
-  readonly name: string = 'ArithmeticOverflow'
+  readonly code: number = 0xbb8;
+  readonly name: string = "ArithmeticOverflow";
   constructor() {
-    super('ArithmeticOverflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, ArithmeticOverflowError)
+    super("ArithmeticOverflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, ArithmeticOverflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0xbb8, () => new ArithmeticOverflowError())
+createErrorFromCodeLookup.set(0xbb8, () => new ArithmeticOverflowError());
 createErrorFromNameLookup.set(
-  'ArithmeticOverflow',
-  () => new ArithmeticOverflowError()
-)
+  "ArithmeticOverflow",
+  () => new ArithmeticOverflowError(),
+);
 
 /**
  * ArithmeticUnderflow: 'ArithmeticUnderflow'
@@ -1490,21 +1517,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class ArithmeticUnderflowError extends Error {
-  readonly code: number = 0xbb9
-  readonly name: string = 'ArithmeticUnderflow'
+  readonly code: number = 0xbb9;
+  readonly name: string = "ArithmeticUnderflow";
   constructor() {
-    super('ArithmeticUnderflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, ArithmeticUnderflowError)
+    super("ArithmeticUnderflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, ArithmeticUnderflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0xbb9, () => new ArithmeticUnderflowError())
+createErrorFromCodeLookup.set(0xbb9, () => new ArithmeticUnderflowError());
 createErrorFromNameLookup.set(
-  'ArithmeticUnderflow',
-  () => new ArithmeticUnderflowError()
-)
+  "ArithmeticUnderflow",
+  () => new ArithmeticUnderflowError(),
+);
 
 /**
  * DivisionByZero: 'DivisionByZero'
@@ -1513,18 +1540,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class DivisionByZeroError extends Error {
-  readonly code: number = 0xbba
-  readonly name: string = 'DivisionByZero'
+  readonly code: number = 0xbba;
+  readonly name: string = "DivisionByZero";
   constructor() {
-    super('DivisionByZero')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, DivisionByZeroError)
+    super("DivisionByZero");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, DivisionByZeroError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0xbba, () => new DivisionByZeroError())
-createErrorFromNameLookup.set('DivisionByZero', () => new DivisionByZeroError())
+createErrorFromCodeLookup.set(0xbba, () => new DivisionByZeroError());
+createErrorFromNameLookup.set(
+  "DivisionByZero",
+  () => new DivisionByZeroError(),
+);
 
 /**
  * Attempts to resolve a custom program error from the provided error code.
@@ -1532,8 +1562,8 @@ createErrorFromNameLookup.set('DivisionByZero', () => new DivisionByZeroError())
  * @category generated
  */
 export function errorFromCode(code: number): MaybeErrorWithCode {
-  const createError = createErrorFromCodeLookup.get(code)
-  return createError != null ? createError() : null
+  const createError = createErrorFromCodeLookup.get(code);
+  return createError != null ? createError() : null;
 }
 
 /**
@@ -1542,6 +1572,6 @@ export function errorFromCode(code: number): MaybeErrorWithCode {
  * @category generated
  */
 export function errorFromName(name: string): MaybeErrorWithCode {
-  const createError = createErrorFromNameLookup.get(name)
-  return createError != null ? createError() : null
+  const createError = createErrorFromNameLookup.get(name);
+  return createError != null ? createError() : null;
 }

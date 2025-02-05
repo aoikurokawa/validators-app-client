@@ -1,15 +1,15 @@
-'use client'
+"use client";
 
-import { useWallet } from '@solana/wallet-adapter-react'
-import { WalletButton } from '../solana/solana-provider'
-import { AppHero, ellipsify } from '../ui/ui-layout'
-import { ExplorerLink } from '../cluster/cluster-ui'
-import { useHelloProgram } from './hello-data-access'
-import { HelloCreate, HelloList } from './hello-ui'
+import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletButton } from "../solana/solana-provider";
+import { AppHero, ellipsify } from "../ui/ui-layout";
+import { ExplorerLink } from "../cluster/cluster-ui";
+import { useHelloProgram } from "./hello-data-access";
+import { HelloCreate, HelloList } from "./hello-ui";
 
 export default function HelloFeature() {
-  const { publicKey } = useWallet()
-  const { programId } = useHelloProgram()
+  const { publicKey } = useWallet();
+  const { programId } = useHelloProgram();
 
   return publicKey ? (
     <div>
@@ -20,7 +20,10 @@ export default function HelloFeature() {
         }
       >
         <p className="mb-6">
-          <ExplorerLink path={`account/${programId}`} label={ellipsify(programId.toString())} />
+          <ExplorerLink
+            path={`account/${programId}`}
+            label={ellipsify(programId.toString())}
+          />
         </p>
         <HelloCreate />
       </AppHero>
@@ -34,5 +37,5 @@ export default function HelloFeature() {
         </div>
       </div>
     </div>
-  )
+  );
 }

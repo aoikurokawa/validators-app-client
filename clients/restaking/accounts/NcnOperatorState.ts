@@ -5,10 +5,10 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
-import { SlotToggle, slotToggleBeet } from '../types/SlotToggle'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
+import { SlotToggle, slotToggleBeet } from "../types/SlotToggle";
 
 /**
  * Arguments used to create {@link NcnOperatorState}
@@ -16,14 +16,14 @@ import { SlotToggle, slotToggleBeet } from '../types/SlotToggle'
  * @category generated
  */
 export type NcnOperatorStateArgs = {
-  ncn: web3.PublicKey
-  operator: web3.PublicKey
-  index: beet.bignum
-  ncnOptInState: SlotToggle
-  operatorOptInState: SlotToggle
-  bump: number
-  reserved: number[] /* size: 263 */
-}
+  ncn: web3.PublicKey;
+  operator: web3.PublicKey;
+  index: beet.bignum;
+  ncnOptInState: SlotToggle;
+  operatorOptInState: SlotToggle;
+  bump: number;
+  reserved: number[] /* size: 263 */;
+};
 /**
  * Holds the data for the {@link NcnOperatorState} Account and provides de/serialization
  * functionality for that data
@@ -39,7 +39,7 @@ export class NcnOperatorState implements NcnOperatorStateArgs {
     readonly ncnOptInState: SlotToggle,
     readonly operatorOptInState: SlotToggle,
     readonly bump: number,
-    readonly reserved: number[] /* size: 263 */
+    readonly reserved: number[] /* size: 263 */,
   ) {}
 
   /**
@@ -53,8 +53,8 @@ export class NcnOperatorState implements NcnOperatorStateArgs {
       args.ncnOptInState,
       args.operatorOptInState,
       args.bump,
-      args.reserved
-    )
+      args.reserved,
+    );
   }
 
   /**
@@ -63,9 +63,9 @@ export class NcnOperatorState implements NcnOperatorStateArgs {
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [NcnOperatorState, number] {
-    return NcnOperatorState.deserialize(accountInfo.data, offset)
+    return NcnOperatorState.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -77,16 +77,16 @@ export class NcnOperatorState implements NcnOperatorStateArgs {
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<NcnOperatorState> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
-      throw new Error(`Unable to find NcnOperatorState account at ${address}`)
+      throw new Error(`Unable to find NcnOperatorState account at ${address}`);
     }
-    return NcnOperatorState.fromAccountInfo(accountInfo, 0)[0]
+    return NcnOperatorState.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -97,10 +97,10 @@ export class NcnOperatorState implements NcnOperatorStateArgs {
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q'
-    )
+      "RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q",
+    ),
   ) {
-    return beetSolana.GpaBuilder.fromStruct(programId, ncnOperatorStateBeet)
+    return beetSolana.GpaBuilder.fromStruct(programId, ncnOperatorStateBeet);
   }
 
   /**
@@ -108,7 +108,7 @@ export class NcnOperatorState implements NcnOperatorStateArgs {
    * @returns a tuple of the account data and the offset up to which the buffer was read to obtain it.
    */
   static deserialize(buf: Buffer, offset = 0): [NcnOperatorState, number] {
-    return ncnOperatorStateBeet.deserialize(buf, offset)
+    return ncnOperatorStateBeet.deserialize(buf, offset);
   }
 
   /**
@@ -116,7 +116,7 @@ export class NcnOperatorState implements NcnOperatorStateArgs {
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return ncnOperatorStateBeet.serialize(this)
+    return ncnOperatorStateBeet.serialize(this);
   }
 
   /**
@@ -124,7 +124,7 @@ export class NcnOperatorState implements NcnOperatorStateArgs {
    * {@link NcnOperatorState}
    */
   static get byteSize() {
-    return ncnOperatorStateBeet.byteSize
+    return ncnOperatorStateBeet.byteSize;
   }
 
   /**
@@ -135,12 +135,12 @@ export class NcnOperatorState implements NcnOperatorStateArgs {
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       NcnOperatorState.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -148,7 +148,7 @@ export class NcnOperatorState implements NcnOperatorStateArgs {
    * hold {@link NcnOperatorState} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === NcnOperatorState.byteSize
+    return buf.byteLength - offset === NcnOperatorState.byteSize;
   }
 
   /**
@@ -160,21 +160,21 @@ export class NcnOperatorState implements NcnOperatorStateArgs {
       ncn: this.ncn.toBase58(),
       operator: this.operator.toBase58(),
       index: (() => {
-        const x = <{ toNumber: () => number }>this.index
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.index;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       ncnOptInState: this.ncnOptInState,
       operatorOptInState: this.operatorOptInState,
       bump: this.bump,
       reserved: this.reserved,
-    }
+    };
   }
 }
 
@@ -187,14 +187,14 @@ export const ncnOperatorStateBeet = new beet.BeetStruct<
   NcnOperatorStateArgs
 >(
   [
-    ['ncn', beetSolana.publicKey],
-    ['operator', beetSolana.publicKey],
-    ['index', beet.u64],
-    ['ncnOptInState', slotToggleBeet],
-    ['operatorOptInState', slotToggleBeet],
-    ['bump', beet.u8],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 263)],
+    ["ncn", beetSolana.publicKey],
+    ["operator", beetSolana.publicKey],
+    ["index", beet.u64],
+    ["ncnOptInState", slotToggleBeet],
+    ["operatorOptInState", slotToggleBeet],
+    ["bump", beet.u8],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 263)],
   ],
   NcnOperatorState.fromArgs,
-  'NcnOperatorState'
-)
+  "NcnOperatorState",
+);

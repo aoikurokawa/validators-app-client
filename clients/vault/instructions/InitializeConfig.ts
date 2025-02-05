@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type InitializeConfigInstructionArgs = {
-  programFeeBps: number
-}
+  programFeeBps: number;
+};
 /**
  * @category Instructions
  * @category InitializeConfig
@@ -23,15 +23,15 @@ export type InitializeConfigInstructionArgs = {
  */
 export const InitializeConfigStruct = new beet.BeetArgsStruct<
   InitializeConfigInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['programFeeBps', beet.u16],
+    ["instructionDiscriminator", beet.u8],
+    ["programFeeBps", beet.u16],
   ],
-  'InitializeConfigInstructionArgs'
-)
+  "InitializeConfigInstructionArgs",
+);
 /**
  * Accounts required by the _InitializeConfig_ instruction
  *
@@ -44,14 +44,14 @@ export const InitializeConfigStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type InitializeConfigInstructionAccounts = {
-  config: web3.PublicKey
-  admin: web3.PublicKey
-  restakingProgram: web3.PublicKey
-  programFeeWallet: web3.PublicKey
-  systemProgram?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  admin: web3.PublicKey;
+  restakingProgram: web3.PublicKey;
+  programFeeWallet: web3.PublicKey;
+  systemProgram?: web3.PublicKey;
+};
 
-export const initializeConfigInstructionDiscriminator = 0
+export const initializeConfigInstructionDiscriminator = 0;
 
 /**
  * Creates a _InitializeConfig_ instruction.
@@ -66,12 +66,12 @@ export const initializeConfigInstructionDiscriminator = 0
 export function createInitializeConfigInstruction(
   accounts: InitializeConfigInstructionAccounts,
   args: InitializeConfigInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = InitializeConfigStruct.serialize({
     instructionDiscriminator: initializeConfigInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -98,12 +98,12 @@ export function createInitializeConfigInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

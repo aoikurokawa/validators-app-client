@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as splToken from '@solana/spl-token'
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as splToken from "@solana/spl-token";
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -15,11 +15,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const BurnWithdrawalTicketStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'BurnWithdrawalTicketInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "BurnWithdrawalTicketInstructionArgs",
+);
 /**
  * Accounts required by the _BurnWithdrawalTicket_ instruction
  *
@@ -39,22 +39,22 @@ export const BurnWithdrawalTicketStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type BurnWithdrawalTicketInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  vaultTokenAccount: web3.PublicKey
-  vrtMint: web3.PublicKey
-  staker: web3.PublicKey
-  stakerTokenAccount: web3.PublicKey
-  vaultStakerWithdrawalTicket: web3.PublicKey
-  vaultStakerWithdrawalTicketTokenAccount: web3.PublicKey
-  vaultFeeTokenAccount: web3.PublicKey
-  programFeeTokenAccount: web3.PublicKey
-  tokenProgram?: web3.PublicKey
-  systemProgram?: web3.PublicKey
-  burnSigner?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  vaultTokenAccount: web3.PublicKey;
+  vrtMint: web3.PublicKey;
+  staker: web3.PublicKey;
+  stakerTokenAccount: web3.PublicKey;
+  vaultStakerWithdrawalTicket: web3.PublicKey;
+  vaultStakerWithdrawalTicketTokenAccount: web3.PublicKey;
+  vaultFeeTokenAccount: web3.PublicKey;
+  programFeeTokenAccount: web3.PublicKey;
+  tokenProgram?: web3.PublicKey;
+  systemProgram?: web3.PublicKey;
+  burnSigner?: web3.PublicKey;
+};
 
-export const burnWithdrawalTicketInstructionDiscriminator = 14
+export const burnWithdrawalTicketInstructionDiscriminator = 14;
 
 /**
  * Creates a _BurnWithdrawalTicket_ instruction.
@@ -69,11 +69,11 @@ export const burnWithdrawalTicketInstructionDiscriminator = 14
  */
 export function createBurnWithdrawalTicketInstruction(
   accounts: BurnWithdrawalTicketInstructionAccounts,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = BurnWithdrawalTicketStruct.serialize({
     instructionDiscriminator: burnWithdrawalTicketInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -140,12 +140,12 @@ export function createBurnWithdrawalTicketInstruction(
       isWritable: false,
       isSigner: accounts.burnSigner != null,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

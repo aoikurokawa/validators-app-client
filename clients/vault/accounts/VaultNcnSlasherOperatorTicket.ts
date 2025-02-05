@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
 
 /**
  * Arguments used to create {@link VaultNcnSlasherOperatorTicket}
@@ -15,15 +15,15 @@ import * as beetSolana from '@metaplex-foundation/beet-solana'
  * @category generated
  */
 export type VaultNcnSlasherOperatorTicketArgs = {
-  vault: web3.PublicKey
-  ncn: web3.PublicKey
-  slasher: web3.PublicKey
-  operator: web3.PublicKey
-  epoch: beet.bignum
-  slashed: beet.bignum
-  bump: number
-  reserved: number[] /* size: 263 */
-}
+  vault: web3.PublicKey;
+  ncn: web3.PublicKey;
+  slasher: web3.PublicKey;
+  operator: web3.PublicKey;
+  epoch: beet.bignum;
+  slashed: beet.bignum;
+  bump: number;
+  reserved: number[] /* size: 263 */;
+};
 /**
  * Holds the data for the {@link VaultNcnSlasherOperatorTicket} Account and provides de/serialization
  * functionality for that data
@@ -42,7 +42,7 @@ export class VaultNcnSlasherOperatorTicket
     readonly epoch: beet.bignum,
     readonly slashed: beet.bignum,
     readonly bump: number,
-    readonly reserved: number[] /* size: 263 */
+    readonly reserved: number[] /* size: 263 */,
   ) {}
 
   /**
@@ -57,8 +57,8 @@ export class VaultNcnSlasherOperatorTicket
       args.epoch,
       args.slashed,
       args.bump,
-      args.reserved
-    )
+      args.reserved,
+    );
   }
 
   /**
@@ -67,9 +67,9 @@ export class VaultNcnSlasherOperatorTicket
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [VaultNcnSlasherOperatorTicket, number] {
-    return VaultNcnSlasherOperatorTicket.deserialize(accountInfo.data, offset)
+    return VaultNcnSlasherOperatorTicket.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -81,18 +81,18 @@ export class VaultNcnSlasherOperatorTicket
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<VaultNcnSlasherOperatorTicket> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
       throw new Error(
-        `Unable to find VaultNcnSlasherOperatorTicket account at ${address}`
-      )
+        `Unable to find VaultNcnSlasherOperatorTicket account at ${address}`,
+      );
     }
-    return VaultNcnSlasherOperatorTicket.fromAccountInfo(accountInfo, 0)[0]
+    return VaultNcnSlasherOperatorTicket.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -103,13 +103,13 @@ export class VaultNcnSlasherOperatorTicket
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8'
-    )
+      "Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8",
+    ),
   ) {
     return beetSolana.GpaBuilder.fromStruct(
       programId,
-      vaultNcnSlasherOperatorTicketBeet
-    )
+      vaultNcnSlasherOperatorTicketBeet,
+    );
   }
 
   /**
@@ -118,9 +118,9 @@ export class VaultNcnSlasherOperatorTicket
    */
   static deserialize(
     buf: Buffer,
-    offset = 0
+    offset = 0,
   ): [VaultNcnSlasherOperatorTicket, number] {
-    return vaultNcnSlasherOperatorTicketBeet.deserialize(buf, offset)
+    return vaultNcnSlasherOperatorTicketBeet.deserialize(buf, offset);
   }
 
   /**
@@ -128,7 +128,7 @@ export class VaultNcnSlasherOperatorTicket
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return vaultNcnSlasherOperatorTicketBeet.serialize(this)
+    return vaultNcnSlasherOperatorTicketBeet.serialize(this);
   }
 
   /**
@@ -136,7 +136,7 @@ export class VaultNcnSlasherOperatorTicket
    * {@link VaultNcnSlasherOperatorTicket}
    */
   static get byteSize() {
-    return vaultNcnSlasherOperatorTicketBeet.byteSize
+    return vaultNcnSlasherOperatorTicketBeet.byteSize;
   }
 
   /**
@@ -147,12 +147,12 @@ export class VaultNcnSlasherOperatorTicket
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       VaultNcnSlasherOperatorTicket.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -160,7 +160,7 @@ export class VaultNcnSlasherOperatorTicket
    * hold {@link VaultNcnSlasherOperatorTicket} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === VaultNcnSlasherOperatorTicket.byteSize
+    return buf.byteLength - offset === VaultNcnSlasherOperatorTicket.byteSize;
   }
 
   /**
@@ -174,30 +174,30 @@ export class VaultNcnSlasherOperatorTicket
       slasher: this.slasher.toBase58(),
       operator: this.operator.toBase58(),
       epoch: (() => {
-        const x = <{ toNumber: () => number }>this.epoch
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.epoch;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       slashed: (() => {
-        const x = <{ toNumber: () => number }>this.slashed
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.slashed;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       bump: this.bump,
       reserved: this.reserved,
-    }
+    };
   }
 }
 
@@ -210,15 +210,15 @@ export const vaultNcnSlasherOperatorTicketBeet = new beet.BeetStruct<
   VaultNcnSlasherOperatorTicketArgs
 >(
   [
-    ['vault', beetSolana.publicKey],
-    ['ncn', beetSolana.publicKey],
-    ['slasher', beetSolana.publicKey],
-    ['operator', beetSolana.publicKey],
-    ['epoch', beet.u64],
-    ['slashed', beet.u64],
-    ['bump', beet.u8],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 263)],
+    ["vault", beetSolana.publicKey],
+    ["ncn", beetSolana.publicKey],
+    ["slasher", beetSolana.publicKey],
+    ["operator", beetSolana.publicKey],
+    ["epoch", beet.u64],
+    ["slashed", beet.u64],
+    ["bump", beet.u8],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 263)],
   ],
   VaultNcnSlasherOperatorTicket.fromArgs,
-  'VaultNcnSlasherOperatorTicket'
-)
+  "VaultNcnSlasherOperatorTicket",
+);

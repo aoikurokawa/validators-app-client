@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
 
 /**
  * Arguments used to create {@link Operator}
@@ -15,20 +15,20 @@ import * as beetSolana from '@metaplex-foundation/beet-solana'
  * @category generated
  */
 export type OperatorArgs = {
-  base: web3.PublicKey
-  admin: web3.PublicKey
-  ncnAdmin: web3.PublicKey
-  vaultAdmin: web3.PublicKey
-  delegateAdmin: web3.PublicKey
-  metadataAdmin: web3.PublicKey
-  voter: web3.PublicKey
-  index: beet.bignum
-  ncnCount: beet.bignum
-  vaultCount: beet.bignum
-  operatorFeeBps: number
-  bump: number
-  reservedSpace: number[] /* size: 261 */
-}
+  base: web3.PublicKey;
+  admin: web3.PublicKey;
+  ncnAdmin: web3.PublicKey;
+  vaultAdmin: web3.PublicKey;
+  delegateAdmin: web3.PublicKey;
+  metadataAdmin: web3.PublicKey;
+  voter: web3.PublicKey;
+  index: beet.bignum;
+  ncnCount: beet.bignum;
+  vaultCount: beet.bignum;
+  operatorFeeBps: number;
+  bump: number;
+  reservedSpace: number[] /* size: 261 */;
+};
 /**
  * Holds the data for the {@link Operator} Account and provides de/serialization
  * functionality for that data
@@ -50,7 +50,7 @@ export class Operator implements OperatorArgs {
     readonly vaultCount: beet.bignum,
     readonly operatorFeeBps: number,
     readonly bump: number,
-    readonly reservedSpace: number[] /* size: 261 */
+    readonly reservedSpace: number[] /* size: 261 */,
   ) {}
 
   /**
@@ -70,8 +70,8 @@ export class Operator implements OperatorArgs {
       args.vaultCount,
       args.operatorFeeBps,
       args.bump,
-      args.reservedSpace
-    )
+      args.reservedSpace,
+    );
   }
 
   /**
@@ -80,9 +80,9 @@ export class Operator implements OperatorArgs {
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [Operator, number] {
-    return Operator.deserialize(accountInfo.data, offset)
+    return Operator.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -94,16 +94,16 @@ export class Operator implements OperatorArgs {
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<Operator> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
-      throw new Error(`Unable to find Operator account at ${address}`)
+      throw new Error(`Unable to find Operator account at ${address}`);
     }
-    return Operator.fromAccountInfo(accountInfo, 0)[0]
+    return Operator.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -114,10 +114,10 @@ export class Operator implements OperatorArgs {
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q'
-    )
+      "RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q",
+    ),
   ) {
-    return beetSolana.GpaBuilder.fromStruct(programId, operatorBeet)
+    return beetSolana.GpaBuilder.fromStruct(programId, operatorBeet);
   }
 
   /**
@@ -125,7 +125,7 @@ export class Operator implements OperatorArgs {
    * @returns a tuple of the account data and the offset up to which the buffer was read to obtain it.
    */
   static deserialize(buf: Buffer, offset = 0): [Operator, number] {
-    return operatorBeet.deserialize(buf, offset)
+    return operatorBeet.deserialize(buf, offset);
   }
 
   /**
@@ -133,7 +133,7 @@ export class Operator implements OperatorArgs {
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return operatorBeet.serialize(this)
+    return operatorBeet.serialize(this);
   }
 
   /**
@@ -141,7 +141,7 @@ export class Operator implements OperatorArgs {
    * {@link Operator}
    */
   static get byteSize() {
-    return operatorBeet.byteSize
+    return operatorBeet.byteSize;
   }
 
   /**
@@ -152,12 +152,12 @@ export class Operator implements OperatorArgs {
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       Operator.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -165,7 +165,7 @@ export class Operator implements OperatorArgs {
    * hold {@link Operator} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === Operator.byteSize
+    return buf.byteLength - offset === Operator.byteSize;
   }
 
   /**
@@ -182,42 +182,42 @@ export class Operator implements OperatorArgs {
       metadataAdmin: this.metadataAdmin.toBase58(),
       voter: this.voter.toBase58(),
       index: (() => {
-        const x = <{ toNumber: () => number }>this.index
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.index;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       ncnCount: (() => {
-        const x = <{ toNumber: () => number }>this.ncnCount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.ncnCount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       vaultCount: (() => {
-        const x = <{ toNumber: () => number }>this.vaultCount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.vaultCount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       operatorFeeBps: this.operatorFeeBps,
       bump: this.bump,
       reservedSpace: this.reservedSpace,
-    }
+    };
   }
 }
 
@@ -227,20 +227,20 @@ export class Operator implements OperatorArgs {
  */
 export const operatorBeet = new beet.BeetStruct<Operator, OperatorArgs>(
   [
-    ['base', beetSolana.publicKey],
-    ['admin', beetSolana.publicKey],
-    ['ncnAdmin', beetSolana.publicKey],
-    ['vaultAdmin', beetSolana.publicKey],
-    ['delegateAdmin', beetSolana.publicKey],
-    ['metadataAdmin', beetSolana.publicKey],
-    ['voter', beetSolana.publicKey],
-    ['index', beet.u64],
-    ['ncnCount', beet.u64],
-    ['vaultCount', beet.u64],
-    ['operatorFeeBps', beet.u16],
-    ['bump', beet.u8],
-    ['reservedSpace', beet.uniformFixedSizeArray(beet.u8, 261)],
+    ["base", beetSolana.publicKey],
+    ["admin", beetSolana.publicKey],
+    ["ncnAdmin", beetSolana.publicKey],
+    ["vaultAdmin", beetSolana.publicKey],
+    ["delegateAdmin", beetSolana.publicKey],
+    ["metadataAdmin", beetSolana.publicKey],
+    ["voter", beetSolana.publicKey],
+    ["index", beet.u64],
+    ["ncnCount", beet.u64],
+    ["vaultCount", beet.u64],
+    ["operatorFeeBps", beet.u16],
+    ["bump", beet.u8],
+    ["reservedSpace", beet.uniformFixedSizeArray(beet.u8, 261)],
   ],
   Operator.fromArgs,
-  'Operator'
-)
+  "Operator",
+);

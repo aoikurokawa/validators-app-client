@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
 
 /**
  * Arguments used to create {@link Ncn}
@@ -15,22 +15,22 @@ import * as beetSolana from '@metaplex-foundation/beet-solana'
  * @category generated
  */
 export type NcnArgs = {
-  base: web3.PublicKey
-  admin: web3.PublicKey
-  operatorAdmin: web3.PublicKey
-  vaultAdmin: web3.PublicKey
-  slasherAdmin: web3.PublicKey
-  delegateAdmin: web3.PublicKey
-  metadataAdmin: web3.PublicKey
-  weightTableAdmin: web3.PublicKey
-  ncnProgramAdmin: web3.PublicKey
-  index: beet.bignum
-  operatorCount: beet.bignum
-  vaultCount: beet.bignum
-  slasherCount: beet.bignum
-  bump: number
-  reserved: number[] /* size: 263 */
-}
+  base: web3.PublicKey;
+  admin: web3.PublicKey;
+  operatorAdmin: web3.PublicKey;
+  vaultAdmin: web3.PublicKey;
+  slasherAdmin: web3.PublicKey;
+  delegateAdmin: web3.PublicKey;
+  metadataAdmin: web3.PublicKey;
+  weightTableAdmin: web3.PublicKey;
+  ncnProgramAdmin: web3.PublicKey;
+  index: beet.bignum;
+  operatorCount: beet.bignum;
+  vaultCount: beet.bignum;
+  slasherCount: beet.bignum;
+  bump: number;
+  reserved: number[] /* size: 263 */;
+};
 /**
  * Holds the data for the {@link Ncn} Account and provides de/serialization
  * functionality for that data
@@ -54,7 +54,7 @@ export class Ncn implements NcnArgs {
     readonly vaultCount: beet.bignum,
     readonly slasherCount: beet.bignum,
     readonly bump: number,
-    readonly reserved: number[] /* size: 263 */
+    readonly reserved: number[] /* size: 263 */,
   ) {}
 
   /**
@@ -76,8 +76,8 @@ export class Ncn implements NcnArgs {
       args.vaultCount,
       args.slasherCount,
       args.bump,
-      args.reserved
-    )
+      args.reserved,
+    );
   }
 
   /**
@@ -86,9 +86,9 @@ export class Ncn implements NcnArgs {
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [Ncn, number] {
-    return Ncn.deserialize(accountInfo.data, offset)
+    return Ncn.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -100,16 +100,16 @@ export class Ncn implements NcnArgs {
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<Ncn> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
-      throw new Error(`Unable to find Ncn account at ${address}`)
+      throw new Error(`Unable to find Ncn account at ${address}`);
     }
-    return Ncn.fromAccountInfo(accountInfo, 0)[0]
+    return Ncn.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -120,10 +120,10 @@ export class Ncn implements NcnArgs {
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q'
-    )
+      "RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q",
+    ),
   ) {
-    return beetSolana.GpaBuilder.fromStruct(programId, ncnBeet)
+    return beetSolana.GpaBuilder.fromStruct(programId, ncnBeet);
   }
 
   /**
@@ -131,7 +131,7 @@ export class Ncn implements NcnArgs {
    * @returns a tuple of the account data and the offset up to which the buffer was read to obtain it.
    */
   static deserialize(buf: Buffer, offset = 0): [Ncn, number] {
-    return ncnBeet.deserialize(buf, offset)
+    return ncnBeet.deserialize(buf, offset);
   }
 
   /**
@@ -139,7 +139,7 @@ export class Ncn implements NcnArgs {
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return ncnBeet.serialize(this)
+    return ncnBeet.serialize(this);
   }
 
   /**
@@ -147,7 +147,7 @@ export class Ncn implements NcnArgs {
    * {@link Ncn}
    */
   static get byteSize() {
-    return ncnBeet.byteSize
+    return ncnBeet.byteSize;
   }
 
   /**
@@ -158,12 +158,12 @@ export class Ncn implements NcnArgs {
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       Ncn.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -171,7 +171,7 @@ export class Ncn implements NcnArgs {
    * hold {@link Ncn} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === Ncn.byteSize
+    return buf.byteLength - offset === Ncn.byteSize;
   }
 
   /**
@@ -190,52 +190,52 @@ export class Ncn implements NcnArgs {
       weightTableAdmin: this.weightTableAdmin.toBase58(),
       ncnProgramAdmin: this.ncnProgramAdmin.toBase58(),
       index: (() => {
-        const x = <{ toNumber: () => number }>this.index
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.index;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       operatorCount: (() => {
-        const x = <{ toNumber: () => number }>this.operatorCount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.operatorCount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       vaultCount: (() => {
-        const x = <{ toNumber: () => number }>this.vaultCount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.vaultCount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       slasherCount: (() => {
-        const x = <{ toNumber: () => number }>this.slasherCount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.slasherCount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       bump: this.bump,
       reserved: this.reserved,
-    }
+    };
   }
 }
 
@@ -245,22 +245,22 @@ export class Ncn implements NcnArgs {
  */
 export const ncnBeet = new beet.BeetStruct<Ncn, NcnArgs>(
   [
-    ['base', beetSolana.publicKey],
-    ['admin', beetSolana.publicKey],
-    ['operatorAdmin', beetSolana.publicKey],
-    ['vaultAdmin', beetSolana.publicKey],
-    ['slasherAdmin', beetSolana.publicKey],
-    ['delegateAdmin', beetSolana.publicKey],
-    ['metadataAdmin', beetSolana.publicKey],
-    ['weightTableAdmin', beetSolana.publicKey],
-    ['ncnProgramAdmin', beetSolana.publicKey],
-    ['index', beet.u64],
-    ['operatorCount', beet.u64],
-    ['vaultCount', beet.u64],
-    ['slasherCount', beet.u64],
-    ['bump', beet.u8],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 263)],
+    ["base", beetSolana.publicKey],
+    ["admin", beetSolana.publicKey],
+    ["operatorAdmin", beetSolana.publicKey],
+    ["vaultAdmin", beetSolana.publicKey],
+    ["slasherAdmin", beetSolana.publicKey],
+    ["delegateAdmin", beetSolana.publicKey],
+    ["metadataAdmin", beetSolana.publicKey],
+    ["weightTableAdmin", beetSolana.publicKey],
+    ["ncnProgramAdmin", beetSolana.publicKey],
+    ["index", beet.u64],
+    ["operatorCount", beet.u64],
+    ["vaultCount", beet.u64],
+    ["slasherCount", beet.u64],
+    ["bump", beet.u8],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 263)],
   ],
   Ncn.fromArgs,
-  'Ncn'
-)
+  "Ncn",
+);

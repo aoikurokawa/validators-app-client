@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type AddDelegationInstructionArgs = {
-  amount: beet.bignum
-}
+  amount: beet.bignum;
+};
 /**
  * @category Instructions
  * @category AddDelegation
@@ -23,15 +23,15 @@ export type AddDelegationInstructionArgs = {
  */
 export const AddDelegationStruct = new beet.BeetArgsStruct<
   AddDelegationInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['amount', beet.u64],
+    ["instructionDiscriminator", beet.u8],
+    ["amount", beet.u64],
   ],
-  'AddDelegationInstructionArgs'
-)
+  "AddDelegationInstructionArgs",
+);
 /**
  * Accounts required by the _AddDelegation_ instruction
  *
@@ -45,14 +45,14 @@ export const AddDelegationStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type AddDelegationInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  operator: web3.PublicKey
-  vaultOperatorDelegation: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  operator: web3.PublicKey;
+  vaultOperatorDelegation: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const addDelegationInstructionDiscriminator = 23
+export const addDelegationInstructionDiscriminator = 23;
 
 /**
  * Creates a _AddDelegation_ instruction.
@@ -67,12 +67,12 @@ export const addDelegationInstructionDiscriminator = 23
 export function createAddDelegationInstruction(
   accounts: AddDelegationInstructionAccounts,
   args: AddDelegationInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = AddDelegationStruct.serialize({
     instructionDiscriminator: addDelegationInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -99,12 +99,12 @@ export function createAddDelegationInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

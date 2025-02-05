@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type SetProgramFeeInstructionArgs = {
-  newFeeBps: number
-}
+  newFeeBps: number;
+};
 /**
  * @category Instructions
  * @category SetProgramFee
@@ -23,15 +23,15 @@ export type SetProgramFeeInstructionArgs = {
  */
 export const SetProgramFeeStruct = new beet.BeetArgsStruct<
   SetProgramFeeInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['newFeeBps', beet.u16],
+    ["instructionDiscriminator", beet.u8],
+    ["newFeeBps", beet.u16],
   ],
-  'SetProgramFeeInstructionArgs'
-)
+  "SetProgramFeeInstructionArgs",
+);
 /**
  * Accounts required by the _SetProgramFee_ instruction
  *
@@ -42,11 +42,11 @@ export const SetProgramFeeStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type SetProgramFeeInstructionAccounts = {
-  config: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const setProgramFeeInstructionDiscriminator = 17
+export const setProgramFeeInstructionDiscriminator = 17;
 
 /**
  * Creates a _SetProgramFee_ instruction.
@@ -61,12 +61,12 @@ export const setProgramFeeInstructionDiscriminator = 17
 export function createSetProgramFeeInstruction(
   accounts: SetProgramFeeInstructionAccounts,
   args: SetProgramFeeInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = SetProgramFeeStruct.serialize({
     instructionDiscriminator: setProgramFeeInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -78,12 +78,12 @@ export function createSetProgramFeeInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

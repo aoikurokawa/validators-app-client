@@ -5,10 +5,10 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
-import { SlotToggle, slotToggleBeet } from '../types/SlotToggle'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
+import { SlotToggle, slotToggleBeet } from "../types/SlotToggle";
 
 /**
  * Arguments used to create {@link NcnVaultTicket}
@@ -16,13 +16,13 @@ import { SlotToggle, slotToggleBeet } from '../types/SlotToggle'
  * @category generated
  */
 export type NcnVaultTicketArgs = {
-  ncn: web3.PublicKey
-  vault: web3.PublicKey
-  index: beet.bignum
-  state: SlotToggle
-  bump: number
-  reserved: number[] /* size: 263 */
-}
+  ncn: web3.PublicKey;
+  vault: web3.PublicKey;
+  index: beet.bignum;
+  state: SlotToggle;
+  bump: number;
+  reserved: number[] /* size: 263 */;
+};
 /**
  * Holds the data for the {@link NcnVaultTicket} Account and provides de/serialization
  * functionality for that data
@@ -37,7 +37,7 @@ export class NcnVaultTicket implements NcnVaultTicketArgs {
     readonly index: beet.bignum,
     readonly state: SlotToggle,
     readonly bump: number,
-    readonly reserved: number[] /* size: 263 */
+    readonly reserved: number[] /* size: 263 */,
   ) {}
 
   /**
@@ -50,8 +50,8 @@ export class NcnVaultTicket implements NcnVaultTicketArgs {
       args.index,
       args.state,
       args.bump,
-      args.reserved
-    )
+      args.reserved,
+    );
   }
 
   /**
@@ -60,9 +60,9 @@ export class NcnVaultTicket implements NcnVaultTicketArgs {
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [NcnVaultTicket, number] {
-    return NcnVaultTicket.deserialize(accountInfo.data, offset)
+    return NcnVaultTicket.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -74,16 +74,16 @@ export class NcnVaultTicket implements NcnVaultTicketArgs {
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<NcnVaultTicket> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
-      throw new Error(`Unable to find NcnVaultTicket account at ${address}`)
+      throw new Error(`Unable to find NcnVaultTicket account at ${address}`);
     }
-    return NcnVaultTicket.fromAccountInfo(accountInfo, 0)[0]
+    return NcnVaultTicket.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -94,10 +94,10 @@ export class NcnVaultTicket implements NcnVaultTicketArgs {
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q'
-    )
+      "RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q",
+    ),
   ) {
-    return beetSolana.GpaBuilder.fromStruct(programId, ncnVaultTicketBeet)
+    return beetSolana.GpaBuilder.fromStruct(programId, ncnVaultTicketBeet);
   }
 
   /**
@@ -105,7 +105,7 @@ export class NcnVaultTicket implements NcnVaultTicketArgs {
    * @returns a tuple of the account data and the offset up to which the buffer was read to obtain it.
    */
   static deserialize(buf: Buffer, offset = 0): [NcnVaultTicket, number] {
-    return ncnVaultTicketBeet.deserialize(buf, offset)
+    return ncnVaultTicketBeet.deserialize(buf, offset);
   }
 
   /**
@@ -113,7 +113,7 @@ export class NcnVaultTicket implements NcnVaultTicketArgs {
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return ncnVaultTicketBeet.serialize(this)
+    return ncnVaultTicketBeet.serialize(this);
   }
 
   /**
@@ -121,7 +121,7 @@ export class NcnVaultTicket implements NcnVaultTicketArgs {
    * {@link NcnVaultTicket}
    */
   static get byteSize() {
-    return ncnVaultTicketBeet.byteSize
+    return ncnVaultTicketBeet.byteSize;
   }
 
   /**
@@ -132,12 +132,12 @@ export class NcnVaultTicket implements NcnVaultTicketArgs {
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       NcnVaultTicket.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -145,7 +145,7 @@ export class NcnVaultTicket implements NcnVaultTicketArgs {
    * hold {@link NcnVaultTicket} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === NcnVaultTicket.byteSize
+    return buf.byteLength - offset === NcnVaultTicket.byteSize;
   }
 
   /**
@@ -157,20 +157,20 @@ export class NcnVaultTicket implements NcnVaultTicketArgs {
       ncn: this.ncn.toBase58(),
       vault: this.vault.toBase58(),
       index: (() => {
-        const x = <{ toNumber: () => number }>this.index
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.index;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       state: this.state,
       bump: this.bump,
       reserved: this.reserved,
-    }
+    };
   }
 }
 
@@ -183,13 +183,13 @@ export const ncnVaultTicketBeet = new beet.BeetStruct<
   NcnVaultTicketArgs
 >(
   [
-    ['ncn', beetSolana.publicKey],
-    ['vault', beetSolana.publicKey],
-    ['index', beet.u64],
-    ['state', slotToggleBeet],
-    ['bump', beet.u8],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 263)],
+    ["ncn", beetSolana.publicKey],
+    ["vault", beetSolana.publicKey],
+    ["index", beet.u64],
+    ["state", slotToggleBeet],
+    ["bump", beet.u8],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 263)],
   ],
   NcnVaultTicket.fromArgs,
-  'NcnVaultTicket'
-)
+  "NcnVaultTicket",
+);

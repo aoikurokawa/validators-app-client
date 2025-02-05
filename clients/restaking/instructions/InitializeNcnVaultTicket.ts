@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const InitializeNcnVaultTicketStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'InitializeNcnVaultTicketInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "InitializeNcnVaultTicketInstructionArgs",
+);
 /**
  * Accounts required by the _InitializeNcnVaultTicket_ instruction
  *
@@ -33,16 +33,16 @@ export const InitializeNcnVaultTicketStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type InitializeNcnVaultTicketInstructionAccounts = {
-  config: web3.PublicKey
-  ncn: web3.PublicKey
-  vault: web3.PublicKey
-  ncnVaultTicket: web3.PublicKey
-  admin: web3.PublicKey
-  payer: web3.PublicKey
-  systemProgram?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  ncn: web3.PublicKey;
+  vault: web3.PublicKey;
+  ncnVaultTicket: web3.PublicKey;
+  admin: web3.PublicKey;
+  payer: web3.PublicKey;
+  systemProgram?: web3.PublicKey;
+};
 
-export const initializeNcnVaultTicketInstructionDiscriminator = 4
+export const initializeNcnVaultTicketInstructionDiscriminator = 4;
 
 /**
  * Creates a _InitializeNcnVaultTicket_ instruction.
@@ -54,11 +54,11 @@ export const initializeNcnVaultTicketInstructionDiscriminator = 4
  */
 export function createInitializeNcnVaultTicketInstruction(
   accounts: InitializeNcnVaultTicketInstructionAccounts,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = InitializeNcnVaultTicketStruct.serialize({
     instructionDiscriminator: initializeNcnVaultTicketInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -95,12 +95,12 @@ export function createInitializeNcnVaultTicketInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

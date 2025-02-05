@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,10 +14,10 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type CreateTokenMetadataInstructionArgs = {
-  name: string
-  symbol: string
-  uri: string
-}
+  name: string;
+  symbol: string;
+  uri: string;
+};
 /**
  * @category Instructions
  * @category CreateTokenMetadata
@@ -25,17 +25,17 @@ export type CreateTokenMetadataInstructionArgs = {
  */
 export const CreateTokenMetadataStruct = new beet.FixableBeetArgsStruct<
   CreateTokenMetadataInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['name', beet.utf8String],
-    ['symbol', beet.utf8String],
-    ['uri', beet.utf8String],
+    ["instructionDiscriminator", beet.u8],
+    ["name", beet.utf8String],
+    ["symbol", beet.utf8String],
+    ["uri", beet.utf8String],
   ],
-  'CreateTokenMetadataInstructionArgs'
-)
+  "CreateTokenMetadataInstructionArgs",
+);
 /**
  * Accounts required by the _CreateTokenMetadata_ instruction
  *
@@ -50,16 +50,16 @@ export const CreateTokenMetadataStruct = new beet.FixableBeetArgsStruct<
  * @category generated
  */
 export type CreateTokenMetadataInstructionAccounts = {
-  vault: web3.PublicKey
-  admin: web3.PublicKey
-  vrtMint: web3.PublicKey
-  payer: web3.PublicKey
-  metadata: web3.PublicKey
-  mplTokenMetadataProgram: web3.PublicKey
-  systemProgram?: web3.PublicKey
-}
+  vault: web3.PublicKey;
+  admin: web3.PublicKey;
+  vrtMint: web3.PublicKey;
+  payer: web3.PublicKey;
+  metadata: web3.PublicKey;
+  mplTokenMetadataProgram: web3.PublicKey;
+  systemProgram?: web3.PublicKey;
+};
 
-export const createTokenMetadataInstructionDiscriminator = 29
+export const createTokenMetadataInstructionDiscriminator = 29;
 
 /**
  * Creates a _CreateTokenMetadata_ instruction.
@@ -74,12 +74,12 @@ export const createTokenMetadataInstructionDiscriminator = 29
 export function createCreateTokenMetadataInstruction(
   accounts: CreateTokenMetadataInstructionAccounts,
   args: CreateTokenMetadataInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = CreateTokenMetadataStruct.serialize({
     instructionDiscriminator: createTokenMetadataInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.vault,
@@ -116,12 +116,12 @@ export function createCreateTokenMetadataInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

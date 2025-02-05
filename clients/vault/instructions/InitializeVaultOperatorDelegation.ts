@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const InitializeVaultOperatorDelegationStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'InitializeVaultOperatorDelegationInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "InitializeVaultOperatorDelegationInstructionArgs",
+);
 /**
  * Accounts required by the _InitializeVaultOperatorDelegation_ instruction
  *
@@ -34,17 +34,17 @@ export const InitializeVaultOperatorDelegationStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type InitializeVaultOperatorDelegationInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  operator: web3.PublicKey
-  operatorVaultTicket: web3.PublicKey
-  vaultOperatorDelegation: web3.PublicKey
-  admin: web3.PublicKey
-  payer: web3.PublicKey
-  systemProgram?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  operator: web3.PublicKey;
+  operatorVaultTicket: web3.PublicKey;
+  vaultOperatorDelegation: web3.PublicKey;
+  admin: web3.PublicKey;
+  payer: web3.PublicKey;
+  systemProgram?: web3.PublicKey;
+};
 
-export const initializeVaultOperatorDelegationInstructionDiscriminator = 3
+export const initializeVaultOperatorDelegationInstructionDiscriminator = 3;
 
 /**
  * Creates a _InitializeVaultOperatorDelegation_ instruction.
@@ -56,12 +56,12 @@ export const initializeVaultOperatorDelegationInstructionDiscriminator = 3
  */
 export function createInitializeVaultOperatorDelegationInstruction(
   accounts: InitializeVaultOperatorDelegationInstructionAccounts,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = InitializeVaultOperatorDelegationStruct.serialize({
     instructionDiscriminator:
       initializeVaultOperatorDelegationInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -103,12 +103,12 @@ export function createInitializeVaultOperatorDelegationInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

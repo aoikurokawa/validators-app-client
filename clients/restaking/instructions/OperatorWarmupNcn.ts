@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const OperatorWarmupNcnStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
-}>([['instructionDiscriminator', beet.u8]], 'OperatorWarmupNcnInstructionArgs')
+  instructionDiscriminator: number;
+}>([["instructionDiscriminator", beet.u8]], "OperatorWarmupNcnInstructionArgs");
 /**
  * Accounts required by the _OperatorWarmupNcn_ instruction
  *
@@ -29,14 +29,14 @@ export const OperatorWarmupNcnStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type OperatorWarmupNcnInstructionAccounts = {
-  config: web3.PublicKey
-  ncn: web3.PublicKey
-  operator: web3.PublicKey
-  ncnOperatorState: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  ncn: web3.PublicKey;
+  operator: web3.PublicKey;
+  ncnOperatorState: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const operatorWarmupNcnInstructionDiscriminator = 11
+export const operatorWarmupNcnInstructionDiscriminator = 11;
 
 /**
  * Creates a _OperatorWarmupNcn_ instruction.
@@ -48,11 +48,11 @@ export const operatorWarmupNcnInstructionDiscriminator = 11
  */
 export function createOperatorWarmupNcnInstruction(
   accounts: OperatorWarmupNcnInstructionAccounts,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = OperatorWarmupNcnStruct.serialize({
     instructionDiscriminator: operatorWarmupNcnInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -79,12 +79,12 @@ export function createOperatorWarmupNcnInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

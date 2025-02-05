@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type OperatorSetFeeInstructionArgs = {
-  newFeeBps: number
-}
+  newFeeBps: number;
+};
 /**
  * @category Instructions
  * @category OperatorSetFee
@@ -23,15 +23,15 @@ export type OperatorSetFeeInstructionArgs = {
  */
 export const OperatorSetFeeStruct = new beet.BeetArgsStruct<
   OperatorSetFeeInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['newFeeBps', beet.u16],
+    ["instructionDiscriminator", beet.u8],
+    ["newFeeBps", beet.u16],
   ],
-  'OperatorSetFeeInstructionArgs'
-)
+  "OperatorSetFeeInstructionArgs",
+);
 /**
  * Accounts required by the _OperatorSetFee_ instruction
  *
@@ -43,12 +43,12 @@ export const OperatorSetFeeStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type OperatorSetFeeInstructionAccounts = {
-  config: web3.PublicKey
-  operator: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  operator: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const operatorSetFeeInstructionDiscriminator = 21
+export const operatorSetFeeInstructionDiscriminator = 21;
 
 /**
  * Creates a _OperatorSetFee_ instruction.
@@ -63,12 +63,12 @@ export const operatorSetFeeInstructionDiscriminator = 21
 export function createOperatorSetFeeInstruction(
   accounts: OperatorSetFeeInstructionAccounts,
   args: OperatorSetFeeInstructionArgs,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = OperatorSetFeeStruct.serialize({
     instructionDiscriminator: operatorSetFeeInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -85,12 +85,12 @@ export function createOperatorSetFeeInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

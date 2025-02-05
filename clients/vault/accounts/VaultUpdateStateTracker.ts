@@ -5,10 +5,10 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
-import { DelegationState, delegationStateBeet } from '../types/DelegationState'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
+import { DelegationState, delegationStateBeet } from "../types/DelegationState";
 
 /**
  * Arguments used to create {@link VaultUpdateStateTracker}
@@ -16,13 +16,13 @@ import { DelegationState, delegationStateBeet } from '../types/DelegationState'
  * @category generated
  */
 export type VaultUpdateStateTrackerArgs = {
-  vault: web3.PublicKey
-  ncnEpoch: beet.bignum
-  lastUpdatedIndex: beet.bignum
-  delegationState: DelegationState
-  withdrawalAllocationMethod: number
-  reserved: number[] /* size: 263 */
-}
+  vault: web3.PublicKey;
+  ncnEpoch: beet.bignum;
+  lastUpdatedIndex: beet.bignum;
+  delegationState: DelegationState;
+  withdrawalAllocationMethod: number;
+  reserved: number[] /* size: 263 */;
+};
 /**
  * Holds the data for the {@link VaultUpdateStateTracker} Account and provides de/serialization
  * functionality for that data
@@ -37,7 +37,7 @@ export class VaultUpdateStateTracker implements VaultUpdateStateTrackerArgs {
     readonly lastUpdatedIndex: beet.bignum,
     readonly delegationState: DelegationState,
     readonly withdrawalAllocationMethod: number,
-    readonly reserved: number[] /* size: 263 */
+    readonly reserved: number[] /* size: 263 */,
   ) {}
 
   /**
@@ -50,8 +50,8 @@ export class VaultUpdateStateTracker implements VaultUpdateStateTrackerArgs {
       args.lastUpdatedIndex,
       args.delegationState,
       args.withdrawalAllocationMethod,
-      args.reserved
-    )
+      args.reserved,
+    );
   }
 
   /**
@@ -60,9 +60,9 @@ export class VaultUpdateStateTracker implements VaultUpdateStateTrackerArgs {
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [VaultUpdateStateTracker, number] {
-    return VaultUpdateStateTracker.deserialize(accountInfo.data, offset)
+    return VaultUpdateStateTracker.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -74,18 +74,18 @@ export class VaultUpdateStateTracker implements VaultUpdateStateTrackerArgs {
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<VaultUpdateStateTracker> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
       throw new Error(
-        `Unable to find VaultUpdateStateTracker account at ${address}`
-      )
+        `Unable to find VaultUpdateStateTracker account at ${address}`,
+      );
     }
-    return VaultUpdateStateTracker.fromAccountInfo(accountInfo, 0)[0]
+    return VaultUpdateStateTracker.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -96,13 +96,13 @@ export class VaultUpdateStateTracker implements VaultUpdateStateTrackerArgs {
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8'
-    )
+      "Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8",
+    ),
   ) {
     return beetSolana.GpaBuilder.fromStruct(
       programId,
-      vaultUpdateStateTrackerBeet
-    )
+      vaultUpdateStateTrackerBeet,
+    );
   }
 
   /**
@@ -111,9 +111,9 @@ export class VaultUpdateStateTracker implements VaultUpdateStateTrackerArgs {
    */
   static deserialize(
     buf: Buffer,
-    offset = 0
+    offset = 0,
   ): [VaultUpdateStateTracker, number] {
-    return vaultUpdateStateTrackerBeet.deserialize(buf, offset)
+    return vaultUpdateStateTrackerBeet.deserialize(buf, offset);
   }
 
   /**
@@ -121,7 +121,7 @@ export class VaultUpdateStateTracker implements VaultUpdateStateTrackerArgs {
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return vaultUpdateStateTrackerBeet.serialize(this)
+    return vaultUpdateStateTrackerBeet.serialize(this);
   }
 
   /**
@@ -129,7 +129,7 @@ export class VaultUpdateStateTracker implements VaultUpdateStateTrackerArgs {
    * {@link VaultUpdateStateTracker}
    */
   static get byteSize() {
-    return vaultUpdateStateTrackerBeet.byteSize
+    return vaultUpdateStateTrackerBeet.byteSize;
   }
 
   /**
@@ -140,12 +140,12 @@ export class VaultUpdateStateTracker implements VaultUpdateStateTrackerArgs {
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       VaultUpdateStateTracker.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -153,7 +153,7 @@ export class VaultUpdateStateTracker implements VaultUpdateStateTrackerArgs {
    * hold {@link VaultUpdateStateTracker} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === VaultUpdateStateTracker.byteSize
+    return buf.byteLength - offset === VaultUpdateStateTracker.byteSize;
   }
 
   /**
@@ -164,31 +164,31 @@ export class VaultUpdateStateTracker implements VaultUpdateStateTrackerArgs {
     return {
       vault: this.vault.toBase58(),
       ncnEpoch: (() => {
-        const x = <{ toNumber: () => number }>this.ncnEpoch
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.ncnEpoch;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       lastUpdatedIndex: (() => {
-        const x = <{ toNumber: () => number }>this.lastUpdatedIndex
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.lastUpdatedIndex;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       delegationState: this.delegationState,
       withdrawalAllocationMethod: this.withdrawalAllocationMethod,
       reserved: this.reserved,
-    }
+    };
   }
 }
 
@@ -201,13 +201,13 @@ export const vaultUpdateStateTrackerBeet = new beet.BeetStruct<
   VaultUpdateStateTrackerArgs
 >(
   [
-    ['vault', beetSolana.publicKey],
-    ['ncnEpoch', beet.u64],
-    ['lastUpdatedIndex', beet.u64],
-    ['delegationState', delegationStateBeet],
-    ['withdrawalAllocationMethod', beet.u8],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 263)],
+    ["vault", beetSolana.publicKey],
+    ["ncnEpoch", beet.u64],
+    ["lastUpdatedIndex", beet.u64],
+    ["delegationState", delegationStateBeet],
+    ["withdrawalAllocationMethod", beet.u8],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 263)],
   ],
   VaultUpdateStateTracker.fromArgs,
-  'VaultUpdateStateTracker'
-)
+  "VaultUpdateStateTracker",
+);

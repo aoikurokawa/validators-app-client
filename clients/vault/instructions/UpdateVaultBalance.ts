@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as splToken from '@solana/spl-token'
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as splToken from "@solana/spl-token";
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -15,8 +15,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const UpdateVaultBalanceStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
-}>([['instructionDiscriminator', beet.u8]], 'UpdateVaultBalanceInstructionArgs')
+  instructionDiscriminator: number;
+}>(
+  [["instructionDiscriminator", beet.u8]],
+  "UpdateVaultBalanceInstructionArgs",
+);
 /**
  * Accounts required by the _UpdateVaultBalance_ instruction
  *
@@ -30,15 +33,15 @@ export const UpdateVaultBalanceStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type UpdateVaultBalanceInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  vaultTokenAccount: web3.PublicKey
-  vrtMint: web3.PublicKey
-  vaultFeeTokenAccount: web3.PublicKey
-  tokenProgram?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  vaultTokenAccount: web3.PublicKey;
+  vrtMint: web3.PublicKey;
+  vaultFeeTokenAccount: web3.PublicKey;
+  tokenProgram?: web3.PublicKey;
+};
 
-export const updateVaultBalanceInstructionDiscriminator = 25
+export const updateVaultBalanceInstructionDiscriminator = 25;
 
 /**
  * Creates a _UpdateVaultBalance_ instruction.
@@ -50,11 +53,11 @@ export const updateVaultBalanceInstructionDiscriminator = 25
  */
 export function createUpdateVaultBalanceInstruction(
   accounts: UpdateVaultBalanceInstructionAccounts,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = UpdateVaultBalanceStruct.serialize({
     instructionDiscriminator: updateVaultBalanceInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -86,12 +89,12 @@ export function createUpdateVaultBalanceInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

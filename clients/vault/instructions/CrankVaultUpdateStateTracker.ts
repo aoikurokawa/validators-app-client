@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const CrankVaultUpdateStateTrackerStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'CrankVaultUpdateStateTrackerInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "CrankVaultUpdateStateTrackerInstructionArgs",
+);
 /**
  * Accounts required by the _CrankVaultUpdateStateTracker_ instruction
  *
@@ -32,14 +32,14 @@ export const CrankVaultUpdateStateTrackerStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type CrankVaultUpdateStateTrackerInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  operator: web3.PublicKey
-  vaultOperatorDelegation: web3.PublicKey
-  vaultUpdateStateTracker: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  operator: web3.PublicKey;
+  vaultOperatorDelegation: web3.PublicKey;
+  vaultUpdateStateTracker: web3.PublicKey;
+};
 
-export const crankVaultUpdateStateTrackerInstructionDiscriminator = 27
+export const crankVaultUpdateStateTrackerInstructionDiscriminator = 27;
 
 /**
  * Creates a _CrankVaultUpdateStateTracker_ instruction.
@@ -51,12 +51,12 @@ export const crankVaultUpdateStateTrackerInstructionDiscriminator = 27
  */
 export function createCrankVaultUpdateStateTrackerInstruction(
   accounts: CrankVaultUpdateStateTrackerInstructionAccounts,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = CrankVaultUpdateStateTrackerStruct.serialize({
     instructionDiscriminator:
       crankVaultUpdateStateTrackerInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -83,12 +83,12 @@ export function createCrankVaultUpdateStateTrackerInstruction(
       isWritable: true,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const NcnCooldownOperatorStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'NcnCooldownOperatorInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "NcnCooldownOperatorInstructionArgs",
+);
 /**
  * Accounts required by the _NcnCooldownOperator_ instruction
  *
@@ -32,14 +32,14 @@ export const NcnCooldownOperatorStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type NcnCooldownOperatorInstructionAccounts = {
-  config: web3.PublicKey
-  ncn: web3.PublicKey
-  operator: web3.PublicKey
-  ncnOperatorState: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  ncn: web3.PublicKey;
+  operator: web3.PublicKey;
+  ncnOperatorState: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const ncnCooldownOperatorInstructionDiscriminator = 10
+export const ncnCooldownOperatorInstructionDiscriminator = 10;
 
 /**
  * Creates a _NcnCooldownOperator_ instruction.
@@ -51,11 +51,11 @@ export const ncnCooldownOperatorInstructionDiscriminator = 10
  */
 export function createNcnCooldownOperatorInstruction(
   accounts: NcnCooldownOperatorInstructionAccounts,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = NcnCooldownOperatorStruct.serialize({
     instructionDiscriminator: ncnCooldownOperatorInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -82,12 +82,12 @@ export function createNcnCooldownOperatorInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

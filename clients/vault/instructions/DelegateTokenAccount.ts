@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as splToken from '@solana/spl-token'
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as splToken from "@solana/spl-token";
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -15,11 +15,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const DelegateTokenAccountStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'DelegateTokenAccountInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "DelegateTokenAccountInstructionArgs",
+);
 /**
  * Accounts required by the _DelegateTokenAccount_ instruction
  *
@@ -34,16 +34,16 @@ export const DelegateTokenAccountStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type DelegateTokenAccountInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  delegateAssetAdmin: web3.PublicKey
-  tokenMint: web3.PublicKey
-  tokenAccount: web3.PublicKey
-  delegate: web3.PublicKey
-  tokenProgram?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  delegateAssetAdmin: web3.PublicKey;
+  tokenMint: web3.PublicKey;
+  tokenAccount: web3.PublicKey;
+  delegate: web3.PublicKey;
+  tokenProgram?: web3.PublicKey;
+};
 
-export const delegateTokenAccountInstructionDiscriminator = 20
+export const delegateTokenAccountInstructionDiscriminator = 20;
 
 /**
  * Creates a _DelegateTokenAccount_ instruction.
@@ -55,11 +55,11 @@ export const delegateTokenAccountInstructionDiscriminator = 20
  */
 export function createDelegateTokenAccountInstruction(
   accounts: DelegateTokenAccountInstructionAccounts,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = DelegateTokenAccountStruct.serialize({
     instructionDiscriminator: delegateTokenAccountInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -96,12 +96,12 @@ export function createDelegateTokenAccountInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

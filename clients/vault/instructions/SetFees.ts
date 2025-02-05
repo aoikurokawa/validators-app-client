@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,10 +14,10 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type SetFeesInstructionArgs = {
-  depositFeeBps: beet.COption<number>
-  withdrawalFeeBps: beet.COption<number>
-  rewardFeeBps: beet.COption<number>
-}
+  depositFeeBps: beet.COption<number>;
+  withdrawalFeeBps: beet.COption<number>;
+  rewardFeeBps: beet.COption<number>;
+};
 /**
  * @category Instructions
  * @category SetFees
@@ -25,17 +25,17 @@ export type SetFeesInstructionArgs = {
  */
 export const SetFeesStruct = new beet.FixableBeetArgsStruct<
   SetFeesInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['depositFeeBps', beet.coption(beet.u16)],
-    ['withdrawalFeeBps', beet.coption(beet.u16)],
-    ['rewardFeeBps', beet.coption(beet.u16)],
+    ["instructionDiscriminator", beet.u8],
+    ["depositFeeBps", beet.coption(beet.u16)],
+    ["withdrawalFeeBps", beet.coption(beet.u16)],
+    ["rewardFeeBps", beet.coption(beet.u16)],
   ],
-  'SetFeesInstructionArgs'
-)
+  "SetFeesInstructionArgs",
+);
 /**
  * Accounts required by the _SetFees_ instruction
  *
@@ -47,12 +47,12 @@ export const SetFeesStruct = new beet.FixableBeetArgsStruct<
  * @category generated
  */
 export type SetFeesInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const setFeesInstructionDiscriminator = 16
+export const setFeesInstructionDiscriminator = 16;
 
 /**
  * Creates a _SetFees_ instruction.
@@ -67,12 +67,12 @@ export const setFeesInstructionDiscriminator = 16
 export function createSetFeesInstruction(
   accounts: SetFeesInstructionAccounts,
   args: SetFeesInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = SetFeesStruct.serialize({
     instructionDiscriminator: setFeesInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -89,12 +89,12 @@ export function createSetFeesInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as splToken from '@solana/spl-token'
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as splToken from "@solana/spl-token";
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -15,8 +15,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type EnqueueWithdrawalInstructionArgs = {
-  amount: beet.bignum
-}
+  amount: beet.bignum;
+};
 /**
  * @category Instructions
  * @category EnqueueWithdrawal
@@ -24,15 +24,15 @@ export type EnqueueWithdrawalInstructionArgs = {
  */
 export const EnqueueWithdrawalStruct = new beet.BeetArgsStruct<
   EnqueueWithdrawalInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['amount', beet.u64],
+    ["instructionDiscriminator", beet.u8],
+    ["amount", beet.u64],
   ],
-  'EnqueueWithdrawalInstructionArgs'
-)
+  "EnqueueWithdrawalInstructionArgs",
+);
 /**
  * Accounts required by the _EnqueueWithdrawal_ instruction
  *
@@ -49,19 +49,19 @@ export const EnqueueWithdrawalStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type EnqueueWithdrawalInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  vaultStakerWithdrawalTicket: web3.PublicKey
-  vaultStakerWithdrawalTicketTokenAccount: web3.PublicKey
-  staker: web3.PublicKey
-  stakerVrtTokenAccount: web3.PublicKey
-  base: web3.PublicKey
-  tokenProgram?: web3.PublicKey
-  systemProgram?: web3.PublicKey
-  burnSigner?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  vaultStakerWithdrawalTicket: web3.PublicKey;
+  vaultStakerWithdrawalTicketTokenAccount: web3.PublicKey;
+  staker: web3.PublicKey;
+  stakerVrtTokenAccount: web3.PublicKey;
+  base: web3.PublicKey;
+  tokenProgram?: web3.PublicKey;
+  systemProgram?: web3.PublicKey;
+  burnSigner?: web3.PublicKey;
+};
 
-export const enqueueWithdrawalInstructionDiscriminator = 12
+export const enqueueWithdrawalInstructionDiscriminator = 12;
 
 /**
  * Creates a _EnqueueWithdrawal_ instruction.
@@ -79,12 +79,12 @@ export const enqueueWithdrawalInstructionDiscriminator = 12
 export function createEnqueueWithdrawalInstruction(
   accounts: EnqueueWithdrawalInstructionAccounts,
   args: EnqueueWithdrawalInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = EnqueueWithdrawalStruct.serialize({
     instructionDiscriminator: enqueueWithdrawalInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -136,12 +136,12 @@ export function createEnqueueWithdrawalInstruction(
       isWritable: false,
       isSigner: accounts.burnSigner != null,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

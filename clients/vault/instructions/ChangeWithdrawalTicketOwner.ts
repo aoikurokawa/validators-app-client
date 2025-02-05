@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const ChangeWithdrawalTicketOwnerStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'ChangeWithdrawalTicketOwnerInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "ChangeWithdrawalTicketOwnerInstructionArgs",
+);
 /**
  * Accounts required by the _ChangeWithdrawalTicketOwner_ instruction
  *
@@ -32,14 +32,14 @@ export const ChangeWithdrawalTicketOwnerStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type ChangeWithdrawalTicketOwnerInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  vaultStakerWithdrawalTicket: web3.PublicKey
-  oldOwner: web3.PublicKey
-  newOwner: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  vaultStakerWithdrawalTicket: web3.PublicKey;
+  oldOwner: web3.PublicKey;
+  newOwner: web3.PublicKey;
+};
 
-export const changeWithdrawalTicketOwnerInstructionDiscriminator = 13
+export const changeWithdrawalTicketOwnerInstructionDiscriminator = 13;
 
 /**
  * Creates a _ChangeWithdrawalTicketOwner_ instruction.
@@ -51,12 +51,12 @@ export const changeWithdrawalTicketOwnerInstructionDiscriminator = 13
  */
 export function createChangeWithdrawalTicketOwnerInstruction(
   accounts: ChangeWithdrawalTicketOwnerInstructionAccounts,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = ChangeWithdrawalTicketOwnerStruct.serialize({
     instructionDiscriminator:
       changeWithdrawalTicketOwnerInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -83,12 +83,12 @@ export function createChangeWithdrawalTicketOwnerInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

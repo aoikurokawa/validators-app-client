@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as splToken from '@solana/spl-token'
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as splToken from "@solana/spl-token";
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -15,9 +15,9 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type MintToInstructionArgs = {
-  amountIn: beet.bignum
-  minAmountOut: beet.bignum
-}
+  amountIn: beet.bignum;
+  minAmountOut: beet.bignum;
+};
 /**
  * @category Instructions
  * @category MintTo
@@ -25,16 +25,16 @@ export type MintToInstructionArgs = {
  */
 export const MintToStruct = new beet.BeetArgsStruct<
   MintToInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['amountIn', beet.u64],
-    ['minAmountOut', beet.u64],
+    ["instructionDiscriminator", beet.u8],
+    ["amountIn", beet.u64],
+    ["minAmountOut", beet.u64],
   ],
-  'MintToInstructionArgs'
-)
+  "MintToInstructionArgs",
+);
 /**
  * Accounts required by the _MintTo_ instruction
  *
@@ -52,19 +52,19 @@ export const MintToStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type MintToInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  vrtMint: web3.PublicKey
-  depositor: web3.PublicKey
-  depositorTokenAccount: web3.PublicKey
-  vaultTokenAccount: web3.PublicKey
-  depositorVrtTokenAccount: web3.PublicKey
-  vaultFeeTokenAccount: web3.PublicKey
-  tokenProgram?: web3.PublicKey
-  mintSigner?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  vrtMint: web3.PublicKey;
+  depositor: web3.PublicKey;
+  depositorTokenAccount: web3.PublicKey;
+  vaultTokenAccount: web3.PublicKey;
+  depositorVrtTokenAccount: web3.PublicKey;
+  vaultFeeTokenAccount: web3.PublicKey;
+  tokenProgram?: web3.PublicKey;
+  mintSigner?: web3.PublicKey;
+};
 
-export const mintToInstructionDiscriminator = 11
+export const mintToInstructionDiscriminator = 11;
 
 /**
  * Creates a _MintTo_ instruction.
@@ -82,12 +82,12 @@ export const mintToInstructionDiscriminator = 11
 export function createMintToInstruction(
   accounts: MintToInstructionAccounts,
   args: MintToInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = MintToStruct.serialize({
     instructionDiscriminator: mintToInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -139,12 +139,12 @@ export function createMintToInstruction(
       isWritable: false,
       isSigner: accounts.mintSigner != null,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

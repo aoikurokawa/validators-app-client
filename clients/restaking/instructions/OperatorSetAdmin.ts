@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const OperatorSetAdminStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
-}>([['instructionDiscriminator', beet.u8]], 'OperatorSetAdminInstructionArgs')
+  instructionDiscriminator: number;
+}>([["instructionDiscriminator", beet.u8]], "OperatorSetAdminInstructionArgs");
 /**
  * Accounts required by the _OperatorSetAdmin_ instruction
  *
@@ -27,12 +27,12 @@ export const OperatorSetAdminStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type OperatorSetAdminInstructionAccounts = {
-  operator: web3.PublicKey
-  oldAdmin: web3.PublicKey
-  newAdmin: web3.PublicKey
-}
+  operator: web3.PublicKey;
+  oldAdmin: web3.PublicKey;
+  newAdmin: web3.PublicKey;
+};
 
-export const operatorSetAdminInstructionDiscriminator = 19
+export const operatorSetAdminInstructionDiscriminator = 19;
 
 /**
  * Creates a _OperatorSetAdmin_ instruction.
@@ -44,11 +44,11 @@ export const operatorSetAdminInstructionDiscriminator = 19
  */
 export function createOperatorSetAdminInstruction(
   accounts: OperatorSetAdminInstructionAccounts,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = OperatorSetAdminStruct.serialize({
     instructionDiscriminator: operatorSetAdminInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.operator,
@@ -65,12 +65,12 @@ export function createOperatorSetAdminInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

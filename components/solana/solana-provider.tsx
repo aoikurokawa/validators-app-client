@@ -21,7 +21,7 @@ export const WalletButton = dynamic(
     (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
   {
     ssr: false,
-  }
+  },
 );
 
 export function SolanaProvider({ children }: { children: ReactNode }) {

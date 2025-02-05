@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const CooldownVaultNcnTicketStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'CooldownVaultNcnTicketInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "CooldownVaultNcnTicketInstructionArgs",
+);
 /**
  * Accounts required by the _CooldownVaultNcnTicket_ instruction
  *
@@ -32,14 +32,14 @@ export const CooldownVaultNcnTicketStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type CooldownVaultNcnTicketInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  ncn: web3.PublicKey
-  vaultNcnTicket: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  ncn: web3.PublicKey;
+  vaultNcnTicket: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const cooldownVaultNcnTicketInstructionDiscriminator = 8
+export const cooldownVaultNcnTicketInstructionDiscriminator = 8;
 
 /**
  * Creates a _CooldownVaultNcnTicket_ instruction.
@@ -51,11 +51,11 @@ export const cooldownVaultNcnTicketInstructionDiscriminator = 8
  */
 export function createCooldownVaultNcnTicketInstruction(
   accounts: CooldownVaultNcnTicketInstructionAccounts,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = CooldownVaultNcnTicketStruct.serialize({
     instructionDiscriminator: cooldownVaultNcnTicketInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -82,12 +82,12 @@ export function createCooldownVaultNcnTicketInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

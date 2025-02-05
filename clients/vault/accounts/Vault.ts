@@ -5,10 +5,10 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
-import { DelegationState, delegationStateBeet } from '../types/DelegationState'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
+import { DelegationState, delegationStateBeet } from "../types/DelegationState";
 
 /**
  * Arguments used to create {@link Vault}
@@ -16,44 +16,44 @@ import { DelegationState, delegationStateBeet } from '../types/DelegationState'
  * @category generated
  */
 export type VaultArgs = {
-  base: web3.PublicKey
-  vrtMint: web3.PublicKey
-  supportedMint: web3.PublicKey
-  vrtSupply: beet.bignum
-  tokensDeposited: beet.bignum
-  depositCapacity: beet.bignum
-  delegationState: DelegationState
-  additionalAssetsNeedUnstaking: beet.bignum
-  vrtEnqueuedForCooldownAmount: beet.bignum
-  vrtCoolingDownAmount: beet.bignum
-  vrtReadyToClaimAmount: beet.bignum
-  admin: web3.PublicKey
-  delegationAdmin: web3.PublicKey
-  operatorAdmin: web3.PublicKey
-  ncnAdmin: web3.PublicKey
-  slasherAdmin: web3.PublicKey
-  capacityAdmin: web3.PublicKey
-  feeAdmin: web3.PublicKey
-  delegateAssetAdmin: web3.PublicKey
-  feeWallet: web3.PublicKey
-  mintBurnAdmin: web3.PublicKey
-  metadataAdmin: web3.PublicKey
-  vaultIndex: beet.bignum
-  ncnCount: beet.bignum
-  operatorCount: beet.bignum
-  slasherCount: beet.bignum
-  lastFeeChangeSlot: beet.bignum
-  lastFullStateUpdateSlot: beet.bignum
-  depositFeeBps: number
-  withdrawalFeeBps: number
-  nextWithdrawalFeeBps: number
-  rewardFeeBps: number
-  programFeeBps: number
-  bump: number
-  isPaused: boolean
-  lastStartStateUpdateSlot: beet.bignum
-  reserved: number[] /* size: 251 */
-}
+  base: web3.PublicKey;
+  vrtMint: web3.PublicKey;
+  supportedMint: web3.PublicKey;
+  vrtSupply: beet.bignum;
+  tokensDeposited: beet.bignum;
+  depositCapacity: beet.bignum;
+  delegationState: DelegationState;
+  additionalAssetsNeedUnstaking: beet.bignum;
+  vrtEnqueuedForCooldownAmount: beet.bignum;
+  vrtCoolingDownAmount: beet.bignum;
+  vrtReadyToClaimAmount: beet.bignum;
+  admin: web3.PublicKey;
+  delegationAdmin: web3.PublicKey;
+  operatorAdmin: web3.PublicKey;
+  ncnAdmin: web3.PublicKey;
+  slasherAdmin: web3.PublicKey;
+  capacityAdmin: web3.PublicKey;
+  feeAdmin: web3.PublicKey;
+  delegateAssetAdmin: web3.PublicKey;
+  feeWallet: web3.PublicKey;
+  mintBurnAdmin: web3.PublicKey;
+  metadataAdmin: web3.PublicKey;
+  vaultIndex: beet.bignum;
+  ncnCount: beet.bignum;
+  operatorCount: beet.bignum;
+  slasherCount: beet.bignum;
+  lastFeeChangeSlot: beet.bignum;
+  lastFullStateUpdateSlot: beet.bignum;
+  depositFeeBps: number;
+  withdrawalFeeBps: number;
+  nextWithdrawalFeeBps: number;
+  rewardFeeBps: number;
+  programFeeBps: number;
+  bump: number;
+  isPaused: boolean;
+  lastStartStateUpdateSlot: beet.bignum;
+  reserved: number[] /* size: 251 */;
+};
 /**
  * Holds the data for the {@link Vault} Account and provides de/serialization
  * functionality for that data
@@ -99,7 +99,7 @@ export class Vault implements VaultArgs {
     readonly bump: number,
     readonly isPaused: boolean,
     readonly lastStartStateUpdateSlot: beet.bignum,
-    readonly reserved: number[] /* size: 251 */
+    readonly reserved: number[] /* size: 251 */,
   ) {}
 
   /**
@@ -143,8 +143,8 @@ export class Vault implements VaultArgs {
       args.bump,
       args.isPaused,
       args.lastStartStateUpdateSlot,
-      args.reserved
-    )
+      args.reserved,
+    );
   }
 
   /**
@@ -153,9 +153,9 @@ export class Vault implements VaultArgs {
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [Vault, number] {
-    return Vault.deserialize(accountInfo.data, offset)
+    return Vault.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -167,16 +167,16 @@ export class Vault implements VaultArgs {
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<Vault> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
-      throw new Error(`Unable to find Vault account at ${address}`)
+      throw new Error(`Unable to find Vault account at ${address}`);
     }
-    return Vault.fromAccountInfo(accountInfo, 0)[0]
+    return Vault.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -187,10 +187,10 @@ export class Vault implements VaultArgs {
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8'
-    )
+      "Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8",
+    ),
   ) {
-    return beetSolana.GpaBuilder.fromStruct(programId, vaultBeet)
+    return beetSolana.GpaBuilder.fromStruct(programId, vaultBeet);
   }
 
   /**
@@ -198,7 +198,7 @@ export class Vault implements VaultArgs {
    * @returns a tuple of the account data and the offset up to which the buffer was read to obtain it.
    */
   static deserialize(buf: Buffer, offset = 0): [Vault, number] {
-    return vaultBeet.deserialize(buf, offset)
+    return vaultBeet.deserialize(buf, offset);
   }
 
   /**
@@ -206,7 +206,7 @@ export class Vault implements VaultArgs {
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return vaultBeet.serialize(this)
+    return vaultBeet.serialize(this);
   }
 
   /**
@@ -214,7 +214,7 @@ export class Vault implements VaultArgs {
    * {@link Vault}
    */
   static get byteSize() {
-    return vaultBeet.byteSize
+    return vaultBeet.byteSize;
   }
 
   /**
@@ -225,12 +225,12 @@ export class Vault implements VaultArgs {
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       Vault.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -238,7 +238,7 @@ export class Vault implements VaultArgs {
    * hold {@link Vault} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === Vault.byteSize
+    return buf.byteLength - offset === Vault.byteSize;
   }
 
   /**
@@ -251,82 +251,84 @@ export class Vault implements VaultArgs {
       vrtMint: this.vrtMint.toBase58(),
       supportedMint: this.supportedMint.toBase58(),
       vrtSupply: (() => {
-        const x = <{ toNumber: () => number }>this.vrtSupply
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.vrtSupply;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       tokensDeposited: (() => {
-        const x = <{ toNumber: () => number }>this.tokensDeposited
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.tokensDeposited;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       depositCapacity: (() => {
-        const x = <{ toNumber: () => number }>this.depositCapacity
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.depositCapacity;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       delegationState: this.delegationState,
       additionalAssetsNeedUnstaking: (() => {
-        const x = <{ toNumber: () => number }>this.additionalAssetsNeedUnstaking
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>(
+          this.additionalAssetsNeedUnstaking
+        );
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       vrtEnqueuedForCooldownAmount: (() => {
-        const x = <{ toNumber: () => number }>this.vrtEnqueuedForCooldownAmount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.vrtEnqueuedForCooldownAmount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       vrtCoolingDownAmount: (() => {
-        const x = <{ toNumber: () => number }>this.vrtCoolingDownAmount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.vrtCoolingDownAmount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       vrtReadyToClaimAmount: (() => {
-        const x = <{ toNumber: () => number }>this.vrtReadyToClaimAmount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.vrtReadyToClaimAmount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       admin: this.admin.toBase58(),
       delegationAdmin: this.delegationAdmin.toBase58(),
@@ -340,70 +342,70 @@ export class Vault implements VaultArgs {
       mintBurnAdmin: this.mintBurnAdmin.toBase58(),
       metadataAdmin: this.metadataAdmin.toBase58(),
       vaultIndex: (() => {
-        const x = <{ toNumber: () => number }>this.vaultIndex
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.vaultIndex;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       ncnCount: (() => {
-        const x = <{ toNumber: () => number }>this.ncnCount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.ncnCount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       operatorCount: (() => {
-        const x = <{ toNumber: () => number }>this.operatorCount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.operatorCount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       slasherCount: (() => {
-        const x = <{ toNumber: () => number }>this.slasherCount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.slasherCount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       lastFeeChangeSlot: (() => {
-        const x = <{ toNumber: () => number }>this.lastFeeChangeSlot
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.lastFeeChangeSlot;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       lastFullStateUpdateSlot: (() => {
-        const x = <{ toNumber: () => number }>this.lastFullStateUpdateSlot
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.lastFullStateUpdateSlot;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       depositFeeBps: this.depositFeeBps,
       withdrawalFeeBps: this.withdrawalFeeBps,
@@ -413,18 +415,18 @@ export class Vault implements VaultArgs {
       bump: this.bump,
       isPaused: this.isPaused,
       lastStartStateUpdateSlot: (() => {
-        const x = <{ toNumber: () => number }>this.lastStartStateUpdateSlot
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.lastStartStateUpdateSlot;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       reserved: this.reserved,
-    }
+    };
   }
 }
 
@@ -434,44 +436,44 @@ export class Vault implements VaultArgs {
  */
 export const vaultBeet = new beet.BeetStruct<Vault, VaultArgs>(
   [
-    ['base', beetSolana.publicKey],
-    ['vrtMint', beetSolana.publicKey],
-    ['supportedMint', beetSolana.publicKey],
-    ['vrtSupply', beet.u64],
-    ['tokensDeposited', beet.u64],
-    ['depositCapacity', beet.u64],
-    ['delegationState', delegationStateBeet],
-    ['additionalAssetsNeedUnstaking', beet.u64],
-    ['vrtEnqueuedForCooldownAmount', beet.u64],
-    ['vrtCoolingDownAmount', beet.u64],
-    ['vrtReadyToClaimAmount', beet.u64],
-    ['admin', beetSolana.publicKey],
-    ['delegationAdmin', beetSolana.publicKey],
-    ['operatorAdmin', beetSolana.publicKey],
-    ['ncnAdmin', beetSolana.publicKey],
-    ['slasherAdmin', beetSolana.publicKey],
-    ['capacityAdmin', beetSolana.publicKey],
-    ['feeAdmin', beetSolana.publicKey],
-    ['delegateAssetAdmin', beetSolana.publicKey],
-    ['feeWallet', beetSolana.publicKey],
-    ['mintBurnAdmin', beetSolana.publicKey],
-    ['metadataAdmin', beetSolana.publicKey],
-    ['vaultIndex', beet.u64],
-    ['ncnCount', beet.u64],
-    ['operatorCount', beet.u64],
-    ['slasherCount', beet.u64],
-    ['lastFeeChangeSlot', beet.u64],
-    ['lastFullStateUpdateSlot', beet.u64],
-    ['depositFeeBps', beet.u16],
-    ['withdrawalFeeBps', beet.u16],
-    ['nextWithdrawalFeeBps', beet.u16],
-    ['rewardFeeBps', beet.u16],
-    ['programFeeBps', beet.u16],
-    ['bump', beet.u8],
-    ['isPaused', beet.bool],
-    ['lastStartStateUpdateSlot', beet.u64],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 251)],
+    ["base", beetSolana.publicKey],
+    ["vrtMint", beetSolana.publicKey],
+    ["supportedMint", beetSolana.publicKey],
+    ["vrtSupply", beet.u64],
+    ["tokensDeposited", beet.u64],
+    ["depositCapacity", beet.u64],
+    ["delegationState", delegationStateBeet],
+    ["additionalAssetsNeedUnstaking", beet.u64],
+    ["vrtEnqueuedForCooldownAmount", beet.u64],
+    ["vrtCoolingDownAmount", beet.u64],
+    ["vrtReadyToClaimAmount", beet.u64],
+    ["admin", beetSolana.publicKey],
+    ["delegationAdmin", beetSolana.publicKey],
+    ["operatorAdmin", beetSolana.publicKey],
+    ["ncnAdmin", beetSolana.publicKey],
+    ["slasherAdmin", beetSolana.publicKey],
+    ["capacityAdmin", beetSolana.publicKey],
+    ["feeAdmin", beetSolana.publicKey],
+    ["delegateAssetAdmin", beetSolana.publicKey],
+    ["feeWallet", beetSolana.publicKey],
+    ["mintBurnAdmin", beetSolana.publicKey],
+    ["metadataAdmin", beetSolana.publicKey],
+    ["vaultIndex", beet.u64],
+    ["ncnCount", beet.u64],
+    ["operatorCount", beet.u64],
+    ["slasherCount", beet.u64],
+    ["lastFeeChangeSlot", beet.u64],
+    ["lastFullStateUpdateSlot", beet.u64],
+    ["depositFeeBps", beet.u16],
+    ["withdrawalFeeBps", beet.u16],
+    ["nextWithdrawalFeeBps", beet.u16],
+    ["rewardFeeBps", beet.u16],
+    ["programFeeBps", beet.u16],
+    ["bump", beet.u8],
+    ["isPaused", beet.bool],
+    ["lastStartStateUpdateSlot", beet.u64],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 251)],
   ],
   Vault.fromArgs,
-  'Vault'
-)
+  "Vault",
+);

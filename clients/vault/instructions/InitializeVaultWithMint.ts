@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,13 +14,13 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const InitializeVaultWithMintStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'InitializeVaultWithMintInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "InitializeVaultWithMintInstructionArgs",
+);
 
-export const initializeVaultWithMintInstructionDiscriminator = 2
+export const initializeVaultWithMintInstructionDiscriminator = 2;
 
 /**
  * Creates a _InitializeVaultWithMint_ instruction.
@@ -30,17 +30,17 @@ export const initializeVaultWithMintInstructionDiscriminator = 2
  * @category generated
  */
 export function createInitializeVaultWithMintInstruction(
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = InitializeVaultWithMintStruct.serialize({
     instructionDiscriminator: initializeVaultWithMintInstructionDiscriminator,
-  })
-  const keys: web3.AccountMeta[] = []
+  });
+  const keys: web3.AccountMeta[] = [];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

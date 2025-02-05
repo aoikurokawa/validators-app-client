@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as splToken from '@solana/spl-token'
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as splToken from "@solana/spl-token";
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -15,12 +15,12 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type InitializeVaultInstructionArgs = {
-  depositFeeBps: number
-  withdrawalFeeBps: number
-  rewardFeeBps: number
-  decimals: number
-  initializeTokenAmount: beet.bignum
-}
+  depositFeeBps: number;
+  withdrawalFeeBps: number;
+  rewardFeeBps: number;
+  decimals: number;
+  // initializeTokenAmount: beet.bignum
+};
 /**
  * @category Instructions
  * @category InitializeVault
@@ -28,19 +28,19 @@ export type InitializeVaultInstructionArgs = {
  */
 export const InitializeVaultStruct = new beet.BeetArgsStruct<
   InitializeVaultInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['depositFeeBps', beet.u16],
-    ['withdrawalFeeBps', beet.u16],
-    ['rewardFeeBps', beet.u16],
-    ['decimals', beet.u8],
-    ['initializeTokenAmount', beet.u64],
+    ["instructionDiscriminator", beet.u8],
+    ["depositFeeBps", beet.u16],
+    ["withdrawalFeeBps", beet.u16],
+    ["rewardFeeBps", beet.u16],
+    ["decimals", beet.u8],
+    // ['initializeTokenAmount', beet.u64],
   ],
-  'InitializeVaultInstructionArgs'
-)
+  "InitializeVaultInstructionArgs",
+);
 /**
  * Accounts required by the _InitializeVault_ instruction
  *
@@ -60,22 +60,23 @@ export const InitializeVaultStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type InitializeVaultInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  vrtMint: web3.PublicKey
-  stMint: web3.PublicKey
-  adminStTokenAccount: web3.PublicKey
-  vaultStTokenAccount: web3.PublicKey
-  burnVault: web3.PublicKey
-  burnVaultVrtTokenAccount: web3.PublicKey
-  admin: web3.PublicKey
-  base: web3.PublicKey
-  systemProgram?: web3.PublicKey
-  tokenProgram?: web3.PublicKey
-  associatedTokenProgram: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  vrtMint: web3.PublicKey;
+  // stMint: web3.PublicKey
+  tokenMint: web3.PublicKey;
+  // adminStTokenAccount: web3.PublicKey
+  // vaultStTokenAccount: web3.PublicKey
+  // burnVault: web3.PublicKey
+  // burnVaultVrtTokenAccount: web3.PublicKey
+  admin: web3.PublicKey;
+  base: web3.PublicKey;
+  systemProgram?: web3.PublicKey;
+  tokenProgram?: web3.PublicKey;
+  // associatedTokenProgram: web3.PublicKey
+};
 
-export const initializeVaultInstructionDiscriminator = 1
+export const initializeVaultInstructionDiscriminator = 1;
 
 /**
  * Creates a _InitializeVault_ instruction.
@@ -90,12 +91,12 @@ export const initializeVaultInstructionDiscriminator = 1
 export function createInitializeVaultInstruction(
   accounts: InitializeVaultInstructionAccounts,
   args: InitializeVaultInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = InitializeVaultStruct.serialize({
     instructionDiscriminator: initializeVaultInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -112,31 +113,36 @@ export function createInitializeVaultInstruction(
       isWritable: true,
       isSigner: true,
     },
+    // {
+    //   pubkey: accounts.stMint,
+    //   isWritable: false,
+    //   isSigner: false,
+    // },
     {
-      pubkey: accounts.stMint,
+      pubkey: accounts.tokenMint,
       isWritable: false,
       isSigner: false,
     },
-    {
-      pubkey: accounts.adminStTokenAccount,
-      isWritable: true,
-      isSigner: false,
-    },
-    {
-      pubkey: accounts.vaultStTokenAccount,
-      isWritable: true,
-      isSigner: false,
-    },
-    {
-      pubkey: accounts.burnVault,
-      isWritable: false,
-      isSigner: false,
-    },
-    {
-      pubkey: accounts.burnVaultVrtTokenAccount,
-      isWritable: true,
-      isSigner: false,
-    },
+    // {
+    //   pubkey: accounts.adminStTokenAccount,
+    //   isWritable: true,
+    //   isSigner: false,
+    // },
+    // {
+    //   pubkey: accounts.vaultStTokenAccount,
+    //   isWritable: true,
+    //   isSigner: false,
+    // },
+    // {
+    //   pubkey: accounts.burnVault,
+    //   isWritable: false,
+    //   isSigner: false,
+    // },
+    // {
+    //   pubkey: accounts.burnVaultVrtTokenAccount,
+    //   isWritable: true,
+    //   isSigner: false,
+    // },
     {
       pubkey: accounts.admin,
       isWritable: true,
@@ -157,17 +163,17 @@ export function createInitializeVaultInstruction(
       isWritable: false,
       isSigner: false,
     },
-    {
-      pubkey: accounts.associatedTokenProgram,
-      isWritable: false,
-      isSigner: false,
-    },
-  ]
+    // {
+    //   pubkey: accounts.associatedTokenProgram,
+    //   isWritable: false,
+    //   isSigner: false,
+    // },
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

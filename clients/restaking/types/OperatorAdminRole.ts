@@ -5,7 +5,7 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
+import * as beet from "@metaplex-foundation/beet";
 /**
  * @category enums
  * @category generated
@@ -23,5 +23,5 @@ export enum OperatorAdminRole {
  * @category generated
  */
 export const operatorAdminRoleBeet = beet.fixedScalarEnum(
-  OperatorAdminRole
-) as beet.FixedSizeBeet<OperatorAdminRole, OperatorAdminRole>
+  OperatorAdminRole,
+) as beet.FixedSizeBeet<OperatorAdminRole, OperatorAdminRole>;

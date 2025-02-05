@@ -5,12 +5,12 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 import {
   WithdrawalAllocationMethod,
   withdrawalAllocationMethodBeet,
-} from '../types/WithdrawalAllocationMethod'
+} from "../types/WithdrawalAllocationMethod";
 
 /**
  * @category Instructions
@@ -18,8 +18,8 @@ import {
  * @category generated
  */
 export type InitializeVaultUpdateStateTrackerInstructionArgs = {
-  withdrawalAllocationMethod: WithdrawalAllocationMethod
-}
+  withdrawalAllocationMethod: WithdrawalAllocationMethod;
+};
 /**
  * @category Instructions
  * @category InitializeVaultUpdateStateTracker
@@ -27,15 +27,15 @@ export type InitializeVaultUpdateStateTrackerInstructionArgs = {
  */
 export const InitializeVaultUpdateStateTrackerStruct = new beet.BeetArgsStruct<
   InitializeVaultUpdateStateTrackerInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['withdrawalAllocationMethod', withdrawalAllocationMethodBeet],
+    ["instructionDiscriminator", beet.u8],
+    ["withdrawalAllocationMethod", withdrawalAllocationMethodBeet],
   ],
-  'InitializeVaultUpdateStateTrackerInstructionArgs'
-)
+  "InitializeVaultUpdateStateTrackerInstructionArgs",
+);
 /**
  * Accounts required by the _InitializeVaultUpdateStateTracker_ instruction
  *
@@ -48,14 +48,14 @@ export const InitializeVaultUpdateStateTrackerStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type InitializeVaultUpdateStateTrackerInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  vaultUpdateStateTracker: web3.PublicKey
-  payer: web3.PublicKey
-  systemProgram?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  vaultUpdateStateTracker: web3.PublicKey;
+  payer: web3.PublicKey;
+  systemProgram?: web3.PublicKey;
+};
 
-export const initializeVaultUpdateStateTrackerInstructionDiscriminator = 26
+export const initializeVaultUpdateStateTrackerInstructionDiscriminator = 26;
 
 /**
  * Creates a _InitializeVaultUpdateStateTracker_ instruction.
@@ -70,13 +70,13 @@ export const initializeVaultUpdateStateTrackerInstructionDiscriminator = 26
 export function createInitializeVaultUpdateStateTrackerInstruction(
   accounts: InitializeVaultUpdateStateTrackerInstructionAccounts,
   args: InitializeVaultUpdateStateTrackerInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = InitializeVaultUpdateStateTrackerStruct.serialize({
     instructionDiscriminator:
       initializeVaultUpdateStateTrackerInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -103,12 +103,12 @@ export function createInitializeVaultUpdateStateTrackerInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }
