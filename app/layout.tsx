@@ -31,12 +31,22 @@ export default function RootLayout({
                   </Link>
                   <nav className="my-6">
                     <ul className="space-y-3">
-                      <Link
-                        href="/vaults"
-                        className="text-gray-400 hover:text-white cursor-pointer"
-                      >
-                        Vaults
-                      </Link>
+                      <div>
+                        <Link
+                          href="/vaults"
+                          className="text-gray-400 hover:text-white cursor-pointer"
+                        >
+                          Vaults
+                        </Link>
+                      </div>
+                      <div>
+                        <Link
+                          href="/initialize-vault"
+                          className="text-gray-400 hover:text-white cursor-pointer"
+                        >
+                          Initialize Vault
+                        </Link>
+                      </div>
                     </ul>
                   </nav>
                 </aside>
