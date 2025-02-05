@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 import data from "@/data-735-1.json";
 
-export default function Home() {
+export default function Vaults() {
   const [totalTvlUsd, setTotalTvlUsd] = useState<number>(0);
 
   useEffect(() => {
