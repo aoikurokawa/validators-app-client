@@ -9,7 +9,7 @@ import {
   InitializeVaultInstructionAccounts,
   InitializeVaultInstructionArgs,
 } from "../../clients/vault/instructions/";
-import { Config, PROGRAM_ID as VAULT_PROGRAM_ID } from "@/clients/vault";
+import { PROGRAM_ID as VAULT_PROGRAM_ID } from "@/clients/vault";
 import { Keypair, PublicKey, Transaction } from "@solana/web3.js";
 
 export default function InitializeVault() {
@@ -98,20 +98,7 @@ export default function InitializeVault() {
       );
 
       console.log("transaction Id: ", txId);
-      //   const instruction = SystemProgram.createAccount({
-      //     fromPubkey: adminPubKey,
-      //     newAccountPubkey: vaultPubKey,
-      //     lamports: 1e6, // Adjust based on network rent
-      //     space: 1024, // Adjust based on vault size
-      //     programId: new PublicKey("VAULT_PROGRAM_ID_HERE"),
-      //   });
-
-      //   transaction.add(instruction);
-
-      //   const signature = await sendTransaction(transaction, connection);
-      //   toast.success(`Transaction sent: ${signature}`);
     } catch (error: any) {
-      // toast.error(`Error: ${error.message}`);
       console.log("Error: ", error);
     }
   };
