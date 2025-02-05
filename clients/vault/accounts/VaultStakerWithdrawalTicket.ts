@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
 
 /**
  * Arguments used to create {@link VaultStakerWithdrawalTicket}
@@ -15,14 +15,14 @@ import * as beetSolana from '@metaplex-foundation/beet-solana'
  * @category generated
  */
 export type VaultStakerWithdrawalTicketArgs = {
-  vault: web3.PublicKey
-  staker: web3.PublicKey
-  base: web3.PublicKey
-  vrtAmount: beet.bignum
-  slotUnstaked: beet.bignum
-  bump: number
-  reserved: number[] /* size: 263 */
-}
+  vault: web3.PublicKey;
+  staker: web3.PublicKey;
+  base: web3.PublicKey;
+  vrtAmount: beet.bignum;
+  slotUnstaked: beet.bignum;
+  bump: number;
+  reserved: number[] /* size: 263 */;
+};
 /**
  * Holds the data for the {@link VaultStakerWithdrawalTicket} Account and provides de/serialization
  * functionality for that data
@@ -40,7 +40,7 @@ export class VaultStakerWithdrawalTicket
     readonly vrtAmount: beet.bignum,
     readonly slotUnstaked: beet.bignum,
     readonly bump: number,
-    readonly reserved: number[] /* size: 263 */
+    readonly reserved: number[] /* size: 263 */,
   ) {}
 
   /**
@@ -54,8 +54,8 @@ export class VaultStakerWithdrawalTicket
       args.vrtAmount,
       args.slotUnstaked,
       args.bump,
-      args.reserved
-    )
+      args.reserved,
+    );
   }
 
   /**
@@ -64,9 +64,9 @@ export class VaultStakerWithdrawalTicket
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [VaultStakerWithdrawalTicket, number] {
-    return VaultStakerWithdrawalTicket.deserialize(accountInfo.data, offset)
+    return VaultStakerWithdrawalTicket.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -78,18 +78,18 @@ export class VaultStakerWithdrawalTicket
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<VaultStakerWithdrawalTicket> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
       throw new Error(
-        `Unable to find VaultStakerWithdrawalTicket account at ${address}`
-      )
+        `Unable to find VaultStakerWithdrawalTicket account at ${address}`,
+      );
     }
-    return VaultStakerWithdrawalTicket.fromAccountInfo(accountInfo, 0)[0]
+    return VaultStakerWithdrawalTicket.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -100,13 +100,13 @@ export class VaultStakerWithdrawalTicket
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8'
-    )
+      "Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8",
+    ),
   ) {
     return beetSolana.GpaBuilder.fromStruct(
       programId,
-      vaultStakerWithdrawalTicketBeet
-    )
+      vaultStakerWithdrawalTicketBeet,
+    );
   }
 
   /**
@@ -115,9 +115,9 @@ export class VaultStakerWithdrawalTicket
    */
   static deserialize(
     buf: Buffer,
-    offset = 0
+    offset = 0,
   ): [VaultStakerWithdrawalTicket, number] {
-    return vaultStakerWithdrawalTicketBeet.deserialize(buf, offset)
+    return vaultStakerWithdrawalTicketBeet.deserialize(buf, offset);
   }
 
   /**
@@ -125,7 +125,7 @@ export class VaultStakerWithdrawalTicket
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return vaultStakerWithdrawalTicketBeet.serialize(this)
+    return vaultStakerWithdrawalTicketBeet.serialize(this);
   }
 
   /**
@@ -133,7 +133,7 @@ export class VaultStakerWithdrawalTicket
    * {@link VaultStakerWithdrawalTicket}
    */
   static get byteSize() {
-    return vaultStakerWithdrawalTicketBeet.byteSize
+    return vaultStakerWithdrawalTicketBeet.byteSize;
   }
 
   /**
@@ -144,12 +144,12 @@ export class VaultStakerWithdrawalTicket
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       VaultStakerWithdrawalTicket.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -157,7 +157,7 @@ export class VaultStakerWithdrawalTicket
    * hold {@link VaultStakerWithdrawalTicket} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === VaultStakerWithdrawalTicket.byteSize
+    return buf.byteLength - offset === VaultStakerWithdrawalTicket.byteSize;
   }
 
   /**
@@ -170,30 +170,30 @@ export class VaultStakerWithdrawalTicket
       staker: this.staker.toBase58(),
       base: this.base.toBase58(),
       vrtAmount: (() => {
-        const x = <{ toNumber: () => number }>this.vrtAmount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.vrtAmount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       slotUnstaked: (() => {
-        const x = <{ toNumber: () => number }>this.slotUnstaked
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.slotUnstaked;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       bump: this.bump,
       reserved: this.reserved,
-    }
+    };
   }
 }
 
@@ -206,14 +206,14 @@ export const vaultStakerWithdrawalTicketBeet = new beet.BeetStruct<
   VaultStakerWithdrawalTicketArgs
 >(
   [
-    ['vault', beetSolana.publicKey],
-    ['staker', beetSolana.publicKey],
-    ['base', beetSolana.publicKey],
-    ['vrtAmount', beet.u64],
-    ['slotUnstaked', beet.u64],
-    ['bump', beet.u8],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 263)],
+    ["vault", beetSolana.publicKey],
+    ["staker", beetSolana.publicKey],
+    ["base", beetSolana.publicKey],
+    ["vrtAmount", beet.u64],
+    ["slotUnstaked", beet.u64],
+    ["bump", beet.u8],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 263)],
   ],
   VaultStakerWithdrawalTicket.fromArgs,
-  'VaultStakerWithdrawalTicket'
-)
+  "VaultStakerWithdrawalTicket",
+);

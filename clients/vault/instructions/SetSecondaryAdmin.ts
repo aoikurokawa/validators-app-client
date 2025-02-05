@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
-import { VaultAdminRole, vaultAdminRoleBeet } from '../types/VaultAdminRole'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
+import { VaultAdminRole, vaultAdminRoleBeet } from "../types/VaultAdminRole";
 
 /**
  * @category Instructions
@@ -15,8 +15,8 @@ import { VaultAdminRole, vaultAdminRoleBeet } from '../types/VaultAdminRole'
  * @category generated
  */
 export type SetSecondaryAdminInstructionArgs = {
-  vaultAdminRole: VaultAdminRole
-}
+  vaultAdminRole: VaultAdminRole;
+};
 /**
  * @category Instructions
  * @category SetSecondaryAdmin
@@ -24,15 +24,15 @@ export type SetSecondaryAdminInstructionArgs = {
  */
 export const SetSecondaryAdminStruct = new beet.BeetArgsStruct<
   SetSecondaryAdminInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['vaultAdminRole', vaultAdminRoleBeet],
+    ["instructionDiscriminator", beet.u8],
+    ["vaultAdminRole", vaultAdminRoleBeet],
   ],
-  'SetSecondaryAdminInstructionArgs'
-)
+  "SetSecondaryAdminInstructionArgs",
+);
 /**
  * Accounts required by the _SetSecondaryAdmin_ instruction
  *
@@ -45,13 +45,13 @@ export const SetSecondaryAdminStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type SetSecondaryAdminInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  admin: web3.PublicKey
-  newAdmin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  admin: web3.PublicKey;
+  newAdmin: web3.PublicKey;
+};
 
-export const setSecondaryAdminInstructionDiscriminator = 22
+export const setSecondaryAdminInstructionDiscriminator = 22;
 
 /**
  * Creates a _SetSecondaryAdmin_ instruction.
@@ -66,12 +66,12 @@ export const setSecondaryAdminInstructionDiscriminator = 22
 export function createSetSecondaryAdminInstruction(
   accounts: SetSecondaryAdminInstructionAccounts,
   args: SetSecondaryAdminInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = SetSecondaryAdminStruct.serialize({
     instructionDiscriminator: setSecondaryAdminInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -93,12 +93,12 @@ export function createSetSecondaryAdminInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

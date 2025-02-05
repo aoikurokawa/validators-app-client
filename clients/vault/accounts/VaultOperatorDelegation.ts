@@ -5,10 +5,10 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
-import { DelegationState, delegationStateBeet } from '../types/DelegationState'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
+import { DelegationState, delegationStateBeet } from "../types/DelegationState";
 
 /**
  * Arguments used to create {@link VaultOperatorDelegation}
@@ -16,14 +16,14 @@ import { DelegationState, delegationStateBeet } from '../types/DelegationState'
  * @category generated
  */
 export type VaultOperatorDelegationArgs = {
-  vault: web3.PublicKey
-  operator: web3.PublicKey
-  delegationState: DelegationState
-  lastUpdateSlot: beet.bignum
-  index: beet.bignum
-  bump: number
-  reserved: number[] /* size: 263 */
-}
+  vault: web3.PublicKey;
+  operator: web3.PublicKey;
+  delegationState: DelegationState;
+  lastUpdateSlot: beet.bignum;
+  index: beet.bignum;
+  bump: number;
+  reserved: number[] /* size: 263 */;
+};
 /**
  * Holds the data for the {@link VaultOperatorDelegation} Account and provides de/serialization
  * functionality for that data
@@ -39,7 +39,7 @@ export class VaultOperatorDelegation implements VaultOperatorDelegationArgs {
     readonly lastUpdateSlot: beet.bignum,
     readonly index: beet.bignum,
     readonly bump: number,
-    readonly reserved: number[] /* size: 263 */
+    readonly reserved: number[] /* size: 263 */,
   ) {}
 
   /**
@@ -53,8 +53,8 @@ export class VaultOperatorDelegation implements VaultOperatorDelegationArgs {
       args.lastUpdateSlot,
       args.index,
       args.bump,
-      args.reserved
-    )
+      args.reserved,
+    );
   }
 
   /**
@@ -63,9 +63,9 @@ export class VaultOperatorDelegation implements VaultOperatorDelegationArgs {
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [VaultOperatorDelegation, number] {
-    return VaultOperatorDelegation.deserialize(accountInfo.data, offset)
+    return VaultOperatorDelegation.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -77,18 +77,18 @@ export class VaultOperatorDelegation implements VaultOperatorDelegationArgs {
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<VaultOperatorDelegation> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
       throw new Error(
-        `Unable to find VaultOperatorDelegation account at ${address}`
-      )
+        `Unable to find VaultOperatorDelegation account at ${address}`,
+      );
     }
-    return VaultOperatorDelegation.fromAccountInfo(accountInfo, 0)[0]
+    return VaultOperatorDelegation.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -99,13 +99,13 @@ export class VaultOperatorDelegation implements VaultOperatorDelegationArgs {
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8'
-    )
+      "Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8",
+    ),
   ) {
     return beetSolana.GpaBuilder.fromStruct(
       programId,
-      vaultOperatorDelegationBeet
-    )
+      vaultOperatorDelegationBeet,
+    );
   }
 
   /**
@@ -114,9 +114,9 @@ export class VaultOperatorDelegation implements VaultOperatorDelegationArgs {
    */
   static deserialize(
     buf: Buffer,
-    offset = 0
+    offset = 0,
   ): [VaultOperatorDelegation, number] {
-    return vaultOperatorDelegationBeet.deserialize(buf, offset)
+    return vaultOperatorDelegationBeet.deserialize(buf, offset);
   }
 
   /**
@@ -124,7 +124,7 @@ export class VaultOperatorDelegation implements VaultOperatorDelegationArgs {
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return vaultOperatorDelegationBeet.serialize(this)
+    return vaultOperatorDelegationBeet.serialize(this);
   }
 
   /**
@@ -132,7 +132,7 @@ export class VaultOperatorDelegation implements VaultOperatorDelegationArgs {
    * {@link VaultOperatorDelegation}
    */
   static get byteSize() {
-    return vaultOperatorDelegationBeet.byteSize
+    return vaultOperatorDelegationBeet.byteSize;
   }
 
   /**
@@ -143,12 +143,12 @@ export class VaultOperatorDelegation implements VaultOperatorDelegationArgs {
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       VaultOperatorDelegation.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -156,7 +156,7 @@ export class VaultOperatorDelegation implements VaultOperatorDelegationArgs {
    * hold {@link VaultOperatorDelegation} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === VaultOperatorDelegation.byteSize
+    return buf.byteLength - offset === VaultOperatorDelegation.byteSize;
   }
 
   /**
@@ -169,30 +169,30 @@ export class VaultOperatorDelegation implements VaultOperatorDelegationArgs {
       operator: this.operator.toBase58(),
       delegationState: this.delegationState,
       lastUpdateSlot: (() => {
-        const x = <{ toNumber: () => number }>this.lastUpdateSlot
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.lastUpdateSlot;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       index: (() => {
-        const x = <{ toNumber: () => number }>this.index
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.index;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       bump: this.bump,
       reserved: this.reserved,
-    }
+    };
   }
 }
 
@@ -205,14 +205,14 @@ export const vaultOperatorDelegationBeet = new beet.BeetStruct<
   VaultOperatorDelegationArgs
 >(
   [
-    ['vault', beetSolana.publicKey],
-    ['operator', beetSolana.publicKey],
-    ['delegationState', delegationStateBeet],
-    ['lastUpdateSlot', beet.u64],
-    ['index', beet.u64],
-    ['bump', beet.u8],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 263)],
+    ["vault", beetSolana.publicKey],
+    ["operator", beetSolana.publicKey],
+    ["delegationState", delegationStateBeet],
+    ["lastUpdateSlot", beet.u64],
+    ["index", beet.u64],
+    ["bump", beet.u8],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 263)],
   ],
   VaultOperatorDelegation.fromArgs,
-  'VaultOperatorDelegation'
-)
+  "VaultOperatorDelegation",
+);

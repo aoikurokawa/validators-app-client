@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const WarmupOperatorVaultTicketStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'WarmupOperatorVaultTicketInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "WarmupOperatorVaultTicketInstructionArgs",
+);
 /**
  * Accounts required by the _WarmupOperatorVaultTicket_ instruction
  *
@@ -32,14 +32,14 @@ export const WarmupOperatorVaultTicketStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type WarmupOperatorVaultTicketInstructionAccounts = {
-  config: web3.PublicKey
-  operator: web3.PublicKey
-  vault: web3.PublicKey
-  operatorVaultTicket: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  operator: web3.PublicKey;
+  vault: web3.PublicKey;
+  operatorVaultTicket: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const warmupOperatorVaultTicketInstructionDiscriminator = 15
+export const warmupOperatorVaultTicketInstructionDiscriminator = 15;
 
 /**
  * Creates a _WarmupOperatorVaultTicket_ instruction.
@@ -51,11 +51,11 @@ export const warmupOperatorVaultTicketInstructionDiscriminator = 15
  */
 export function createWarmupOperatorVaultTicketInstruction(
   accounts: WarmupOperatorVaultTicketInstructionAccounts,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = WarmupOperatorVaultTicketStruct.serialize({
     instructionDiscriminator: warmupOperatorVaultTicketInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -82,12 +82,12 @@ export function createWarmupOperatorVaultTicketInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

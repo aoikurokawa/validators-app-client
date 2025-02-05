@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type SetDepositCapacityInstructionArgs = {
-  amount: beet.bignum
-}
+  amount: beet.bignum;
+};
 /**
  * @category Instructions
  * @category SetDepositCapacity
@@ -23,15 +23,15 @@ export type SetDepositCapacityInstructionArgs = {
  */
 export const SetDepositCapacityStruct = new beet.BeetArgsStruct<
   SetDepositCapacityInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['amount', beet.u64],
+    ["instructionDiscriminator", beet.u8],
+    ["amount", beet.u64],
   ],
-  'SetDepositCapacityInstructionArgs'
-)
+  "SetDepositCapacityInstructionArgs",
+);
 /**
  * Accounts required by the _SetDepositCapacity_ instruction
  *
@@ -43,12 +43,12 @@ export const SetDepositCapacityStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type SetDepositCapacityInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const setDepositCapacityInstructionDiscriminator = 15
+export const setDepositCapacityInstructionDiscriminator = 15;
 
 /**
  * Creates a _SetDepositCapacity_ instruction.
@@ -63,12 +63,12 @@ export const setDepositCapacityInstructionDiscriminator = 15
 export function createSetDepositCapacityInstruction(
   accounts: SetDepositCapacityInstructionAccounts,
   args: SetDepositCapacityInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = SetDepositCapacityStruct.serialize({
     instructionDiscriminator: setDepositCapacityInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -85,12 +85,12 @@ export function createSetDepositCapacityInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

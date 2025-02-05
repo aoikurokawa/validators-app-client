@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
 
 /**
  * Arguments used to create {@link Config}
@@ -15,14 +15,14 @@ import * as beetSolana from '@metaplex-foundation/beet-solana'
  * @category generated
  */
 export type ConfigArgs = {
-  admin: web3.PublicKey
-  vaultProgram: web3.PublicKey
-  ncnCount: beet.bignum
-  operatorCount: beet.bignum
-  epochLength: beet.bignum
-  bump: number
-  reserved: number[] /* size: 263 */
-}
+  admin: web3.PublicKey;
+  vaultProgram: web3.PublicKey;
+  ncnCount: beet.bignum;
+  operatorCount: beet.bignum;
+  epochLength: beet.bignum;
+  bump: number;
+  reserved: number[] /* size: 263 */;
+};
 /**
  * Holds the data for the {@link Config} Account and provides de/serialization
  * functionality for that data
@@ -38,7 +38,7 @@ export class Config implements ConfigArgs {
     readonly operatorCount: beet.bignum,
     readonly epochLength: beet.bignum,
     readonly bump: number,
-    readonly reserved: number[] /* size: 263 */
+    readonly reserved: number[] /* size: 263 */,
   ) {}
 
   /**
@@ -52,8 +52,8 @@ export class Config implements ConfigArgs {
       args.operatorCount,
       args.epochLength,
       args.bump,
-      args.reserved
-    )
+      args.reserved,
+    );
   }
 
   /**
@@ -62,9 +62,9 @@ export class Config implements ConfigArgs {
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [Config, number] {
-    return Config.deserialize(accountInfo.data, offset)
+    return Config.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -76,16 +76,16 @@ export class Config implements ConfigArgs {
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<Config> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
-      throw new Error(`Unable to find Config account at ${address}`)
+      throw new Error(`Unable to find Config account at ${address}`);
     }
-    return Config.fromAccountInfo(accountInfo, 0)[0]
+    return Config.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -96,10 +96,10 @@ export class Config implements ConfigArgs {
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q'
-    )
+      "RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q",
+    ),
   ) {
-    return beetSolana.GpaBuilder.fromStruct(programId, configBeet)
+    return beetSolana.GpaBuilder.fromStruct(programId, configBeet);
   }
 
   /**
@@ -107,7 +107,7 @@ export class Config implements ConfigArgs {
    * @returns a tuple of the account data and the offset up to which the buffer was read to obtain it.
    */
   static deserialize(buf: Buffer, offset = 0): [Config, number] {
-    return configBeet.deserialize(buf, offset)
+    return configBeet.deserialize(buf, offset);
   }
 
   /**
@@ -115,7 +115,7 @@ export class Config implements ConfigArgs {
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return configBeet.serialize(this)
+    return configBeet.serialize(this);
   }
 
   /**
@@ -123,7 +123,7 @@ export class Config implements ConfigArgs {
    * {@link Config}
    */
   static get byteSize() {
-    return configBeet.byteSize
+    return configBeet.byteSize;
   }
 
   /**
@@ -134,12 +134,12 @@ export class Config implements ConfigArgs {
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       Config.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -147,7 +147,7 @@ export class Config implements ConfigArgs {
    * hold {@link Config} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === Config.byteSize
+    return buf.byteLength - offset === Config.byteSize;
   }
 
   /**
@@ -159,41 +159,41 @@ export class Config implements ConfigArgs {
       admin: this.admin.toBase58(),
       vaultProgram: this.vaultProgram.toBase58(),
       ncnCount: (() => {
-        const x = <{ toNumber: () => number }>this.ncnCount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.ncnCount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       operatorCount: (() => {
-        const x = <{ toNumber: () => number }>this.operatorCount
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.operatorCount;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       epochLength: (() => {
-        const x = <{ toNumber: () => number }>this.epochLength
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.epochLength;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       bump: this.bump,
       reserved: this.reserved,
-    }
+    };
   }
 }
 
@@ -203,14 +203,14 @@ export class Config implements ConfigArgs {
  */
 export const configBeet = new beet.BeetStruct<Config, ConfigArgs>(
   [
-    ['admin', beetSolana.publicKey],
-    ['vaultProgram', beetSolana.publicKey],
-    ['ncnCount', beet.u64],
-    ['operatorCount', beet.u64],
-    ['epochLength', beet.u64],
-    ['bump', beet.u8],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 263)],
+    ["admin", beetSolana.publicKey],
+    ["vaultProgram", beetSolana.publicKey],
+    ["ncnCount", beet.u64],
+    ["operatorCount", beet.u64],
+    ["epochLength", beet.u64],
+    ["bump", beet.u8],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 263)],
   ],
   Config.fromArgs,
-  'Config'
-)
+  "Config",
+);

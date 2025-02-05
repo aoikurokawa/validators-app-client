@@ -39,11 +39,11 @@ export const defaultClusters: Cluster[] = [
 
 const clusterAtom = atomWithStorage<Cluster>(
   "solana-cluster",
-  defaultClusters[0]
+  defaultClusters[0],
 );
 const clustersAtom = atomWithStorage<Cluster[]>(
   "solana-clusters",
-  defaultClusters
+  defaultClusters,
 );
 
 const activeClustersAtom = atom<Cluster[]>((get) => {
@@ -71,7 +71,7 @@ export interface ClusterProviderContext {
 }
 
 const Context = createContext<ClusterProviderContext>(
-  {} as ClusterProviderContext
+  {} as ClusterProviderContext,
 );
 
 export function ClusterProvider({ children }: { children: ReactNode }) {

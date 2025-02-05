@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const WarmupNcnVaultTicketStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'WarmupNcnVaultTicketInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "WarmupNcnVaultTicketInstructionArgs",
+);
 /**
  * Accounts required by the _WarmupNcnVaultTicket_ instruction
  *
@@ -32,14 +32,14 @@ export const WarmupNcnVaultTicketStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type WarmupNcnVaultTicketInstructionAccounts = {
-  config: web3.PublicKey
-  ncn: web3.PublicKey
-  vault: web3.PublicKey
-  ncnVaultTicket: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  ncn: web3.PublicKey;
+  vault: web3.PublicKey;
+  ncnVaultTicket: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const warmupNcnVaultTicketInstructionDiscriminator = 7
+export const warmupNcnVaultTicketInstructionDiscriminator = 7;
 
 /**
  * Creates a _WarmupNcnVaultTicket_ instruction.
@@ -51,11 +51,11 @@ export const warmupNcnVaultTicketInstructionDiscriminator = 7
  */
 export function createWarmupNcnVaultTicketInstruction(
   accounts: WarmupNcnVaultTicketInstructionAccounts,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = WarmupNcnVaultTicketStruct.serialize({
     instructionDiscriminator: warmupNcnVaultTicketInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -82,12 +82,12 @@ export function createWarmupNcnVaultTicketInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

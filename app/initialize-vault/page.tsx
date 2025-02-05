@@ -15,7 +15,9 @@ import { Keypair, PublicKey, Transaction } from "@solana/web3.js";
 export default function InitializeVault() {
   const { connection } = useConnection();
   const { publicKey, sendTransaction, signTransaction } = useWallet();
-  const [stMint, setStMint] = useState("Sy2gWQkAHHSK5jDSebSGS1ZvTPX1cDU66GZrr8apckf");
+  const [stMint, setStMint] = useState(
+    "Sy2gWQkAHHSK5jDSebSGS1ZvTPX1cDU66GZrr8apckf",
+  );
   const [depositFee, setDepositFee] = useState(0);
   const [withdrawalFee, setWithdrawalFee] = useState(0);
   const [rewardFee, setRewardFee] = useState(0);
@@ -31,7 +33,7 @@ export default function InitializeVault() {
     // Find the PDA using the seed and program ID
     const [pda, bump] = PublicKey.findProgramAddressSync(
       [seedBuffer],
-      VAULT_PROGRAM_ID
+      VAULT_PROGRAM_ID,
     );
 
     return { pda, bump, seeds: [seedBuffer] };
@@ -45,7 +47,7 @@ export default function InitializeVault() {
     // Find the PDA using the seed and program ID
     const [pda, bump] = PublicKey.findProgramAddressSync(
       [seedBuffer, baseBuffer],
-      VAULT_PROGRAM_ID
+      VAULT_PROGRAM_ID,
     );
 
     return { pda, bump, seeds: [seedBuffer, baseBuffer] };
@@ -94,7 +96,7 @@ export default function InitializeVault() {
         {
           skipPreflight: false,
           preflightCommitment: "confirmed",
-        }
+        },
       );
 
       console.log("transaction Id: ", txId);

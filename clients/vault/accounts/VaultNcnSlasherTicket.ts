@@ -5,10 +5,10 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as web3 from '@solana/web3.js'
-import * as beet from '@metaplex-foundation/beet'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
-import { SlotToggle, slotToggleBeet } from '../types/SlotToggle'
+import * as web3 from "@solana/web3.js";
+import * as beet from "@metaplex-foundation/beet";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
+import { SlotToggle, slotToggleBeet } from "../types/SlotToggle";
 
 /**
  * Arguments used to create {@link VaultNcnSlasherTicket}
@@ -16,15 +16,15 @@ import { SlotToggle, slotToggleBeet } from '../types/SlotToggle'
  * @category generated
  */
 export type VaultNcnSlasherTicketArgs = {
-  vault: web3.PublicKey
-  ncn: web3.PublicKey
-  slasher: web3.PublicKey
-  maxSlashablePerEpoch: beet.bignum
-  index: beet.bignum
-  state: SlotToggle
-  bump: number
-  reserved: number[] /* size: 263 */
-}
+  vault: web3.PublicKey;
+  ncn: web3.PublicKey;
+  slasher: web3.PublicKey;
+  maxSlashablePerEpoch: beet.bignum;
+  index: beet.bignum;
+  state: SlotToggle;
+  bump: number;
+  reserved: number[] /* size: 263 */;
+};
 /**
  * Holds the data for the {@link VaultNcnSlasherTicket} Account and provides de/serialization
  * functionality for that data
@@ -41,7 +41,7 @@ export class VaultNcnSlasherTicket implements VaultNcnSlasherTicketArgs {
     readonly index: beet.bignum,
     readonly state: SlotToggle,
     readonly bump: number,
-    readonly reserved: number[] /* size: 263 */
+    readonly reserved: number[] /* size: 263 */,
   ) {}
 
   /**
@@ -56,8 +56,8 @@ export class VaultNcnSlasherTicket implements VaultNcnSlasherTicketArgs {
       args.index,
       args.state,
       args.bump,
-      args.reserved
-    )
+      args.reserved,
+    );
   }
 
   /**
@@ -66,9 +66,9 @@ export class VaultNcnSlasherTicket implements VaultNcnSlasherTicketArgs {
    */
   static fromAccountInfo(
     accountInfo: web3.AccountInfo<Buffer>,
-    offset = 0
+    offset = 0,
   ): [VaultNcnSlasherTicket, number] {
-    return VaultNcnSlasherTicket.deserialize(accountInfo.data, offset)
+    return VaultNcnSlasherTicket.deserialize(accountInfo.data, offset);
   }
 
   /**
@@ -80,18 +80,18 @@ export class VaultNcnSlasherTicket implements VaultNcnSlasherTicketArgs {
   static async fromAccountAddress(
     connection: web3.Connection,
     address: web3.PublicKey,
-    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig
+    commitmentOrConfig?: web3.Commitment | web3.GetAccountInfoConfig,
   ): Promise<VaultNcnSlasherTicket> {
     const accountInfo = await connection.getAccountInfo(
       address,
-      commitmentOrConfig
-    )
+      commitmentOrConfig,
+    );
     if (accountInfo == null) {
       throw new Error(
-        `Unable to find VaultNcnSlasherTicket account at ${address}`
-      )
+        `Unable to find VaultNcnSlasherTicket account at ${address}`,
+      );
     }
-    return VaultNcnSlasherTicket.fromAccountInfo(accountInfo, 0)[0]
+    return VaultNcnSlasherTicket.fromAccountInfo(accountInfo, 0)[0];
   }
 
   /**
@@ -102,13 +102,13 @@ export class VaultNcnSlasherTicket implements VaultNcnSlasherTicketArgs {
    */
   static gpaBuilder(
     programId: web3.PublicKey = new web3.PublicKey(
-      'Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8'
-    )
+      "Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8",
+    ),
   ) {
     return beetSolana.GpaBuilder.fromStruct(
       programId,
-      vaultNcnSlasherTicketBeet
-    )
+      vaultNcnSlasherTicketBeet,
+    );
   }
 
   /**
@@ -116,7 +116,7 @@ export class VaultNcnSlasherTicket implements VaultNcnSlasherTicketArgs {
    * @returns a tuple of the account data and the offset up to which the buffer was read to obtain it.
    */
   static deserialize(buf: Buffer, offset = 0): [VaultNcnSlasherTicket, number] {
-    return vaultNcnSlasherTicketBeet.deserialize(buf, offset)
+    return vaultNcnSlasherTicketBeet.deserialize(buf, offset);
   }
 
   /**
@@ -124,7 +124,7 @@ export class VaultNcnSlasherTicket implements VaultNcnSlasherTicketArgs {
    * @returns a tuple of the created Buffer and the offset up to which the buffer was written to store it.
    */
   serialize(): [Buffer, number] {
-    return vaultNcnSlasherTicketBeet.serialize(this)
+    return vaultNcnSlasherTicketBeet.serialize(this);
   }
 
   /**
@@ -132,7 +132,7 @@ export class VaultNcnSlasherTicket implements VaultNcnSlasherTicketArgs {
    * {@link VaultNcnSlasherTicket}
    */
   static get byteSize() {
-    return vaultNcnSlasherTicketBeet.byteSize
+    return vaultNcnSlasherTicketBeet.byteSize;
   }
 
   /**
@@ -143,12 +143,12 @@ export class VaultNcnSlasherTicket implements VaultNcnSlasherTicketArgs {
    */
   static async getMinimumBalanceForRentExemption(
     connection: web3.Connection,
-    commitment?: web3.Commitment
+    commitment?: web3.Commitment,
   ): Promise<number> {
     return connection.getMinimumBalanceForRentExemption(
       VaultNcnSlasherTicket.byteSize,
-      commitment
-    )
+      commitment,
+    );
   }
 
   /**
@@ -156,7 +156,7 @@ export class VaultNcnSlasherTicket implements VaultNcnSlasherTicketArgs {
    * hold {@link VaultNcnSlasherTicket} data.
    */
   static hasCorrectByteSize(buf: Buffer, offset = 0) {
-    return buf.byteLength - offset === VaultNcnSlasherTicket.byteSize
+    return buf.byteLength - offset === VaultNcnSlasherTicket.byteSize;
   }
 
   /**
@@ -169,31 +169,31 @@ export class VaultNcnSlasherTicket implements VaultNcnSlasherTicketArgs {
       ncn: this.ncn.toBase58(),
       slasher: this.slasher.toBase58(),
       maxSlashablePerEpoch: (() => {
-        const x = <{ toNumber: () => number }>this.maxSlashablePerEpoch
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.maxSlashablePerEpoch;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       index: (() => {
-        const x = <{ toNumber: () => number }>this.index
-        if (typeof x.toNumber === 'function') {
+        const x = <{ toNumber: () => number }>this.index;
+        if (typeof x.toNumber === "function") {
           try {
-            return x.toNumber()
+            return x.toNumber();
           } catch (_) {
-            return x
+            return x;
           }
         }
-        return x
+        return x;
       })(),
       state: this.state,
       bump: this.bump,
       reserved: this.reserved,
-    }
+    };
   }
 }
 
@@ -206,15 +206,15 @@ export const vaultNcnSlasherTicketBeet = new beet.BeetStruct<
   VaultNcnSlasherTicketArgs
 >(
   [
-    ['vault', beetSolana.publicKey],
-    ['ncn', beetSolana.publicKey],
-    ['slasher', beetSolana.publicKey],
-    ['maxSlashablePerEpoch', beet.u64],
-    ['index', beet.u64],
-    ['state', slotToggleBeet],
-    ['bump', beet.u8],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 263)],
+    ["vault", beetSolana.publicKey],
+    ["ncn", beetSolana.publicKey],
+    ["slasher", beetSolana.publicKey],
+    ["maxSlashablePerEpoch", beet.u64],
+    ["index", beet.u64],
+    ["state", slotToggleBeet],
+    ["bump", beet.u8],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 263)],
   ],
   VaultNcnSlasherTicket.fromArgs,
-  'VaultNcnSlasherTicket'
-)
+  "VaultNcnSlasherTicket",
+);

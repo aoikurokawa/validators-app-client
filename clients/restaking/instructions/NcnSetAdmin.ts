@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const NcnSetAdminStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
-}>([['instructionDiscriminator', beet.u8]], 'NcnSetAdminInstructionArgs')
+  instructionDiscriminator: number;
+}>([["instructionDiscriminator", beet.u8]], "NcnSetAdminInstructionArgs");
 /**
  * Accounts required by the _NcnSetAdmin_ instruction
  *
@@ -27,12 +27,12 @@ export const NcnSetAdminStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type NcnSetAdminInstructionAccounts = {
-  ncn: web3.PublicKey
-  oldAdmin: web3.PublicKey
-  newAdmin: web3.PublicKey
-}
+  ncn: web3.PublicKey;
+  oldAdmin: web3.PublicKey;
+  newAdmin: web3.PublicKey;
+};
 
-export const ncnSetAdminInstructionDiscriminator = 17
+export const ncnSetAdminInstructionDiscriminator = 17;
 
 /**
  * Creates a _NcnSetAdmin_ instruction.
@@ -44,11 +44,11 @@ export const ncnSetAdminInstructionDiscriminator = 17
  */
 export function createNcnSetAdminInstruction(
   accounts: NcnSetAdminInstructionAccounts,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = NcnSetAdminStruct.serialize({
     instructionDiscriminator: ncnSetAdminInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.ncn,
@@ -65,12 +65,12 @@ export function createNcnSetAdminInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

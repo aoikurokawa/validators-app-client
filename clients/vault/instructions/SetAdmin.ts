@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const SetAdminStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
-}>([['instructionDiscriminator', beet.u8]], 'SetAdminInstructionArgs')
+  instructionDiscriminator: number;
+}>([["instructionDiscriminator", beet.u8]], "SetAdminInstructionArgs");
 /**
  * Accounts required by the _SetAdmin_ instruction
  *
@@ -28,13 +28,13 @@ export const SetAdminStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type SetAdminInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  oldAdmin: web3.PublicKey
-  newAdmin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  oldAdmin: web3.PublicKey;
+  newAdmin: web3.PublicKey;
+};
 
-export const setAdminInstructionDiscriminator = 21
+export const setAdminInstructionDiscriminator = 21;
 
 /**
  * Creates a _SetAdmin_ instruction.
@@ -46,11 +46,11 @@ export const setAdminInstructionDiscriminator = 21
  */
 export function createSetAdminInstruction(
   accounts: SetAdminInstructionAccounts,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = SetAdminStruct.serialize({
     instructionDiscriminator: setAdminInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -72,12 +72,12 @@ export function createSetAdminInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

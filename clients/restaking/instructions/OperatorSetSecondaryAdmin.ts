@@ -5,12 +5,12 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 import {
   OperatorAdminRole,
   operatorAdminRoleBeet,
-} from '../types/OperatorAdminRole'
+} from "../types/OperatorAdminRole";
 
 /**
  * @category Instructions
@@ -18,8 +18,8 @@ import {
  * @category generated
  */
 export type OperatorSetSecondaryAdminInstructionArgs = {
-  operatorAdminRole: OperatorAdminRole
-}
+  operatorAdminRole: OperatorAdminRole;
+};
 /**
  * @category Instructions
  * @category OperatorSetSecondaryAdmin
@@ -27,15 +27,15 @@ export type OperatorSetSecondaryAdminInstructionArgs = {
  */
 export const OperatorSetSecondaryAdminStruct = new beet.BeetArgsStruct<
   OperatorSetSecondaryAdminInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['operatorAdminRole', operatorAdminRoleBeet],
+    ["instructionDiscriminator", beet.u8],
+    ["operatorAdminRole", operatorAdminRoleBeet],
   ],
-  'OperatorSetSecondaryAdminInstructionArgs'
-)
+  "OperatorSetSecondaryAdminInstructionArgs",
+);
 /**
  * Accounts required by the _OperatorSetSecondaryAdmin_ instruction
  *
@@ -47,12 +47,12 @@ export const OperatorSetSecondaryAdminStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type OperatorSetSecondaryAdminInstructionAccounts = {
-  operator: web3.PublicKey
-  admin: web3.PublicKey
-  newAdmin: web3.PublicKey
-}
+  operator: web3.PublicKey;
+  admin: web3.PublicKey;
+  newAdmin: web3.PublicKey;
+};
 
-export const operatorSetSecondaryAdminInstructionDiscriminator = 20
+export const operatorSetSecondaryAdminInstructionDiscriminator = 20;
 
 /**
  * Creates a _OperatorSetSecondaryAdmin_ instruction.
@@ -67,12 +67,12 @@ export const operatorSetSecondaryAdminInstructionDiscriminator = 20
 export function createOperatorSetSecondaryAdminInstruction(
   accounts: OperatorSetSecondaryAdminInstructionAccounts,
   args: OperatorSetSecondaryAdminInstructionArgs,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = OperatorSetSecondaryAdminStruct.serialize({
     instructionDiscriminator: operatorSetSecondaryAdminInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.operator,
@@ -89,12 +89,12 @@ export function createOperatorSetSecondaryAdminInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

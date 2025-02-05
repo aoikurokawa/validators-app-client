@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
-import { NcnAdminRole, ncnAdminRoleBeet } from '../types/NcnAdminRole'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
+import { NcnAdminRole, ncnAdminRoleBeet } from "../types/NcnAdminRole";
 
 /**
  * @category Instructions
@@ -15,8 +15,8 @@ import { NcnAdminRole, ncnAdminRoleBeet } from '../types/NcnAdminRole'
  * @category generated
  */
 export type NcnSetSecondaryAdminInstructionArgs = {
-  ncnAdminRole: NcnAdminRole
-}
+  ncnAdminRole: NcnAdminRole;
+};
 /**
  * @category Instructions
  * @category NcnSetSecondaryAdmin
@@ -24,15 +24,15 @@ export type NcnSetSecondaryAdminInstructionArgs = {
  */
 export const NcnSetSecondaryAdminStruct = new beet.BeetArgsStruct<
   NcnSetSecondaryAdminInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['ncnAdminRole', ncnAdminRoleBeet],
+    ["instructionDiscriminator", beet.u8],
+    ["ncnAdminRole", ncnAdminRoleBeet],
   ],
-  'NcnSetSecondaryAdminInstructionArgs'
-)
+  "NcnSetSecondaryAdminInstructionArgs",
+);
 /**
  * Accounts required by the _NcnSetSecondaryAdmin_ instruction
  *
@@ -44,12 +44,12 @@ export const NcnSetSecondaryAdminStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type NcnSetSecondaryAdminInstructionAccounts = {
-  ncn: web3.PublicKey
-  admin: web3.PublicKey
-  newAdmin: web3.PublicKey
-}
+  ncn: web3.PublicKey;
+  admin: web3.PublicKey;
+  newAdmin: web3.PublicKey;
+};
 
-export const ncnSetSecondaryAdminInstructionDiscriminator = 18
+export const ncnSetSecondaryAdminInstructionDiscriminator = 18;
 
 /**
  * Creates a _NcnSetSecondaryAdmin_ instruction.
@@ -64,12 +64,12 @@ export const ncnSetSecondaryAdminInstructionDiscriminator = 18
 export function createNcnSetSecondaryAdminInstruction(
   accounts: NcnSetSecondaryAdminInstructionAccounts,
   args: NcnSetSecondaryAdminInstructionArgs,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = NcnSetSecondaryAdminStruct.serialize({
     instructionDiscriminator: ncnSetSecondaryAdminInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.ncn,
@@ -86,12 +86,12 @@ export function createNcnSetSecondaryAdminInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

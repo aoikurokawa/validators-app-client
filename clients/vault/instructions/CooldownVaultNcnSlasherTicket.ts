@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const CooldownVaultNcnSlasherTicketStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'CooldownVaultNcnSlasherTicketInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "CooldownVaultNcnSlasherTicketInstructionArgs",
+);
 /**
  * Accounts required by the _CooldownVaultNcnSlasherTicket_ instruction
  *
@@ -33,15 +33,15 @@ export const CooldownVaultNcnSlasherTicketStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type CooldownVaultNcnSlasherTicketInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  ncn: web3.PublicKey
-  slasher: web3.PublicKey
-  vaultNcnSlasherTicket: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  ncn: web3.PublicKey;
+  slasher: web3.PublicKey;
+  vaultNcnSlasherTicket: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const cooldownVaultNcnSlasherTicketInstructionDiscriminator = 10
+export const cooldownVaultNcnSlasherTicketInstructionDiscriminator = 10;
 
 /**
  * Creates a _CooldownVaultNcnSlasherTicket_ instruction.
@@ -53,12 +53,12 @@ export const cooldownVaultNcnSlasherTicketInstructionDiscriminator = 10
  */
 export function createCooldownVaultNcnSlasherTicketInstruction(
   accounts: CooldownVaultNcnSlasherTicketInstructionAccounts,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = CooldownVaultNcnSlasherTicketStruct.serialize({
     instructionDiscriminator:
       cooldownVaultNcnSlasherTicketInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -90,12 +90,12 @@ export function createCooldownVaultNcnSlasherTicketInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

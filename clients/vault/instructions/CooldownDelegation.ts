@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type CooldownDelegationInstructionArgs = {
-  amount: beet.bignum
-}
+  amount: beet.bignum;
+};
 /**
  * @category Instructions
  * @category CooldownDelegation
@@ -23,15 +23,15 @@ export type CooldownDelegationInstructionArgs = {
  */
 export const CooldownDelegationStruct = new beet.BeetArgsStruct<
   CooldownDelegationInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['amount', beet.u64],
+    ["instructionDiscriminator", beet.u8],
+    ["amount", beet.u64],
   ],
-  'CooldownDelegationInstructionArgs'
-)
+  "CooldownDelegationInstructionArgs",
+);
 /**
  * Accounts required by the _CooldownDelegation_ instruction
  *
@@ -45,14 +45,14 @@ export const CooldownDelegationStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type CooldownDelegationInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  operator: web3.PublicKey
-  vaultOperatorDelegation: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  operator: web3.PublicKey;
+  vaultOperatorDelegation: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const cooldownDelegationInstructionDiscriminator = 24
+export const cooldownDelegationInstructionDiscriminator = 24;
 
 /**
  * Creates a _CooldownDelegation_ instruction.
@@ -67,12 +67,12 @@ export const cooldownDelegationInstructionDiscriminator = 24
 export function createCooldownDelegationInstruction(
   accounts: CooldownDelegationInstructionAccounts,
   args: CooldownDelegationInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = CooldownDelegationStruct.serialize({
     instructionDiscriminator: cooldownDelegationInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -99,12 +99,12 @@ export function createCooldownDelegationInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

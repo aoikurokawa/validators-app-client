@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type InitializeNcnVaultSlasherTicketInstructionArgs = {
-  args: beet.bignum
-}
+  args: beet.bignum;
+};
 /**
  * @category Instructions
  * @category InitializeNcnVaultSlasherTicket
@@ -23,15 +23,15 @@ export type InitializeNcnVaultSlasherTicketInstructionArgs = {
  */
 export const InitializeNcnVaultSlasherTicketStruct = new beet.BeetArgsStruct<
   InitializeNcnVaultSlasherTicketInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['args', beet.u64],
+    ["instructionDiscriminator", beet.u8],
+    ["args", beet.u64],
   ],
-  'InitializeNcnVaultSlasherTicketInstructionArgs'
-)
+  "InitializeNcnVaultSlasherTicketInstructionArgs",
+);
 /**
  * Accounts required by the _InitializeNcnVaultSlasherTicket_ instruction
  *
@@ -48,18 +48,18 @@ export const InitializeNcnVaultSlasherTicketStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type InitializeNcnVaultSlasherTicketInstructionAccounts = {
-  config: web3.PublicKey
-  ncn: web3.PublicKey
-  vault: web3.PublicKey
-  slasher: web3.PublicKey
-  ncnVaultTicket: web3.PublicKey
-  ncnVaultSlasherTicket: web3.PublicKey
-  admin: web3.PublicKey
-  payer: web3.PublicKey
-  systemProgram?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  ncn: web3.PublicKey;
+  vault: web3.PublicKey;
+  slasher: web3.PublicKey;
+  ncnVaultTicket: web3.PublicKey;
+  ncnVaultSlasherTicket: web3.PublicKey;
+  admin: web3.PublicKey;
+  payer: web3.PublicKey;
+  systemProgram?: web3.PublicKey;
+};
 
-export const initializeNcnVaultSlasherTicketInstructionDiscriminator = 3
+export const initializeNcnVaultSlasherTicketInstructionDiscriminator = 3;
 
 /**
  * Creates a _InitializeNcnVaultSlasherTicket_ instruction.
@@ -74,13 +74,13 @@ export const initializeNcnVaultSlasherTicketInstructionDiscriminator = 3
 export function createInitializeNcnVaultSlasherTicketInstruction(
   accounts: InitializeNcnVaultSlasherTicketInstructionAccounts,
   args: InitializeNcnVaultSlasherTicketInstructionArgs,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = InitializeNcnVaultSlasherTicketStruct.serialize({
     instructionDiscriminator:
       initializeNcnVaultSlasherTicketInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -127,12 +127,12 @@ export function createInitializeNcnVaultSlasherTicketInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

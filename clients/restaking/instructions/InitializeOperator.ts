@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type InitializeOperatorInstructionArgs = {
-  operatorFeeBps: number
-}
+  operatorFeeBps: number;
+};
 /**
  * @category Instructions
  * @category InitializeOperator
@@ -23,15 +23,15 @@ export type InitializeOperatorInstructionArgs = {
  */
 export const InitializeOperatorStruct = new beet.BeetArgsStruct<
   InitializeOperatorInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['operatorFeeBps', beet.u16],
+    ["instructionDiscriminator", beet.u8],
+    ["operatorFeeBps", beet.u16],
   ],
-  'InitializeOperatorInstructionArgs'
-)
+  "InitializeOperatorInstructionArgs",
+);
 /**
  * Accounts required by the _InitializeOperator_ instruction
  *
@@ -44,14 +44,14 @@ export const InitializeOperatorStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type InitializeOperatorInstructionAccounts = {
-  config: web3.PublicKey
-  operator: web3.PublicKey
-  admin: web3.PublicKey
-  base: web3.PublicKey
-  systemProgram?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  operator: web3.PublicKey;
+  admin: web3.PublicKey;
+  base: web3.PublicKey;
+  systemProgram?: web3.PublicKey;
+};
 
-export const initializeOperatorInstructionDiscriminator = 2
+export const initializeOperatorInstructionDiscriminator = 2;
 
 /**
  * Creates a _InitializeOperator_ instruction.
@@ -66,12 +66,12 @@ export const initializeOperatorInstructionDiscriminator = 2
 export function createInitializeOperatorInstruction(
   accounts: InitializeOperatorInstructionAccounts,
   args: InitializeOperatorInstructionArgs,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = InitializeOperatorStruct.serialize({
     instructionDiscriminator: initializeOperatorInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -98,12 +98,12 @@ export function createInitializeOperatorInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

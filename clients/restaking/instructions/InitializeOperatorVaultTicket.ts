@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const InitializeOperatorVaultTicketStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'InitializeOperatorVaultTicketInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "InitializeOperatorVaultTicketInstructionArgs",
+);
 /**
  * Accounts required by the _InitializeOperatorVaultTicket_ instruction
  *
@@ -33,16 +33,16 @@ export const InitializeOperatorVaultTicketStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type InitializeOperatorVaultTicketInstructionAccounts = {
-  config: web3.PublicKey
-  operator: web3.PublicKey
-  vault: web3.PublicKey
-  operatorVaultTicket: web3.PublicKey
-  admin: web3.PublicKey
-  payer: web3.PublicKey
-  systemProgram?: web3.PublicKey
-}
+  config: web3.PublicKey;
+  operator: web3.PublicKey;
+  vault: web3.PublicKey;
+  operatorVaultTicket: web3.PublicKey;
+  admin: web3.PublicKey;
+  payer: web3.PublicKey;
+  systemProgram?: web3.PublicKey;
+};
 
-export const initializeOperatorVaultTicketInstructionDiscriminator = 5
+export const initializeOperatorVaultTicketInstructionDiscriminator = 5;
 
 /**
  * Creates a _InitializeOperatorVaultTicket_ instruction.
@@ -54,12 +54,12 @@ export const initializeOperatorVaultTicketInstructionDiscriminator = 5
  */
 export function createInitializeOperatorVaultTicketInstruction(
   accounts: InitializeOperatorVaultTicketInstructionAccounts,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = InitializeOperatorVaultTicketStruct.serialize({
     instructionDiscriminator:
       initializeOperatorVaultTicketInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -96,12 +96,12 @@ export function createInitializeOperatorVaultTicketInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

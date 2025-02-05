@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type CloseVaultUpdateStateTrackerInstructionArgs = {
-  ncnEpoch: beet.bignum
-}
+  ncnEpoch: beet.bignum;
+};
 /**
  * @category Instructions
  * @category CloseVaultUpdateStateTracker
@@ -23,15 +23,15 @@ export type CloseVaultUpdateStateTrackerInstructionArgs = {
  */
 export const CloseVaultUpdateStateTrackerStruct = new beet.BeetArgsStruct<
   CloseVaultUpdateStateTrackerInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['ncnEpoch', beet.u64],
+    ["instructionDiscriminator", beet.u8],
+    ["ncnEpoch", beet.u64],
   ],
-  'CloseVaultUpdateStateTrackerInstructionArgs'
-)
+  "CloseVaultUpdateStateTrackerInstructionArgs",
+);
 /**
  * Accounts required by the _CloseVaultUpdateStateTracker_ instruction
  *
@@ -44,13 +44,13 @@ export const CloseVaultUpdateStateTrackerStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type CloseVaultUpdateStateTrackerInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  vaultUpdateStateTracker: web3.PublicKey
-  payer: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  vaultUpdateStateTracker: web3.PublicKey;
+  payer: web3.PublicKey;
+};
 
-export const closeVaultUpdateStateTrackerInstructionDiscriminator = 28
+export const closeVaultUpdateStateTrackerInstructionDiscriminator = 28;
 
 /**
  * Creates a _CloseVaultUpdateStateTracker_ instruction.
@@ -65,13 +65,13 @@ export const closeVaultUpdateStateTrackerInstructionDiscriminator = 28
 export function createCloseVaultUpdateStateTrackerInstruction(
   accounts: CloseVaultUpdateStateTrackerInstructionAccounts,
   args: CloseVaultUpdateStateTrackerInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = CloseVaultUpdateStateTrackerStruct.serialize({
     instructionDiscriminator:
       closeVaultUpdateStateTrackerInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -93,12 +93,12 @@ export function createCloseVaultUpdateStateTrackerInstruction(
       isWritable: true,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

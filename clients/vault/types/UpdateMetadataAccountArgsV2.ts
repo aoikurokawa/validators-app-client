@@ -5,16 +5,16 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
-import * as beetSolana from '@metaplex-foundation/beet-solana'
-import { DataV2, dataV2Beet } from './DataV2'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
+import * as beetSolana from "@metaplex-foundation/beet-solana";
+import { DataV2, dataV2Beet } from "./DataV2";
 export type UpdateMetadataAccountArgsV2 = {
-  data: beet.COption<DataV2>
-  updateAuthority: beet.COption<web3.PublicKey>
-  primarySaleHappened: beet.COption<boolean>
-  isMutable: beet.COption<boolean>
-}
+  data: beet.COption<DataV2>;
+  updateAuthority: beet.COption<web3.PublicKey>;
+  primarySaleHappened: beet.COption<boolean>;
+  isMutable: beet.COption<boolean>;
+};
 
 /**
  * @category userTypes
@@ -23,10 +23,10 @@ export type UpdateMetadataAccountArgsV2 = {
 export const updateMetadataAccountArgsV2Beet =
   new beet.FixableBeetArgsStruct<UpdateMetadataAccountArgsV2>(
     [
-      ['data', beet.coption(dataV2Beet)],
-      ['updateAuthority', beet.coption(beetSolana.publicKey)],
-      ['primarySaleHappened', beet.coption(beet.bool)],
-      ['isMutable', beet.coption(beet.bool)],
+      ["data", beet.coption(dataV2Beet)],
+      ["updateAuthority", beet.coption(beetSolana.publicKey)],
+      ["primarySaleHappened", beet.coption(beet.bool)],
+      ["isMutable", beet.coption(beet.bool)],
     ],
-    'UpdateMetadataAccountArgsV2'
-  )
+    "UpdateMetadataAccountArgsV2",
+  );

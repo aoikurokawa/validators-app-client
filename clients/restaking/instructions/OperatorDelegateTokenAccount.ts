@@ -5,9 +5,9 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as splToken from '@solana/spl-token'
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as splToken from "@solana/spl-token";
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -15,11 +15,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const OperatorDelegateTokenAccountStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'OperatorDelegateTokenAccountInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "OperatorDelegateTokenAccountInstructionArgs",
+);
 /**
  * Accounts required by the _OperatorDelegateTokenAccount_ instruction
  *
@@ -33,15 +33,15 @@ export const OperatorDelegateTokenAccountStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type OperatorDelegateTokenAccountInstructionAccounts = {
-  operator: web3.PublicKey
-  delegateAdmin: web3.PublicKey
-  tokenMint: web3.PublicKey
-  tokenAccount: web3.PublicKey
-  delegate: web3.PublicKey
-  tokenProgram?: web3.PublicKey
-}
+  operator: web3.PublicKey;
+  delegateAdmin: web3.PublicKey;
+  tokenMint: web3.PublicKey;
+  tokenAccount: web3.PublicKey;
+  delegate: web3.PublicKey;
+  tokenProgram?: web3.PublicKey;
+};
 
-export const operatorDelegateTokenAccountInstructionDiscriminator = 23
+export const operatorDelegateTokenAccountInstructionDiscriminator = 23;
 
 /**
  * Creates a _OperatorDelegateTokenAccount_ instruction.
@@ -53,12 +53,12 @@ export const operatorDelegateTokenAccountInstructionDiscriminator = 23
  */
 export function createOperatorDelegateTokenAccountInstruction(
   accounts: OperatorDelegateTokenAccountInstructionAccounts,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = OperatorDelegateTokenAccountStruct.serialize({
     instructionDiscriminator:
       operatorDelegateTokenAccountInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.operator,
@@ -90,12 +90,12 @@ export function createOperatorDelegateTokenAccountInstruction(
       isWritable: false,
       isSigner: false,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

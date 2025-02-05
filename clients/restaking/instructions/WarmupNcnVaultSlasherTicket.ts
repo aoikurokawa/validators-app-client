@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,11 +14,11 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export const WarmupNcnVaultSlasherTicketStruct = new beet.BeetArgsStruct<{
-  instructionDiscriminator: number
+  instructionDiscriminator: number;
 }>(
-  [['instructionDiscriminator', beet.u8]],
-  'WarmupNcnVaultSlasherTicketInstructionArgs'
-)
+  [["instructionDiscriminator", beet.u8]],
+  "WarmupNcnVaultSlasherTicketInstructionArgs",
+);
 /**
  * Accounts required by the _WarmupNcnVaultSlasherTicket_ instruction
  *
@@ -34,16 +34,16 @@ export const WarmupNcnVaultSlasherTicketStruct = new beet.BeetArgsStruct<{
  * @category generated
  */
 export type WarmupNcnVaultSlasherTicketInstructionAccounts = {
-  config: web3.PublicKey
-  ncn: web3.PublicKey
-  vault: web3.PublicKey
-  slasher: web3.PublicKey
-  ncnVaultTicket: web3.PublicKey
-  ncnVaultSlasherTicket: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  ncn: web3.PublicKey;
+  vault: web3.PublicKey;
+  slasher: web3.PublicKey;
+  ncnVaultTicket: web3.PublicKey;
+  ncnVaultSlasherTicket: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const warmupNcnVaultSlasherTicketInstructionDiscriminator = 13
+export const warmupNcnVaultSlasherTicketInstructionDiscriminator = 13;
 
 /**
  * Creates a _WarmupNcnVaultSlasherTicket_ instruction.
@@ -55,12 +55,12 @@ export const warmupNcnVaultSlasherTicketInstructionDiscriminator = 13
  */
 export function createWarmupNcnVaultSlasherTicketInstruction(
   accounts: WarmupNcnVaultSlasherTicketInstructionAccounts,
-  programId = new web3.PublicKey('RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q')
+  programId = new web3.PublicKey("RestkWeAVL8fRGgzhfeoqFhsqKRchg6aa1XrcH96z4Q"),
 ) {
   const [data] = WarmupNcnVaultSlasherTicketStruct.serialize({
     instructionDiscriminator:
       warmupNcnVaultSlasherTicketInstructionDiscriminator,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -97,12 +97,12 @@ export function createWarmupNcnVaultSlasherTicketInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

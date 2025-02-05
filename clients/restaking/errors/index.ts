@@ -5,11 +5,11 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-type ErrorWithCode = Error & { code: number }
-type MaybeErrorWithCode = ErrorWithCode | null | undefined
+type ErrorWithCode = Error & { code: number };
+type MaybeErrorWithCode = ErrorWithCode | null | undefined;
 
-const createErrorFromCodeLookup: Map<number, () => ErrorWithCode> = new Map()
-const createErrorFromNameLookup: Map<string, () => ErrorWithCode> = new Map()
+const createErrorFromCodeLookup: Map<number, () => ErrorWithCode> = new Map();
+const createErrorFromNameLookup: Map<string, () => ErrorWithCode> = new Map();
 
 /**
  * BadEpochLength: 'Bad epoch length'
@@ -18,18 +18,21 @@ const createErrorFromNameLookup: Map<string, () => ErrorWithCode> = new Map()
  * @category generated
  */
 export class BadEpochLengthError extends Error {
-  readonly code: number = 0x0
-  readonly name: string = 'BadEpochLength'
+  readonly code: number = 0x0;
+  readonly name: string = "BadEpochLength";
   constructor() {
-    super('Bad epoch length')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, BadEpochLengthError)
+    super("Bad epoch length");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, BadEpochLengthError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x0, () => new BadEpochLengthError())
-createErrorFromNameLookup.set('BadEpochLength', () => new BadEpochLengthError())
+createErrorFromCodeLookup.set(0x0, () => new BadEpochLengthError());
+createErrorFromNameLookup.set(
+  "BadEpochLength",
+  () => new BadEpochLengthError(),
+);
 
 /**
  * NcnOperatorAdminInvalid: 'NcnOperatorAdminInvalid'
@@ -38,21 +41,21 @@ createErrorFromNameLookup.set('BadEpochLength', () => new BadEpochLengthError())
  * @category generated
  */
 export class NcnOperatorAdminInvalidError extends Error {
-  readonly code: number = 0x3e8
-  readonly name: string = 'NcnOperatorAdminInvalid'
+  readonly code: number = 0x3e8;
+  readonly name: string = "NcnOperatorAdminInvalid";
   constructor() {
-    super('NcnOperatorAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnOperatorAdminInvalidError)
+    super("NcnOperatorAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnOperatorAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3e8, () => new NcnOperatorAdminInvalidError())
+createErrorFromCodeLookup.set(0x3e8, () => new NcnOperatorAdminInvalidError());
 createErrorFromNameLookup.set(
-  'NcnOperatorAdminInvalid',
-  () => new NcnOperatorAdminInvalidError()
-)
+  "NcnOperatorAdminInvalid",
+  () => new NcnOperatorAdminInvalidError(),
+);
 
 /**
  * NcnCooldownOperatorFailed: 'NcnCooldownOperatorFailed'
@@ -61,21 +64,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnCooldownOperatorFailedError extends Error {
-  readonly code: number = 0x3e9
-  readonly name: string = 'NcnCooldownOperatorFailed'
+  readonly code: number = 0x3e9;
+  readonly name: string = "NcnCooldownOperatorFailed";
   constructor() {
-    super('NcnCooldownOperatorFailed')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnCooldownOperatorFailedError)
+    super("NcnCooldownOperatorFailed");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnCooldownOperatorFailedError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3e9, () => new NcnCooldownOperatorFailedError())
+createErrorFromCodeLookup.set(
+  0x3e9,
+  () => new NcnCooldownOperatorFailedError(),
+);
 createErrorFromNameLookup.set(
-  'NcnCooldownOperatorFailed',
-  () => new NcnCooldownOperatorFailedError()
-)
+  "NcnCooldownOperatorFailed",
+  () => new NcnCooldownOperatorFailedError(),
+);
 
 /**
  * NcnSlasherAdminInvalid: 'NcnSlasherAdminInvalid'
@@ -84,21 +90,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnSlasherAdminInvalidError extends Error {
-  readonly code: number = 0x3ea
-  readonly name: string = 'NcnSlasherAdminInvalid'
+  readonly code: number = 0x3ea;
+  readonly name: string = "NcnSlasherAdminInvalid";
   constructor() {
-    super('NcnSlasherAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnSlasherAdminInvalidError)
+    super("NcnSlasherAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnSlasherAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3ea, () => new NcnSlasherAdminInvalidError())
+createErrorFromCodeLookup.set(0x3ea, () => new NcnSlasherAdminInvalidError());
 createErrorFromNameLookup.set(
-  'NcnSlasherAdminInvalid',
-  () => new NcnSlasherAdminInvalidError()
-)
+  "NcnSlasherAdminInvalid",
+  () => new NcnSlasherAdminInvalidError(),
+);
 
 /**
  * NcnVaultAdminInvalid: 'NcnVaultAdminInvalid'
@@ -107,21 +113,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnVaultAdminInvalidError extends Error {
-  readonly code: number = 0x3eb
-  readonly name: string = 'NcnVaultAdminInvalid'
+  readonly code: number = 0x3eb;
+  readonly name: string = "NcnVaultAdminInvalid";
   constructor() {
-    super('NcnVaultAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnVaultAdminInvalidError)
+    super("NcnVaultAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnVaultAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3eb, () => new NcnVaultAdminInvalidError())
+createErrorFromCodeLookup.set(0x3eb, () => new NcnVaultAdminInvalidError());
 createErrorFromNameLookup.set(
-  'NcnVaultAdminInvalid',
-  () => new NcnVaultAdminInvalidError()
-)
+  "NcnVaultAdminInvalid",
+  () => new NcnVaultAdminInvalidError(),
+);
 
 /**
  * NcnAdminInvalid: 'NcnAdminInvalid'
@@ -130,21 +136,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnAdminInvalidError extends Error {
-  readonly code: number = 0x3ec
-  readonly name: string = 'NcnAdminInvalid'
+  readonly code: number = 0x3ec;
+  readonly name: string = "NcnAdminInvalid";
   constructor() {
-    super('NcnAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnAdminInvalidError)
+    super("NcnAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3ec, () => new NcnAdminInvalidError())
+createErrorFromCodeLookup.set(0x3ec, () => new NcnAdminInvalidError());
 createErrorFromNameLookup.set(
-  'NcnAdminInvalid',
-  () => new NcnAdminInvalidError()
-)
+  "NcnAdminInvalid",
+  () => new NcnAdminInvalidError(),
+);
 
 /**
  * NcnDelegateAdminInvalid: 'NcnDelegateAdminInvalid'
@@ -153,21 +159,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnDelegateAdminInvalidError extends Error {
-  readonly code: number = 0x3ed
-  readonly name: string = 'NcnDelegateAdminInvalid'
+  readonly code: number = 0x3ed;
+  readonly name: string = "NcnDelegateAdminInvalid";
   constructor() {
-    super('NcnDelegateAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnDelegateAdminInvalidError)
+    super("NcnDelegateAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnDelegateAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3ed, () => new NcnDelegateAdminInvalidError())
+createErrorFromCodeLookup.set(0x3ed, () => new NcnDelegateAdminInvalidError());
 createErrorFromNameLookup.set(
-  'NcnDelegateAdminInvalid',
-  () => new NcnDelegateAdminInvalidError()
-)
+  "NcnDelegateAdminInvalid",
+  () => new NcnDelegateAdminInvalidError(),
+);
 
 /**
  * NcnVaultSlasherTicketFailedCooldown: 'NcnVaultSlasherTicketFailedCooldown'
@@ -176,24 +182,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnVaultSlasherTicketFailedCooldownError extends Error {
-  readonly code: number = 0x3ee
-  readonly name: string = 'NcnVaultSlasherTicketFailedCooldown'
+  readonly code: number = 0x3ee;
+  readonly name: string = "NcnVaultSlasherTicketFailedCooldown";
   constructor() {
-    super('NcnVaultSlasherTicketFailedCooldown')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnVaultSlasherTicketFailedCooldownError)
+    super("NcnVaultSlasherTicketFailedCooldown");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnVaultSlasherTicketFailedCooldownError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x3ee,
-  () => new NcnVaultSlasherTicketFailedCooldownError()
-)
+  () => new NcnVaultSlasherTicketFailedCooldownError(),
+);
 createErrorFromNameLookup.set(
-  'NcnVaultSlasherTicketFailedCooldown',
-  () => new NcnVaultSlasherTicketFailedCooldownError()
-)
+  "NcnVaultSlasherTicketFailedCooldown",
+  () => new NcnVaultSlasherTicketFailedCooldownError(),
+);
 
 /**
  * NcnVaultTicketFailedCooldown: 'NcnVaultTicketFailedCooldown'
@@ -202,24 +208,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnVaultTicketFailedCooldownError extends Error {
-  readonly code: number = 0x3ef
-  readonly name: string = 'NcnVaultTicketFailedCooldown'
+  readonly code: number = 0x3ef;
+  readonly name: string = "NcnVaultTicketFailedCooldown";
   constructor() {
-    super('NcnVaultTicketFailedCooldown')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnVaultTicketFailedCooldownError)
+    super("NcnVaultTicketFailedCooldown");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnVaultTicketFailedCooldownError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x3ef,
-  () => new NcnVaultTicketFailedCooldownError()
-)
+  () => new NcnVaultTicketFailedCooldownError(),
+);
 createErrorFromNameLookup.set(
-  'NcnVaultTicketFailedCooldown',
-  () => new NcnVaultTicketFailedCooldownError()
-)
+  "NcnVaultTicketFailedCooldown",
+  () => new NcnVaultTicketFailedCooldownError(),
+);
 
 /**
  * NcnWarmupOperatorFailed: 'NcnWarmupOperatorFailed'
@@ -228,21 +234,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnWarmupOperatorFailedError extends Error {
-  readonly code: number = 0x3f0
-  readonly name: string = 'NcnWarmupOperatorFailed'
+  readonly code: number = 0x3f0;
+  readonly name: string = "NcnWarmupOperatorFailed";
   constructor() {
-    super('NcnWarmupOperatorFailed')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnWarmupOperatorFailedError)
+    super("NcnWarmupOperatorFailed");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnWarmupOperatorFailedError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x3f0, () => new NcnWarmupOperatorFailedError())
+createErrorFromCodeLookup.set(0x3f0, () => new NcnWarmupOperatorFailedError());
 createErrorFromNameLookup.set(
-  'NcnWarmupOperatorFailed',
-  () => new NcnWarmupOperatorFailedError()
-)
+  "NcnWarmupOperatorFailed",
+  () => new NcnWarmupOperatorFailedError(),
+);
 
 /**
  * NcnVaultSlasherTicketFailedWarmup: 'NcnVaultSlasherTicketFailedWarmup'
@@ -251,24 +257,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnVaultSlasherTicketFailedWarmupError extends Error {
-  readonly code: number = 0x3f1
-  readonly name: string = 'NcnVaultSlasherTicketFailedWarmup'
+  readonly code: number = 0x3f1;
+  readonly name: string = "NcnVaultSlasherTicketFailedWarmup";
   constructor() {
-    super('NcnVaultSlasherTicketFailedWarmup')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnVaultSlasherTicketFailedWarmupError)
+    super("NcnVaultSlasherTicketFailedWarmup");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnVaultSlasherTicketFailedWarmupError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x3f1,
-  () => new NcnVaultSlasherTicketFailedWarmupError()
-)
+  () => new NcnVaultSlasherTicketFailedWarmupError(),
+);
 createErrorFromNameLookup.set(
-  'NcnVaultSlasherTicketFailedWarmup',
-  () => new NcnVaultSlasherTicketFailedWarmupError()
-)
+  "NcnVaultSlasherTicketFailedWarmup",
+  () => new NcnVaultSlasherTicketFailedWarmupError(),
+);
 
 /**
  * NcnVaultTicketFailedWarmup: 'NcnVaultTicketFailedWarmup'
@@ -277,24 +283,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnVaultTicketFailedWarmupError extends Error {
-  readonly code: number = 0x3f2
-  readonly name: string = 'NcnVaultTicketFailedWarmup'
+  readonly code: number = 0x3f2;
+  readonly name: string = "NcnVaultTicketFailedWarmup";
   constructor() {
-    super('NcnVaultTicketFailedWarmup')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnVaultTicketFailedWarmupError)
+    super("NcnVaultTicketFailedWarmup");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnVaultTicketFailedWarmupError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x3f2,
-  () => new NcnVaultTicketFailedWarmupError()
-)
+  () => new NcnVaultTicketFailedWarmupError(),
+);
 createErrorFromNameLookup.set(
-  'NcnVaultTicketFailedWarmup',
-  () => new NcnVaultTicketFailedWarmupError()
-)
+  "NcnVaultTicketFailedWarmup",
+  () => new NcnVaultTicketFailedWarmupError(),
+);
 
 /**
  * OperatorNcnAdminInvalid: 'OperatorNcnAdminInvalid'
@@ -303,21 +309,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class OperatorNcnAdminInvalidError extends Error {
-  readonly code: number = 0x7d0
-  readonly name: string = 'OperatorNcnAdminInvalid'
+  readonly code: number = 0x7d0;
+  readonly name: string = "OperatorNcnAdminInvalid";
   constructor() {
-    super('OperatorNcnAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorNcnAdminInvalidError)
+    super("OperatorNcnAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorNcnAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7d0, () => new OperatorNcnAdminInvalidError())
+createErrorFromCodeLookup.set(0x7d0, () => new OperatorNcnAdminInvalidError());
 createErrorFromNameLookup.set(
-  'OperatorNcnAdminInvalid',
-  () => new OperatorNcnAdminInvalidError()
-)
+  "OperatorNcnAdminInvalid",
+  () => new OperatorNcnAdminInvalidError(),
+);
 
 /**
  * OperatorVaultAdminInvalid: 'OperatorVaultAdminInvalid'
@@ -326,21 +332,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class OperatorVaultAdminInvalidError extends Error {
-  readonly code: number = 0x7d1
-  readonly name: string = 'OperatorVaultAdminInvalid'
+  readonly code: number = 0x7d1;
+  readonly name: string = "OperatorVaultAdminInvalid";
   constructor() {
-    super('OperatorVaultAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorVaultAdminInvalidError)
+    super("OperatorVaultAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorVaultAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7d1, () => new OperatorVaultAdminInvalidError())
+createErrorFromCodeLookup.set(
+  0x7d1,
+  () => new OperatorVaultAdminInvalidError(),
+);
 createErrorFromNameLookup.set(
-  'OperatorVaultAdminInvalid',
-  () => new OperatorVaultAdminInvalidError()
-)
+  "OperatorVaultAdminInvalid",
+  () => new OperatorVaultAdminInvalidError(),
+);
 
 /**
  * OperatorAdminInvalid: 'OperatorAdminInvalid'
@@ -349,21 +358,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class OperatorAdminInvalidError extends Error {
-  readonly code: number = 0x7d2
-  readonly name: string = 'OperatorAdminInvalid'
+  readonly code: number = 0x7d2;
+  readonly name: string = "OperatorAdminInvalid";
   constructor() {
-    super('OperatorAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorAdminInvalidError)
+    super("OperatorAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7d2, () => new OperatorAdminInvalidError())
+createErrorFromCodeLookup.set(0x7d2, () => new OperatorAdminInvalidError());
 createErrorFromNameLookup.set(
-  'OperatorAdminInvalid',
-  () => new OperatorAdminInvalidError()
-)
+  "OperatorAdminInvalid",
+  () => new OperatorAdminInvalidError(),
+);
 
 /**
  * OperatorDelegateAdminInvalid: 'OperatorDelegateAdminInvalid'
@@ -372,24 +381,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class OperatorDelegateAdminInvalidError extends Error {
-  readonly code: number = 0x7d3
-  readonly name: string = 'OperatorDelegateAdminInvalid'
+  readonly code: number = 0x7d3;
+  readonly name: string = "OperatorDelegateAdminInvalid";
   constructor() {
-    super('OperatorDelegateAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorDelegateAdminInvalidError)
+    super("OperatorDelegateAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorDelegateAdminInvalidError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x7d3,
-  () => new OperatorDelegateAdminInvalidError()
-)
+  () => new OperatorDelegateAdminInvalidError(),
+);
 createErrorFromNameLookup.set(
-  'OperatorDelegateAdminInvalid',
-  () => new OperatorDelegateAdminInvalidError()
-)
+  "OperatorDelegateAdminInvalid",
+  () => new OperatorDelegateAdminInvalidError(),
+);
 
 /**
  * OperatorCooldownNcnFailed: 'OperatorCooldownNcnFailed'
@@ -398,21 +407,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class OperatorCooldownNcnFailedError extends Error {
-  readonly code: number = 0x7d4
-  readonly name: string = 'OperatorCooldownNcnFailed'
+  readonly code: number = 0x7d4;
+  readonly name: string = "OperatorCooldownNcnFailed";
   constructor() {
-    super('OperatorCooldownNcnFailed')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorCooldownNcnFailedError)
+    super("OperatorCooldownNcnFailed");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorCooldownNcnFailedError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7d4, () => new OperatorCooldownNcnFailedError())
+createErrorFromCodeLookup.set(
+  0x7d4,
+  () => new OperatorCooldownNcnFailedError(),
+);
 createErrorFromNameLookup.set(
-  'OperatorCooldownNcnFailed',
-  () => new OperatorCooldownNcnFailedError()
-)
+  "OperatorCooldownNcnFailed",
+  () => new OperatorCooldownNcnFailedError(),
+);
 
 /**
  * OperatorVaultTicketFailedCooldown: 'OperatorVaultTicketFailedCooldown'
@@ -421,24 +433,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class OperatorVaultTicketFailedCooldownError extends Error {
-  readonly code: number = 0x7d5
-  readonly name: string = 'OperatorVaultTicketFailedCooldown'
+  readonly code: number = 0x7d5;
+  readonly name: string = "OperatorVaultTicketFailedCooldown";
   constructor() {
-    super('OperatorVaultTicketFailedCooldown')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorVaultTicketFailedCooldownError)
+    super("OperatorVaultTicketFailedCooldown");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorVaultTicketFailedCooldownError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x7d5,
-  () => new OperatorVaultTicketFailedCooldownError()
-)
+  () => new OperatorVaultTicketFailedCooldownError(),
+);
 createErrorFromNameLookup.set(
-  'OperatorVaultTicketFailedCooldown',
-  () => new OperatorVaultTicketFailedCooldownError()
-)
+  "OperatorVaultTicketFailedCooldown",
+  () => new OperatorVaultTicketFailedCooldownError(),
+);
 
 /**
  * OperatorVaultTicketFailedWarmup: 'OperatorVaultTicketFailedWarmup'
@@ -447,24 +459,24 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class OperatorVaultTicketFailedWarmupError extends Error {
-  readonly code: number = 0x7d6
-  readonly name: string = 'OperatorVaultTicketFailedWarmup'
+  readonly code: number = 0x7d6;
+  readonly name: string = "OperatorVaultTicketFailedWarmup";
   constructor() {
-    super('OperatorVaultTicketFailedWarmup')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorVaultTicketFailedWarmupError)
+    super("OperatorVaultTicketFailedWarmup");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorVaultTicketFailedWarmupError);
     }
   }
 }
 
 createErrorFromCodeLookup.set(
   0x7d6,
-  () => new OperatorVaultTicketFailedWarmupError()
-)
+  () => new OperatorVaultTicketFailedWarmupError(),
+);
 createErrorFromNameLookup.set(
-  'OperatorVaultTicketFailedWarmup',
-  () => new OperatorVaultTicketFailedWarmupError()
-)
+  "OperatorVaultTicketFailedWarmup",
+  () => new OperatorVaultTicketFailedWarmupError(),
+);
 
 /**
  * OperatorWarmupNcnFailed: 'OperatorWarmupNcnFailed'
@@ -473,21 +485,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class OperatorWarmupNcnFailedError extends Error {
-  readonly code: number = 0x7d7
-  readonly name: string = 'OperatorWarmupNcnFailed'
+  readonly code: number = 0x7d7;
+  readonly name: string = "OperatorWarmupNcnFailed";
   constructor() {
-    super('OperatorWarmupNcnFailed')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorWarmupNcnFailedError)
+    super("OperatorWarmupNcnFailed");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorWarmupNcnFailedError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7d7, () => new OperatorWarmupNcnFailedError())
+createErrorFromCodeLookup.set(0x7d7, () => new OperatorWarmupNcnFailedError());
 createErrorFromNameLookup.set(
-  'OperatorWarmupNcnFailed',
-  () => new OperatorWarmupNcnFailedError()
-)
+  "OperatorWarmupNcnFailed",
+  () => new OperatorWarmupNcnFailedError(),
+);
 
 /**
  * OperatorFeeCapExceeded: 'OperatorFeeCapExceeded'
@@ -496,21 +508,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class OperatorFeeCapExceededError extends Error {
-  readonly code: number = 0x7d8
-  readonly name: string = 'OperatorFeeCapExceeded'
+  readonly code: number = 0x7d8;
+  readonly name: string = "OperatorFeeCapExceeded";
   constructor() {
-    super('OperatorFeeCapExceeded')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorFeeCapExceededError)
+    super("OperatorFeeCapExceeded");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorFeeCapExceededError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7d8, () => new OperatorFeeCapExceededError())
+createErrorFromCodeLookup.set(0x7d8, () => new OperatorFeeCapExceededError());
 createErrorFromNameLookup.set(
-  'OperatorFeeCapExceeded',
-  () => new OperatorFeeCapExceededError()
-)
+  "OperatorFeeCapExceeded",
+  () => new OperatorFeeCapExceededError(),
+);
 
 /**
  * NcnOverflow: 'NcnOverflow'
@@ -519,18 +531,18 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class NcnOverflowError extends Error {
-  readonly code: number = 0x7d9
-  readonly name: string = 'NcnOverflow'
+  readonly code: number = 0x7d9;
+  readonly name: string = "NcnOverflow";
   constructor() {
-    super('NcnOverflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, NcnOverflowError)
+    super("NcnOverflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, NcnOverflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7d9, () => new NcnOverflowError())
-createErrorFromNameLookup.set('NcnOverflow', () => new NcnOverflowError())
+createErrorFromCodeLookup.set(0x7d9, () => new NcnOverflowError());
+createErrorFromNameLookup.set("NcnOverflow", () => new NcnOverflowError());
 
 /**
  * OperatorOverflow: 'OperatorOverflow'
@@ -539,21 +551,21 @@ createErrorFromNameLookup.set('NcnOverflow', () => new NcnOverflowError())
  * @category generated
  */
 export class OperatorOverflowError extends Error {
-  readonly code: number = 0x7da
-  readonly name: string = 'OperatorOverflow'
+  readonly code: number = 0x7da;
+  readonly name: string = "OperatorOverflow";
   constructor() {
-    super('OperatorOverflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, OperatorOverflowError)
+    super("OperatorOverflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, OperatorOverflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7da, () => new OperatorOverflowError())
+createErrorFromCodeLookup.set(0x7da, () => new OperatorOverflowError());
 createErrorFromNameLookup.set(
-  'OperatorOverflow',
-  () => new OperatorOverflowError()
-)
+  "OperatorOverflow",
+  () => new OperatorOverflowError(),
+);
 
 /**
  * VaultOverflow: 'VaultOverflow'
@@ -562,18 +574,18 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class VaultOverflowError extends Error {
-  readonly code: number = 0x7db
-  readonly name: string = 'VaultOverflow'
+  readonly code: number = 0x7db;
+  readonly name: string = "VaultOverflow";
   constructor() {
-    super('VaultOverflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, VaultOverflowError)
+    super("VaultOverflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, VaultOverflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7db, () => new VaultOverflowError())
-createErrorFromNameLookup.set('VaultOverflow', () => new VaultOverflowError())
+createErrorFromCodeLookup.set(0x7db, () => new VaultOverflowError());
+createErrorFromNameLookup.set("VaultOverflow", () => new VaultOverflowError());
 
 /**
  * SlasherOverflow: 'SlasherOverflow'
@@ -582,21 +594,21 @@ createErrorFromNameLookup.set('VaultOverflow', () => new VaultOverflowError())
  * @category generated
  */
 export class SlasherOverflowError extends Error {
-  readonly code: number = 0x7dc
-  readonly name: string = 'SlasherOverflow'
+  readonly code: number = 0x7dc;
+  readonly name: string = "SlasherOverflow";
   constructor() {
-    super('SlasherOverflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, SlasherOverflowError)
+    super("SlasherOverflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, SlasherOverflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7dc, () => new SlasherOverflowError())
+createErrorFromCodeLookup.set(0x7dc, () => new SlasherOverflowError());
 createErrorFromNameLookup.set(
-  'SlasherOverflow',
-  () => new SlasherOverflowError()
-)
+  "SlasherOverflow",
+  () => new SlasherOverflowError(),
+);
 
 /**
  * InvalidEpochLength: 'InvalidEpochLength'
@@ -605,21 +617,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class InvalidEpochLengthError extends Error {
-  readonly code: number = 0x7dd
-  readonly name: string = 'InvalidEpochLength'
+  readonly code: number = 0x7dd;
+  readonly name: string = "InvalidEpochLength";
   constructor() {
-    super('InvalidEpochLength')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, InvalidEpochLengthError)
+    super("InvalidEpochLength");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, InvalidEpochLengthError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7dd, () => new InvalidEpochLengthError())
+createErrorFromCodeLookup.set(0x7dd, () => new InvalidEpochLengthError());
 createErrorFromNameLookup.set(
-  'InvalidEpochLength',
-  () => new InvalidEpochLengthError()
-)
+  "InvalidEpochLength",
+  () => new InvalidEpochLengthError(),
+);
 
 /**
  * ConfigAdminInvalid: 'ConfigAdminInvalid'
@@ -628,21 +640,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class ConfigAdminInvalidError extends Error {
-  readonly code: number = 0x7de
-  readonly name: string = 'ConfigAdminInvalid'
+  readonly code: number = 0x7de;
+  readonly name: string = "ConfigAdminInvalid";
   constructor() {
-    super('ConfigAdminInvalid')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, ConfigAdminInvalidError)
+    super("ConfigAdminInvalid");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, ConfigAdminInvalidError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0x7de, () => new ConfigAdminInvalidError())
+createErrorFromCodeLookup.set(0x7de, () => new ConfigAdminInvalidError());
 createErrorFromNameLookup.set(
-  'ConfigAdminInvalid',
-  () => new ConfigAdminInvalidError()
-)
+  "ConfigAdminInvalid",
+  () => new ConfigAdminInvalidError(),
+);
 
 /**
  * ArithmeticOverflow: 'ArithmeticOverflow'
@@ -651,21 +663,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class ArithmeticOverflowError extends Error {
-  readonly code: number = 0xbb8
-  readonly name: string = 'ArithmeticOverflow'
+  readonly code: number = 0xbb8;
+  readonly name: string = "ArithmeticOverflow";
   constructor() {
-    super('ArithmeticOverflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, ArithmeticOverflowError)
+    super("ArithmeticOverflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, ArithmeticOverflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0xbb8, () => new ArithmeticOverflowError())
+createErrorFromCodeLookup.set(0xbb8, () => new ArithmeticOverflowError());
 createErrorFromNameLookup.set(
-  'ArithmeticOverflow',
-  () => new ArithmeticOverflowError()
-)
+  "ArithmeticOverflow",
+  () => new ArithmeticOverflowError(),
+);
 
 /**
  * ArithmeticUnderflow: 'ArithmeticUnderflow'
@@ -674,21 +686,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class ArithmeticUnderflowError extends Error {
-  readonly code: number = 0xbb9
-  readonly name: string = 'ArithmeticUnderflow'
+  readonly code: number = 0xbb9;
+  readonly name: string = "ArithmeticUnderflow";
   constructor() {
-    super('ArithmeticUnderflow')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, ArithmeticUnderflowError)
+    super("ArithmeticUnderflow");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, ArithmeticUnderflowError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0xbb9, () => new ArithmeticUnderflowError())
+createErrorFromCodeLookup.set(0xbb9, () => new ArithmeticUnderflowError());
 createErrorFromNameLookup.set(
-  'ArithmeticUnderflow',
-  () => new ArithmeticUnderflowError()
-)
+  "ArithmeticUnderflow",
+  () => new ArithmeticUnderflowError(),
+);
 
 /**
  * DivisionByZero: 'DivisionByZero'
@@ -697,18 +709,21 @@ createErrorFromNameLookup.set(
  * @category generated
  */
 export class DivisionByZeroError extends Error {
-  readonly code: number = 0xbba
-  readonly name: string = 'DivisionByZero'
+  readonly code: number = 0xbba;
+  readonly name: string = "DivisionByZero";
   constructor() {
-    super('DivisionByZero')
-    if (typeof Error.captureStackTrace === 'function') {
-      Error.captureStackTrace(this, DivisionByZeroError)
+    super("DivisionByZero");
+    if (typeof Error.captureStackTrace === "function") {
+      Error.captureStackTrace(this, DivisionByZeroError);
     }
   }
 }
 
-createErrorFromCodeLookup.set(0xbba, () => new DivisionByZeroError())
-createErrorFromNameLookup.set('DivisionByZero', () => new DivisionByZeroError())
+createErrorFromCodeLookup.set(0xbba, () => new DivisionByZeroError());
+createErrorFromNameLookup.set(
+  "DivisionByZero",
+  () => new DivisionByZeroError(),
+);
 
 /**
  * Attempts to resolve a custom program error from the provided error code.
@@ -716,8 +731,8 @@ createErrorFromNameLookup.set('DivisionByZero', () => new DivisionByZeroError())
  * @category generated
  */
 export function errorFromCode(code: number): MaybeErrorWithCode {
-  const createError = createErrorFromCodeLookup.get(code)
-  return createError != null ? createError() : null
+  const createError = createErrorFromCodeLookup.get(code);
+  return createError != null ? createError() : null;
 }
 
 /**
@@ -726,6 +741,6 @@ export function errorFromCode(code: number): MaybeErrorWithCode {
  * @category generated
  */
 export function errorFromName(name: string): MaybeErrorWithCode {
-  const createError = createErrorFromNameLookup.get(name)
-  return createError != null ? createError() : null
+  const createError = createErrorFromNameLookup.get(name);
+  return createError != null ? createError() : null;
 }

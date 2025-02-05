@@ -5,8 +5,8 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
-import * as web3 from '@solana/web3.js'
+import * as beet from "@metaplex-foundation/beet";
+import * as web3 from "@solana/web3.js";
 
 /**
  * @category Instructions
@@ -14,8 +14,8 @@ import * as web3 from '@solana/web3.js'
  * @category generated
  */
 export type SetIsPausedInstructionArgs = {
-  isPaused: boolean
-}
+  isPaused: boolean;
+};
 /**
  * @category Instructions
  * @category SetIsPaused
@@ -23,15 +23,15 @@ export type SetIsPausedInstructionArgs = {
  */
 export const SetIsPausedStruct = new beet.BeetArgsStruct<
   SetIsPausedInstructionArgs & {
-    instructionDiscriminator: number
+    instructionDiscriminator: number;
   }
 >(
   [
-    ['instructionDiscriminator', beet.u8],
-    ['isPaused', beet.bool],
+    ["instructionDiscriminator", beet.u8],
+    ["isPaused", beet.bool],
   ],
-  'SetIsPausedInstructionArgs'
-)
+  "SetIsPausedInstructionArgs",
+);
 /**
  * Accounts required by the _SetIsPaused_ instruction
  *
@@ -43,12 +43,12 @@ export const SetIsPausedStruct = new beet.BeetArgsStruct<
  * @category generated
  */
 export type SetIsPausedInstructionAccounts = {
-  config: web3.PublicKey
-  vault: web3.PublicKey
-  admin: web3.PublicKey
-}
+  config: web3.PublicKey;
+  vault: web3.PublicKey;
+  admin: web3.PublicKey;
+};
 
-export const setIsPausedInstructionDiscriminator = 19
+export const setIsPausedInstructionDiscriminator = 19;
 
 /**
  * Creates a _SetIsPaused_ instruction.
@@ -63,12 +63,12 @@ export const setIsPausedInstructionDiscriminator = 19
 export function createSetIsPausedInstruction(
   accounts: SetIsPausedInstructionAccounts,
   args: SetIsPausedInstructionArgs,
-  programId = new web3.PublicKey('Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8')
+  programId = new web3.PublicKey("Vau1t6sLNxnzB7ZDsef8TLbPLfyZMYXH8WTNqUdm9g8"),
 ) {
   const [data] = SetIsPausedStruct.serialize({
     instructionDiscriminator: setIsPausedInstructionDiscriminator,
     ...args,
-  })
+  });
   const keys: web3.AccountMeta[] = [
     {
       pubkey: accounts.config,
@@ -85,12 +85,12 @@ export function createSetIsPausedInstruction(
       isWritable: false,
       isSigner: true,
     },
-  ]
+  ];
 
   const ix = new web3.TransactionInstruction({
     programId,
     keys,
     data,
-  })
-  return ix
+  });
+  return ix;
 }

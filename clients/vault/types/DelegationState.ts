@@ -5,13 +5,13 @@
  * See: https://github.com/metaplex-foundation/solita
  */
 
-import * as beet from '@metaplex-foundation/beet'
+import * as beet from "@metaplex-foundation/beet";
 export type DelegationState = {
-  stakedAmount: beet.bignum
-  enqueuedForCooldownAmount: beet.bignum
-  coolingDownAmount: beet.bignum
-  reserved: number[] /* size: 256 */
-}
+  stakedAmount: beet.bignum;
+  enqueuedForCooldownAmount: beet.bignum;
+  coolingDownAmount: beet.bignum;
+  reserved: number[] /* size: 256 */;
+};
 
 /**
  * @category userTypes
@@ -19,10 +19,10 @@ export type DelegationState = {
  */
 export const delegationStateBeet = new beet.BeetArgsStruct<DelegationState>(
   [
-    ['stakedAmount', beet.u64],
-    ['enqueuedForCooldownAmount', beet.u64],
-    ['coolingDownAmount', beet.u64],
-    ['reserved', beet.uniformFixedSizeArray(beet.u8, 256)],
+    ["stakedAmount", beet.u64],
+    ["enqueuedForCooldownAmount", beet.u64],
+    ["coolingDownAmount", beet.u64],
+    ["reserved", beet.uniformFixedSizeArray(beet.u8, 256)],
   ],
-  'DelegationState'
-)
+  "DelegationState",
+);
