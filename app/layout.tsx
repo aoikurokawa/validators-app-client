@@ -49,7 +49,7 @@ export default function RootLayout({
                       </div>
                       <div>
                         <Link
-                          href="/initialize-vault"
+                          href="/mint-to"
                           className="text-gray-400 hover:text-white cursor-pointer"
                         >
                           Mint

@@ -12,6 +12,10 @@ import {
 import { PROGRAM_ID as VAULT_PROGRAM_ID } from "@/clients/vault";
 import { Keypair, PublicKey, Transaction } from "@solana/web3.js";
 import { associatedAddress } from "@coral-xyz/anchor/dist/cjs/utils/token";
+import {
+  createAssociatedTokenAccountIdempotentInstruction,
+  createAssociatedTokenAccountIdempotentInstructionWithDerivation,
+} from "@solana/spl-token";
 
 export default function MintTo() {
   const { connection } = useConnection();
@@ -50,10 +54,32 @@ export default function MintTo() {
     }
 
     const stMintPubkey = new PublicKey(stMint);
+    const vrtMintPubkey = new PublicKey(
+      "3WDRbKNfuFz1Pg2AR1EQSZj8GDzsWSHwhWuET3CeArUM"
+    );
     const vaultPubkey = new PublicKey(
       "7Yit8TYf79Hv1TRBAD3a8SALsGnwUtMzsQLsEaS7CVNp"
     );
     try {
+      const depositorVrtAtaIx =
+        createAssociatedTokenAccountIdempotentInstruction(
+          publicKey,
+          associatedAddress({ mint: vrtMintPubkey, owner: publicKey }),
+          publicKey,
+          vrtMintPubkey
+        );
+      const vaultStAtaIx = createAssociatedTokenAccountIdempotentInstruction(
+        publicKey,
+        associatedAddress({ mint: stMintPubkey, owner: vaultPubkey }),
+        vaultPubkey,
+        stMintPubkey
+      );
+      const vaultFeeWalletVrtAtaIx = createAssociatedTokenAccountIdempotentInstruction(
+        publicKey,
+        associatedAddress({ mint: vrtMintPubkey, owner: publicKey }),
+        publicKey,
+        vrtMintPubkey
+      );
       const accounts: MintToInstructionAccounts = {
         config: findConfigPDA().pda,
         vault: vaultPubkey,
@@ -87,8 +113,11 @@ export default function MintTo() {
       const { blockhash } = await connection.getLatestBlockhash();
       transaction.recentBlockhash = blockhash;
       transaction.feePayer = publicKey;
+
+      transaction.add(depositorVrtAtaIx);
+      transaction.add(vaultStAtaIx);
+      transaction.add(vaultFeeWalletVrtAtaIx);
       transaction.add(ix);
-      // transaction.partialSign(base, vrtMint);
 
       const signedTransation = await signTransaction!(transaction);
       const txId = await connection.sendRawTransaction(
