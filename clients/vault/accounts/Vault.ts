@@ -176,7 +176,7 @@ export class Vault implements VaultArgs {
     if (accountInfo == null) {
       throw new Error(`Unable to find Vault account at ${address}`);
     }
-    return Vault.fromAccountInfo(accountInfo, 0)[0];
+    return Vault.fromAccountInfo(accountInfo, 8)[0];
   }
 
   /**

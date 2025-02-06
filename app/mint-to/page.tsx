@@ -9,30 +9,20 @@ import {
   MintToInstructionAccounts,
   MintToInstructionArgs,
 } from "../../clients/vault/instructions/";
-import { PROGRAM_ID as VAULT_PROGRAM_ID } from "@/clients/vault";
-import { Keypair, PublicKey, Transaction } from "@solana/web3.js";
+import { Vault, PROGRAM_ID as VAULT_PROGRAM_ID } from "@/clients/vault";
+import { PublicKey, Transaction } from "@solana/web3.js";
 import { associatedAddress } from "@coral-xyz/anchor/dist/cjs/utils/token";
-import {
-  createAssociatedTokenAccountIdempotentInstruction,
-  createAssociatedTokenAccountIdempotentInstructionWithDerivation,
-} from "@solana/spl-token";
+import { createAssociatedTokenAccountIdempotentInstruction } from "@solana/spl-token";
 
 export default function MintTo() {
   const { connection } = useConnection();
-  const { publicKey, sendTransaction, signTransaction } = useWallet();
-  const [stMint, setStMint] = useState(
-    "Sy2gWQkAHHSK5jDSebSGS1ZvTPX1cDU66GZrr8apckf"
-  );
-  const [vrtMint, setVrtMint] = useState(
-    "3WDRbKNfuFz1Pg2AR1EQSZj8GDzsWSHwhWuET3CeArUM"
-  );
-  const [depositFee, setDepositFee] = useState(0);
-  const [withdrawalFee, setWithdrawalFee] = useState(0);
-  const [rewardFee, setRewardFee] = useState(0);
-  const [decimals, setDecimals] = useState(9);
+  const { publicKey, signTransaction } = useWallet();
+
+  const [vault, setVault] = useState("");
+  const [amountIn, setAmountIn] = useState(0);
+  const [amountOut, setAmountOut] = useState(0);
 
   const CONFIG_SEED = "config";
-  const VAULT_SEED = "vault";
 
   function findConfigPDA() {
     // Convert seed to a Uint8Array
@@ -53,59 +43,66 @@ export default function MintTo() {
       return;
     }
 
-    const stMintPubkey = new PublicKey(stMint);
-    const vrtMintPubkey = new PublicKey(
-      "3WDRbKNfuFz1Pg2AR1EQSZj8GDzsWSHwhWuET3CeArUM"
-    );
-    const vaultPubkey = new PublicKey(
-      "7Yit8TYf79Hv1TRBAD3a8SALsGnwUtMzsQLsEaS7CVNp"
-    );
+    console.log(vault);
+    const vaultPubkey = new PublicKey(vault);
+
     try {
+      const vaultInfo = await Vault.fromAccountAddress(connection, vaultPubkey);
+
+      console.log("Vault VRT: ", vaultInfo.vrtMint.toString());
+      console.log("Vault ST: ", vaultInfo.supportedMint.toString());
+
+      const depositorVrtAta = associatedAddress({
+        mint: vaultInfo.vrtMint,
+        owner: publicKey,
+      });
+      const vaultStAta = associatedAddress({
+        mint: vaultInfo.supportedMint,
+        owner: vaultPubkey,
+      });
+      const vaultVrtFeeAta = associatedAddress({
+        mint: vaultInfo.vrtMint,
+        owner: publicKey,
+      });
+
       const depositorVrtAtaIx =
         createAssociatedTokenAccountIdempotentInstruction(
           publicKey,
-          associatedAddress({ mint: vrtMintPubkey, owner: publicKey }),
+          depositorVrtAta,
           publicKey,
-          vrtMintPubkey
+          vaultInfo.vrtMint
         );
       const vaultStAtaIx = createAssociatedTokenAccountIdempotentInstruction(
         publicKey,
-        associatedAddress({ mint: stMintPubkey, owner: vaultPubkey }),
+        vaultStAta,
         vaultPubkey,
-        stMintPubkey
+        vaultInfo.supportedMint
       );
-      const vaultFeeWalletVrtAtaIx = createAssociatedTokenAccountIdempotentInstruction(
-        publicKey,
-        associatedAddress({ mint: vrtMintPubkey, owner: publicKey }),
-        publicKey,
-        vrtMintPubkey
-      );
+      const vaultFeeWalletVrtAtaIx =
+        createAssociatedTokenAccountIdempotentInstruction(
+          publicKey,
+          vaultVrtFeeAta,
+          publicKey,
+          vaultInfo.vrtMint
+        );
+
       const accounts: MintToInstructionAccounts = {
         config: findConfigPDA().pda,
         vault: vaultPubkey,
-        vrtMint: new PublicKey(vrtMint),
+        vrtMint: vaultInfo.vrtMint,
         depositor: publicKey,
         depositorTokenAccount: associatedAddress({
-          mint: stMintPubkey,
+          mint: vaultInfo.supportedMint,
           owner: publicKey,
         }),
-        vaultTokenAccount: associatedAddress({
-          mint: stMintPubkey,
-          owner: vaultPubkey,
-        }),
-        depositorVrtTokenAccount: associatedAddress({
-          mint: new PublicKey("3WDRbKNfuFz1Pg2AR1EQSZj8GDzsWSHwhWuET3CeArUM"),
-          owner: publicKey,
-        }),
-        vaultFeeTokenAccount: associatedAddress({
-          mint: new PublicKey("3WDRbKNfuFz1Pg2AR1EQSZj8GDzsWSHwhWuET3CeArUM"),
-          owner: publicKey,
-        }),
+        vaultTokenAccount: vaultStAta,
+        depositorVrtTokenAccount: depositorVrtAta,
+        vaultFeeTokenAccount: vaultVrtFeeAta,
       };
 
       const args: MintToInstructionArgs = {
-        amountIn: 10,
-        minAmountOut: 0,
+        amountIn: amountIn,
+        minAmountOut: amountOut,
       };
 
       const ix = createMintToInstruction(accounts, args);
@@ -128,9 +125,10 @@ export default function MintTo() {
         }
       );
 
-      console.log("transaction Id: ", txId);
+      toast.success(`Transaction ID: ${txId}`);
     } catch (error: any) {
       console.log("Error: ", error);
+      toast.error(`Error: ${error}`);
     }
   };
 
@@ -138,40 +136,27 @@ export default function MintTo() {
     <div>
       <div className="p-6 max-w-lg mx-auto">
         <h2 className="text-xl font-bold mb-4">Mint VRT</h2>
-        {/* <input
+        <input
           className="w-full mb-2 p-2 border text-gray-950"
-          placeholder="Staking Token Mint"
-          onChange={(e) => setStMint(e.target.value)}
-          defaultValue={"Sy2gWQkAHHSK5jDSebSGS1ZvTPX1cDU66GZrr8apckf"}
+          placeholder="Vault"
+          onChange={(e) => setVault(e.target.value)}
         />
         <input
-          type="number"
           className="w-full mb-2 p-2 border text-gray-950"
-          placeholder="Deposit Fee BPS"
-          onChange={(e) => setDepositFee(Number(e.target.value))}
-          defaultValue={10000}
+          placeholder="Amount In"
+          onChange={(e) => {
+            const num = Number.parseInt(e.target.value);
+            setAmountIn(num);
+          }}
         />
         <input
-          type="number"
           className="w-full mb-2 p-2 border text-gray-950"
-          placeholder="Withdrawal Fee BPS"
-          onChange={(e) => setWithdrawalFee(Number(e.target.value))}
-          defaultValue={10000}
+          placeholder="Amount Out"
+          onChange={(e) => {
+            const num = Number.parseInt(e.target.value);
+            setAmountOut(num);
+          }}
         />
-        <input
-          type="number"
-          className="w-full mb-2 p-2 border text-gray-950"
-          placeholder="Reward Fee BPS"
-          onChange={(e) => setRewardFee(Number(e.target.value))}
-          defaultValue={10000}
-        />
-        <input
-          type="number"
-          className="w-full mb-2 p-2 border text-gray-950"
-          placeholder="Decimals"
-          onChange={(e) => setDecimals(Number(e.target.value))}
-          defaultValue={9}
-        /> */}
         <button
           onClick={() => mintVrt()}
           className="w-full bg-blue-500 text-white py-2 rounded"
