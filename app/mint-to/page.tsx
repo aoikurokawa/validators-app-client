@@ -1,0 +1,169 @@
+"use client";
+
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
+import { useState } from "react";
+import toast from "react-hot-toast";
+
+import {
+  createMintToInstruction,
+  MintToInstructionAccounts,
+  MintToInstructionArgs,
+} from "../../clients/vault/instructions/";
+import { Vault, PROGRAM_ID as VAULT_PROGRAM_ID } from "@/clients/vault";
+import { PublicKey, Transaction } from "@solana/web3.js";
+import { associatedAddress } from "@coral-xyz/anchor/dist/cjs/utils/token";
+import { createAssociatedTokenAccountIdempotentInstruction } from "@solana/spl-token";
+
+export default function MintTo() {
+  const { connection } = useConnection();
+  const { publicKey, signTransaction } = useWallet();
+
+  const [vault, setVault] = useState("");
+  const [amountIn, setAmountIn] = useState(0);
+  const [amountOut, setAmountOut] = useState(0);
+
+  const CONFIG_SEED = "config";
+
+  function findConfigPDA() {
+    // Convert seed to a Uint8Array
+    const seedBuffer = Buffer.from(CONFIG_SEED, "utf8");
+
+    // Find the PDA using the seed and program ID
+    const [pda, bump] = PublicKey.findProgramAddressSync(
+      [seedBuffer],
+      VAULT_PROGRAM_ID
+    );
+
+    return { pda, bump, seeds: [seedBuffer] };
+  }
+
+  const mintVrt = async () => {
+    if (!publicKey) {
+      toast.error("Wallet not connected");
+      return;
+    }
+
+    console.log(vault);
+    const vaultPubkey = new PublicKey(vault);
+
+    try {
+      const vaultInfo = await Vault.fromAccountAddress(connection, vaultPubkey);
+
+      console.log("Vault VRT: ", vaultInfo.vrtMint.toString());
+      console.log("Vault ST: ", vaultInfo.supportedMint.toString());
+
+      const depositorVrtAta = associatedAddress({
+        mint: vaultInfo.vrtMint,
+        owner: publicKey,
+      });
+      const vaultStAta = associatedAddress({
+        mint: vaultInfo.supportedMint,
+        owner: vaultPubkey,
+      });
+      const vaultVrtFeeAta = associatedAddress({
+        mint: vaultInfo.vrtMint,
+        owner: publicKey,
+      });
+
+      const depositorVrtAtaIx =
+        createAssociatedTokenAccountIdempotentInstruction(
+          publicKey,
+          depositorVrtAta,
+          publicKey,
+          vaultInfo.vrtMint
+        );
+      const vaultStAtaIx = createAssociatedTokenAccountIdempotentInstruction(
+        publicKey,
+        vaultStAta,
+        vaultPubkey,
+        vaultInfo.supportedMint
+      );
+      const vaultFeeWalletVrtAtaIx =
+        createAssociatedTokenAccountIdempotentInstruction(
+          publicKey,
+          vaultVrtFeeAta,
+          publicKey,
+          vaultInfo.vrtMint
+        );
+
+      const accounts: MintToInstructionAccounts = {
+        config: findConfigPDA().pda,
+        vault: vaultPubkey,
+        vrtMint: vaultInfo.vrtMint,
+        depositor: publicKey,
+        depositorTokenAccount: associatedAddress({
+          mint: vaultInfo.supportedMint,
+          owner: publicKey,
+        }),
+        vaultTokenAccount: vaultStAta,
+        depositorVrtTokenAccount: depositorVrtAta,
+        vaultFeeTokenAccount: vaultVrtFeeAta,
+      };
+
+      const args: MintToInstructionArgs = {
+        amountIn: amountIn,
+        minAmountOut: amountOut,
+      };
+
+      const ix = createMintToInstruction(accounts, args);
+      const transaction = new Transaction();
+      const { blockhash } = await connection.getLatestBlockhash();
+      transaction.recentBlockhash = blockhash;
+      transaction.feePayer = publicKey;
+
+      transaction.add(depositorVrtAtaIx);
+      transaction.add(vaultStAtaIx);
+      transaction.add(vaultFeeWalletVrtAtaIx);
+      transaction.add(ix);
+
+      const signedTransation = await signTransaction!(transaction);
+      const txId = await connection.sendRawTransaction(
+        signedTransation.serialize(),
+        {
+          skipPreflight: false,
+          preflightCommitment: "confirmed",
+        }
+      );
+
+      toast.success(`Transaction ID: ${txId}`);
+    } catch (error: any) {
+      console.log("Error: ", error);
+      toast.error(`Error: ${error}`);
+    }
+  };
+
+  return (
+    <div>
+      <div className="p-6 max-w-lg mx-auto">
+        <h2 className="text-xl font-bold mb-4">Mint VRT</h2>
+        <input
+          className="w-full mb-2 p-2 border text-gray-950"
+          placeholder="Vault"
+          onChange={(e) => setVault(e.target.value)}
+        />
+        <input
+          className="w-full mb-2 p-2 border text-gray-950"
+          placeholder="Amount In"
+          onChange={(e) => {
+            const num = Number.parseInt(e.target.value);
+            setAmountIn(num);
+          }}
+        />
+        <input
+          className="w-full mb-2 p-2 border text-gray-950"
+          placeholder="Amount Out"
+          onChange={(e) => {
+            const num = Number.parseInt(e.target.value);
+            setAmountOut(num);
+          }}
+        />
+        <button
+          onClick={() => mintVrt()}
+          className="w-full bg-blue-500 text-white py-2 rounded"
+        >
+          Mint VRT
+        </button>
+      </div>
+    </div>
+  );
+}
