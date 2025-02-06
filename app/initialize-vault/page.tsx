@@ -87,7 +87,7 @@ export default function InitializeVault() {
         <Toaster />
       </div>
       <div className="p-6 mx-auto">
-        <h2 className="text-xl font-bold mb-4">Initialize Vault</h2>
+        <h2 className="text-2xl font-bold mb-4">Initialize Vault</h2>
         <div className="space-y-2">
           <div className="flex items-center space-x-4 my-4">
             <label className="w-1/3">Supported Token Mint Address: </label>
