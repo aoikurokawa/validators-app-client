@@ -4,12 +4,18 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
+// import {
+//   createMintToInstruction,
+//   MintToInstructionAccounts,
+//   MintToInstructionArgs,
+// } from "../../clients/vault/instructions/";
 import {
   createMintToInstruction,
+  findConfigPDA,
   MintToInstructionAccounts,
   MintToInstructionArgs,
-} from "../../clients/vault/instructions/";
-import { Vault, PROGRAM_ID as VAULT_PROGRAM_ID } from "@/clients/vault";
+  Vault,
+} from "@/clients/vault";
 import { PublicKey, Transaction } from "@solana/web3.js";
 import { associatedAddress } from "@coral-xyz/anchor/dist/cjs/utils/token";
 import { createAssociatedTokenAccountIdempotentInstruction } from "@solana/spl-token";
@@ -22,35 +28,16 @@ export default function MintTo() {
   const [amountIn, setAmountIn] = useState(0);
   const [amountOut, setAmountOut] = useState(0);
 
-  const CONFIG_SEED = "config";
-
-  function findConfigPDA() {
-    // Convert seed to a Uint8Array
-    const seedBuffer = Buffer.from(CONFIG_SEED, "utf8");
-
-    // Find the PDA using the seed and program ID
-    const [pda, bump] = PublicKey.findProgramAddressSync(
-      [seedBuffer],
-      VAULT_PROGRAM_ID
-    );
-
-    return { pda, bump, seeds: [seedBuffer] };
-  }
-
   const mintVrt = async () => {
     if (!publicKey) {
       toast.error("Wallet not connected");
       return;
     }
 
-    console.log(vault);
     const vaultPubkey = new PublicKey(vault);
 
     try {
       const vaultInfo = await Vault.fromAccountAddress(connection, vaultPubkey);
-
-      console.log("Vault VRT: ", vaultInfo.vrtMint.toString());
-      console.log("Vault ST: ", vaultInfo.supportedMint.toString());
 
       const depositorVrtAta = associatedAddress({
         mint: vaultInfo.vrtMint,
@@ -70,20 +57,20 @@ export default function MintTo() {
           publicKey,
           depositorVrtAta,
           publicKey,
-          vaultInfo.vrtMint
+          vaultInfo.vrtMint,
         );
       const vaultStAtaIx = createAssociatedTokenAccountIdempotentInstruction(
         publicKey,
         vaultStAta,
         vaultPubkey,
-        vaultInfo.supportedMint
+        vaultInfo.supportedMint,
       );
       const vaultFeeWalletVrtAtaIx =
         createAssociatedTokenAccountIdempotentInstruction(
           publicKey,
           vaultVrtFeeAta,
           publicKey,
-          vaultInfo.vrtMint
+          vaultInfo.vrtMint,
         );
 
       const accounts: MintToInstructionAccounts = {
@@ -117,18 +104,14 @@ export default function MintTo() {
       transaction.add(ix);
 
       const signedTransation = await signTransaction!(transaction);
-      const txId = await connection.sendRawTransaction(
-        signedTransation.serialize(),
-        {
-          skipPreflight: false,
-          preflightCommitment: "confirmed",
-        }
-      );
+      await connection.sendRawTransaction(signedTransation.serialize(), {
+        skipPreflight: false,
+        preflightCommitment: "confirmed",
+      });
 
-      toast.success(`Transaction ID: ${txId}`);
+      toast.success(`Success`);
     } catch (error: any) {
-      console.log("Error: ", error);
-      toast.error(`Error: ${error}`);
+      toast.error(`Error`);
     }
   };
 

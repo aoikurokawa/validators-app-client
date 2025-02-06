@@ -6,15 +6,17 @@ import toast from "react-hot-toast";
 
 import {
   createInitializeVaultInstruction,
+  findConfigPDA,
+  findVaultPDA,
   InitializeVaultInstructionAccounts,
   InitializeVaultInstructionArgs,
-} from "../../clients/vault/instructions/";
-import { PROGRAM_ID as VAULT_PROGRAM_ID } from "@/clients/vault";
+  PROGRAM_ID as VAULT_PROGRAM_ID,
+} from "@/clients/vault";
 import { Keypair, PublicKey, Transaction } from "@solana/web3.js";
 
 export default function InitializeVault() {
   const { connection } = useConnection();
-  const { publicKey, sendTransaction, signTransaction } = useWallet();
+  const { publicKey, signTransaction } = useWallet();
   const [stMint, setStMint] = useState(
     "Sy2gWQkAHHSK5jDSebSGS1ZvTPX1cDU66GZrr8apckf",
   );
@@ -22,36 +24,6 @@ export default function InitializeVault() {
   const [withdrawalFee, setWithdrawalFee] = useState(0);
   const [rewardFee, setRewardFee] = useState(0);
   const [decimals, setDecimals] = useState(9);
-
-  const CONFIG_SEED = "config";
-  const VAULT_SEED = "vault";
-
-  function findConfigPDA() {
-    // Convert seed to a Uint8Array
-    const seedBuffer = Buffer.from(CONFIG_SEED, "utf8");
-
-    // Find the PDA using the seed and program ID
-    const [pda, bump] = PublicKey.findProgramAddressSync(
-      [seedBuffer],
-      VAULT_PROGRAM_ID,
-    );
-
-    return { pda, bump, seeds: [seedBuffer] };
-  }
-
-  function findVaultPDA(base: PublicKey) {
-    // Convert seed to a Uint8Array
-    const seedBuffer = Buffer.from(VAULT_SEED, "utf8");
-    const baseBuffer = base.toBuffer();
-
-    // Find the PDA using the seed and program ID
-    const [pda, bump] = PublicKey.findProgramAddressSync(
-      [seedBuffer, baseBuffer],
-      VAULT_PROGRAM_ID,
-    );
-
-    return { pda, bump, seeds: [seedBuffer, baseBuffer] };
-  }
 
   const initializeVault = async () => {
     console.log("helo");
