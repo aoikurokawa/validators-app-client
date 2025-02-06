@@ -2,59 +2,37 @@
 
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 import {
   createInitializeVaultInstruction,
+  findConfigPDA,
+  findVaultPDA,
   InitializeVaultInstructionAccounts,
   InitializeVaultInstructionArgs,
-} from "../../clients/vault/instructions/";
-import { PROGRAM_ID as VAULT_PROGRAM_ID } from "@/clients/vault";
+} from "@/clients/vault";
 import { Keypair, PublicKey, Transaction } from "@solana/web3.js";
 
+/**
+ * Initialize Vault Page
+ *
+ * Supported Token Address: "Sy2gWQkAHHSK5jDSebSGS1ZvTPX1cDU66GZrr8apckf"
+ * Deposit Fee BPS: 1000
+ * Reward Fee BPS: 1000
+ * Decimals: 9
+ *
+ * @returns
+ */
 export default function InitializeVault() {
   const { connection } = useConnection();
-  const { publicKey, sendTransaction, signTransaction } = useWallet();
-  const [stMint, setStMint] = useState(
-    "Sy2gWQkAHHSK5jDSebSGS1ZvTPX1cDU66GZrr8apckf",
-  );
+  const { publicKey, signTransaction } = useWallet();
+  const [stMint, setStMint] = useState("");
   const [depositFee, setDepositFee] = useState(0);
   const [withdrawalFee, setWithdrawalFee] = useState(0);
   const [rewardFee, setRewardFee] = useState(0);
   const [decimals, setDecimals] = useState(9);
 
-  const CONFIG_SEED = "config";
-  const VAULT_SEED = "vault";
-
-  function findConfigPDA() {
-    // Convert seed to a Uint8Array
-    const seedBuffer = Buffer.from(CONFIG_SEED, "utf8");
-
-    // Find the PDA using the seed and program ID
-    const [pda, bump] = PublicKey.findProgramAddressSync(
-      [seedBuffer],
-      VAULT_PROGRAM_ID,
-    );
-
-    return { pda, bump, seeds: [seedBuffer] };
-  }
-
-  function findVaultPDA(base: PublicKey) {
-    // Convert seed to a Uint8Array
-    const seedBuffer = Buffer.from(VAULT_SEED, "utf8");
-    const baseBuffer = base.toBuffer();
-
-    // Find the PDA using the seed and program ID
-    const [pda, bump] = PublicKey.findProgramAddressSync(
-      [seedBuffer, baseBuffer],
-      VAULT_PROGRAM_ID,
-    );
-
-    return { pda, bump, seeds: [seedBuffer, baseBuffer] };
-  }
-
-  const initializeVault = async () => {
-    console.log("helo");
+  const handleInitializeVault = async () => {
     if (!publicKey) {
       toast.error("Wallet not connected");
       return;
@@ -63,8 +41,6 @@ export default function InitializeVault() {
     const base = Keypair.generate();
     const vrtMint = Keypair.generate();
 
-    console.log(publicKey);
-    console.log(stMint);
     try {
       const accounts: InitializeVaultInstructionAccounts = {
         config: findConfigPDA().pda,
@@ -99,52 +75,67 @@ export default function InitializeVault() {
         },
       );
 
-      console.log("transaction Id: ", txId);
+      toast.success(`Success Tx ID: ${txId}`);
     } catch (error: any) {
-      console.log("Error: ", error);
+      toast.error(`Error: ${error}`);
     }
   };
 
   return (
     <div>
-      <div className="p-6 max-w-lg mx-auto">
-        <h2 className="text-xl font-bold mb-4">Initialize Vault</h2>
-        <input
-          className="w-full mb-2 p-2 border text-gray-950"
-          placeholder="Staking Token Mint"
-          onChange={(e) => setStMint(e.target.value)}
-          defaultValue={"Sy2gWQkAHHSK5jDSebSGS1ZvTPX1cDU66GZrr8apckf"}
-        />
-        <input
-          type="number"
-          className="w-full mb-2 p-2 border text-gray-950"
-          placeholder="Deposit Fee BPS"
-          onChange={(e) => setDepositFee(Number(e.target.value))}
-          defaultValue={10000}
-        />
-        <input
-          type="number"
-          className="w-full mb-2 p-2 border text-gray-950"
-          placeholder="Withdrawal Fee BPS"
-          onChange={(e) => setWithdrawalFee(Number(e.target.value))}
-          defaultValue={10000}
-        />
-        <input
-          type="number"
-          className="w-full mb-2 p-2 border text-gray-950"
-          placeholder="Reward Fee BPS"
-          onChange={(e) => setRewardFee(Number(e.target.value))}
-          defaultValue={10000}
-        />
-        <input
-          type="number"
-          className="w-full mb-2 p-2 border text-gray-950"
-          placeholder="Decimals"
-          onChange={(e) => setDecimals(Number(e.target.value))}
-          defaultValue={9}
-        />
+      <div>
+        <Toaster />
+      </div>
+      <div className="p-6 mx-auto">
+        <h2 className="text-2xl font-bold mb-4">Initialize Vault</h2>
+        <div className="space-y-2">
+          <div className="flex items-center space-x-4 my-4">
+            <label className="w-1/3">Supported Token Mint Address: </label>
+            <input
+              className="flex-1 p-2 bg-gray-700 rounded-lg"
+              placeholder="Enter Staking Token Mint"
+              onChange={(e) => setStMint(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="flex items-center space-x-4 my-4">
+          <label className="w-1/3">Deposit Fee BPS: </label>
+          <input
+            type="number"
+            className="flex-1 p-2 bg-gray-700 rounded-lg"
+            placeholder="Enter Deposit Fee BPS"
+            onChange={(e) => setDepositFee(Number(e.target.value))}
+          />
+        </div>
+        <div className="flex items-center space-x-4 my-4">
+          <label className="w-1/3">Reward Fee BPS: </label>
+          <input
+            type="number"
+            className="flex-1 p-2 bg-gray-700 rounded-lg"
+            placeholder="Enter Reward Fee BPS"
+            onChange={(e) => setRewardFee(Number(e.target.value))}
+          />
+        </div>
+        <div className="flex items-center space-x-4 my-4">
+          <label className="w-1/3">Withdraw Fee BPS: </label>
+          <input
+            type="number"
+            className="flex-1 p-2 bg-gray-700 rounded-lg"
+            placeholder="Enter Withdraw Fee BPS"
+            onChange={(e) => setWithdrawalFee(Number(e.target.value))}
+          />
+        </div>
+        <div className="flex items-center space-x-4 my-4">
+          <label className="w-1/3">Decimals: </label>
+          <input
+            type="number"
+            className="flex-1 p-2 bg-gray-700 rounded-lg"
+            placeholder="Enter Decimals (Recommend: 9)"
+            onChange={(e) => setDecimals(Number(e.target.value))}
+          />
+        </div>
         <button
-          onClick={() => initializeVault()}
+          onClick={() => handleInitializeVault()}
           className="w-full bg-blue-500 text-white py-2 rounded"
         >
           Initialize Vault
