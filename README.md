@@ -2,6 +2,12 @@
 
 node-version: v20.18.0
 
+## Overview
+
+### Initialize Vault
+
+### Mint To
+
 ## Getting Started
 
 First, run the development server:
