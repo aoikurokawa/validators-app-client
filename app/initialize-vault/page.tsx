@@ -4,19 +4,19 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
+import { Keypair, PublicKey, Transaction } from "@solana/web3.js";
 import {
   createInitializeVaultInstruction,
   findConfigPDA,
   findVaultPDA,
   InitializeVaultInstructionAccounts,
   InitializeVaultInstructionArgs,
-} from "@/clients/vault";
-import { Keypair, PublicKey, Transaction } from "@solana/web3.js";
+} from "restake-ts/dist/vault";
 
 /**
  * Initialize Vault Page
  *
- * Supported Token Address: "Sy2gWQkAHHSK5jDSebSGS1ZvTPX1cDU66GZrr8apckf"
+ * Supported Token Address: "EPy1V1eWNnHsQTJ3272jBrJjRiJ9MZ1PURXhnEah7Hgg"
  * Deposit Fee BPS: 1000
  * Reward Fee BPS: 1000
  * Decimals: 9

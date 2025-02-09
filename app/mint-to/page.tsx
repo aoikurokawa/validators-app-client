@@ -4,22 +4,26 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-// import {
-//   createMintToInstruction,
-//   MintToInstructionAccounts,
-//   MintToInstructionArgs,
-// } from "../../clients/vault/instructions/";
+import { PublicKey, Transaction } from "@solana/web3.js";
+import { associatedAddress } from "@coral-xyz/anchor/dist/cjs/utils/token";
+import { createAssociatedTokenAccountIdempotentInstruction } from "@solana/spl-token";
 import {
   createMintToInstruction,
   findConfigPDA,
   MintToInstructionAccounts,
   MintToInstructionArgs,
   Vault,
-} from "@/clients/vault";
-import { PublicKey, Transaction } from "@solana/web3.js";
-import { associatedAddress } from "@coral-xyz/anchor/dist/cjs/utils/token";
-import { createAssociatedTokenAccountIdempotentInstruction } from "@solana/spl-token";
+} from "restake-ts/dist/vault";
 
+/**
+ * Mint To VRT
+ *
+ * Supported Token Address: "EPy1V1eWNnHsQTJ3272jBrJjRiJ9MZ1PURXhnEah7Hgg"
+ * Vault: BWFx4yirYFHA45wNxVt6Ef6fpVkU1z31yS7bhQYQXAnq
+ * VRT Token Address: ErBWLTm5JJxPrd41Ckek2Eiya4of74T4RgryKrGfmTbw
+ *
+ * @returns
+ */
 export default function MintTo() {
   const { connection } = useConnection();
   const { publicKey, signTransaction } = useWallet();
@@ -57,20 +61,20 @@ export default function MintTo() {
           publicKey,
           depositorVrtAta,
           publicKey,
-          vaultInfo.vrtMint,
+          vaultInfo.vrtMint
         );
       const vaultStAtaIx = createAssociatedTokenAccountIdempotentInstruction(
         publicKey,
         vaultStAta,
         vaultPubkey,
-        vaultInfo.supportedMint,
+        vaultInfo.supportedMint
       );
       const vaultFeeWalletVrtAtaIx =
         createAssociatedTokenAccountIdempotentInstruction(
           publicKey,
           vaultVrtFeeAta,
           publicKey,
-          vaultInfo.vrtMint,
+          vaultInfo.vrtMint
         );
 
       const accounts: MintToInstructionAccounts = {
