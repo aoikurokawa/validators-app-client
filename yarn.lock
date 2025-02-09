@@ -3144,10 +3144,10 @@ resolve@^2.0.0-next.5:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
-restake-ts@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/restake-ts/-/restake-ts-0.0.3.tgz#ac06ab506d7068326c178d39e4d5f95fc4576c1d"
-  integrity sha512-3dWupKNRg5CYc1SzdTAOZ4vmJuUafrFlyQhAC1j74Um7+7So+UBfCB2CGRU4jSqOexlzR+LRNmjpgDOFgv4dgg==
+restake-ts@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/restake-ts/-/restake-ts-0.0.4.tgz#8d38b3f3336739431df7d95608c790b8ddeabbbe"
+  integrity sha512-QLyQyx8abaQ72K5rr6Eb1N5XfPjfIMLBSW761S1tce/ibgIroaKuS+oC1BYONO8NXdP4/r2cj3oowiHTSNCNVg==
   dependencies:
     "@metaplex-foundation/beet" "^0.7.2"
     "@metaplex-foundation/beet-solana" "^0.4.1"
