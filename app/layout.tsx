@@ -42,6 +42,10 @@ export default function RootLayout({
           title: "Initialize Operator",
           href: "/operator/initialize",
         },
+        {
+          title: "Initialize Operator Vault Ticket",
+          href: "/operator/initialize-operator-vault-ticket",
+        },
       ],
     },
     {

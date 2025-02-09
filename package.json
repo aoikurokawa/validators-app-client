@@ -27,7 +27,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
-    "restake-ts": "0.0.4"
+    "restake-ts": "0.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
