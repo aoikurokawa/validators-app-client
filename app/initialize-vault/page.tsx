@@ -16,7 +16,7 @@ import {
 /**
  * Initialize Vault Page
  *
- * Supported Token Address: "Sy2gWQkAHHSK5jDSebSGS1ZvTPX1cDU66GZrr8apckf"
+ * Supported Token Address: "EPy1V1eWNnHsQTJ3272jBrJjRiJ9MZ1PURXhnEah7Hgg"
  * Deposit Fee BPS: 1000
  * Reward Fee BPS: 1000
  * Decimals: 9
