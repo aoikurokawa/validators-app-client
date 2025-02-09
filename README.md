@@ -2,11 +2,26 @@
 
 node-version: v20.18.0
 
+## Library
+
+- `restake-ts`: https://www.npmjs.com/package/restake-ts
+
 ## Overview
 
-### Initialize Vault
+### Vault
 
-### Mint To
+#### Initialize Vault
+
+#### Mint To
+
+### Operator
+
+#### Initialize Operator
+
+### NCN
+
+#### Initialize NCN
+
 
 ## Getting Started
 
