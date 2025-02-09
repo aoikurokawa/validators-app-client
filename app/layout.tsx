@@ -17,6 +17,44 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const menuItems = [
+    {
+      title: "Vault",
+      subItems: [
+        {
+          title: "Overview",
+          href: "/vaults",
+        },
+        {
+          title: "Initialize Vault",
+          href: "/initialize-vault",
+        },
+        {
+          title: "Mint",
+          href: "/mint-to",
+        },
+      ],
+    },
+    {
+      title: "Operator",
+      subItems: [
+        {
+          title: "Initialize Operator",
+          href: "/operator/initialize",
+        },
+      ],
+    },
+    {
+      title: "NCN",
+      subItems: [
+        {
+          title: "Initialize NCN",
+          href: "/ncn/initialize",
+        },
+      ],
+    },
+  ];
+
   return (
     <html lang="en">
       <body>
@@ -31,30 +69,30 @@ export default function RootLayout({
                   </Link>
                   <nav className="my-6">
                     <ul className="space-y-3">
-                      <div>
-                        <Link
-                          href="/vaults"
-                          className="text-gray-400 hover:text-white cursor-pointer"
-                        >
-                          Vaults
-                        </Link>
-                      </div>
-                      <div>
-                        <Link
-                          href="/initialize-vault"
-                          className="text-gray-400 hover:text-white cursor-pointer"
-                        >
-                          Initialize Vault
-                        </Link>
-                      </div>
-                      <div>
-                        <Link
-                          href="/mint-to"
-                          className="text-gray-400 hover:text-white cursor-pointer"
-                        >
-                          Mint
-                        </Link>
-                      </div>
+                      {menuItems.map((menu) => (
+                        <li key={menu.title}>
+                          <div className="flex items-center justify-between cursor-pointer text-gray-400 hover:text-white">
+                            <span>{menu.title}</span>
+                            {/* {openMenus[menu.title] ? (
+                              <ChevronDown size={16} />
+                            ) : (
+                              <ChevronRight size={16} />
+                            )} */}
+                          </div>
+                          <ul className="pl-4 mt-2 space-y-2">
+                              {menu.subItems.map((subItem) => (
+                                <li key={subItem.title}>
+                                  <Link
+                                    href={subItem.href}
+                                    className="block text-gray-500 hover:text-white"
+                                  >
+                                    {subItem.title}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                        </li>
+                      ))}
                     </ul>
                   </nav>
                 </aside>
