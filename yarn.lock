@@ -449,6 +449,17 @@
     "@solana/spl-token-metadata" "^0.1.6"
     buffer "^6.0.3"
 
+"@solana/spl-token@^0.4.12":
+  version "0.4.12"
+  resolved "https://registry.yarnpkg.com/@solana/spl-token/-/spl-token-0.4.12.tgz#09361f9c8116f277b177dbcae7e3a273a19cd48a"
+  integrity sha512-K6CxzSoO1vC+WBys25zlSDaW0w4UFZO/IvEZquEI35A/PjqXNQHeVigmDCZYEJfESvYarKwsr8tYr/29lPtvaw==
+  dependencies:
+    "@solana/buffer-layout" "^4.0.0"
+    "@solana/buffer-layout-utils" "^0.2.0"
+    "@solana/spl-token-group" "^0.0.7"
+    "@solana/spl-token-metadata" "^0.1.6"
+    buffer "^6.0.3"
+
 "@solana/wallet-adapter-base-ui@^0.1.2":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-base-ui/-/wallet-adapter-base-ui-0.1.2.tgz#f5ad35c0ac1d086c69591613fb1a0bd2eae20c4e"
@@ -3132,6 +3143,16 @@ resolve@^2.0.0-next.5:
     is-core-module "^2.13.0"
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
+
+restake-ts@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/restake-ts/-/restake-ts-0.0.3.tgz#ac06ab506d7068326c178d39e4d5f95fc4576c1d"
+  integrity sha512-3dWupKNRg5CYc1SzdTAOZ4vmJuUafrFlyQhAC1j74Um7+7So+UBfCB2CGRU4jSqOexlzR+LRNmjpgDOFgv4dgg==
+  dependencies:
+    "@metaplex-foundation/beet" "^0.7.2"
+    "@metaplex-foundation/beet-solana" "^0.4.1"
+    "@solana/spl-token" "^0.4.12"
+    "@solana/web3.js" "^1.98.0"
 
 reusify@^1.0.4:
   version "1.0.4"
