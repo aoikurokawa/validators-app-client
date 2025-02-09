@@ -12,11 +12,13 @@ node-version: v20.18.0
 
 #### Initialize Vault
 
-#### Mint To
+#### Mint VRT
 
 ### Operator
 
 #### Initialize Operator
+
+#### Initialize Operator Vault Ticket
 
 ### NCN
 
