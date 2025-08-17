@@ -8,11 +8,11 @@ pub enum Network {
 /// Configuration for the client
 pub struct Config {
     /// Supported network
-    network: Network,
+    pub network: Network,
 
     /// API Key
-    api_key: Option<String>,
+    pub api_key: Option<String>,
 
     /// Timeout duration
-    timeout: Option<std::time::Duration>,
+    pub timeout: Option<std::time::Duration>,
 }

@@ -9,4 +9,8 @@ pub enum ValidatorsAppError {
     /// JSON Parse Error
     #[error(transparent)]
     Parse(#[from] serde_json::Error),
+
+    /// API Error
+    #[error("API error {status}: {message}")]
+    Api { status: u16, message: String },
 }
