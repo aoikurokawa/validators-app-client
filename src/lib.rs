@@ -2,15 +2,14 @@ use reqwest::Client;
 use serde::Deserialize;
 
 use crate::{
-    config::{Config, Network},
-    error::ValidatorsAppError,
-    validator::Validator,
+    config::Config, error::ValidatorsAppError, network::Network, validator::Validator,
     validator_list_response::ValidatorListResponse,
 };
 
 pub mod config;
 mod epoch_credits;
 mod error;
+pub mod network;
 mod ping_entry;
 mod uptime_entry;
 mod validator;
@@ -23,8 +22,8 @@ pub struct ValidatorsAppClient {
     /// Base URL
     base_url: String,
 
-    /// API Key
-    api_key: Option<String>,
+    /// API Token
+    api_token: String,
 }
 
 impl ValidatorsAppClient {
@@ -41,22 +40,29 @@ impl ValidatorsAppClient {
             client_builder = client_builder.timeout(timeout);
         }
 
-        let client = client_builder
-            .build()
-            .map_err(ValidatorsAppError::Network)?;
+        let client = client_builder.build()?;
 
         Ok(Self {
             client,
             base_url,
-            api_key: config.api_key,
+            api_token: config.api_token,
         })
     }
 
     /// Construct [`ValidatorsAppClient`] for mainnet
-    pub fn mainnet() -> Result<Self, ValidatorsAppError> {
+    pub fn new_mainnet(api_token: String) -> Result<Self, ValidatorsAppError> {
         Self::new(Config {
             network: Network::Mainnet,
-            api_key: None,
+            api_token,
+            timeout: Some(std::time::Duration::from_secs(30)),
+        })
+    }
+
+    /// Construct [`ValidatorsAppClient`] for testnet
+    pub fn new_testnet(api_token: String) -> Result<Self, ValidatorsAppError> {
+        Self::new(Config {
+            network: Network::Testnet,
+            api_token,
             timeout: Some(std::time::Duration::from_secs(30)),
         })
     }
@@ -65,17 +71,34 @@ impl ValidatorsAppClient {
     pub async fn get_validators(
         &self,
         limit: Option<f64>,
-        offset: Option<u64>,
-    ) -> Result<ValidatorListResponse, ValidatorsAppError> {
-        let mut url = format!("{}/validators", self.base_url);
+        page: Option<f64>,
+        order: Option<&str>,
+        active_only: Option<bool>,
+        query: Option<&str>,
+    ) -> Result<Vec<Validator>, ValidatorsAppError> {
+        let network = match self.base_url.as_str() {
+            url if url.contains("mainnet") => "mainnet",
+            url if url.contains("testnet") => "testnet",
+            _ => "mainnet", // default
+        };
+
+        let mut url = format!("{}/validators/{}.json", self.base_url, network);
         let mut params = Vec::new();
 
         if let Some(limit) = limit {
-            params.push(format!("limit={}", limit));
+            params.push(format!("limit={limit}"));
         }
-
-        if let Some(offset) = offset {
-            params.push(format!("offset={}", offset));
+        if let Some(page) = page {
+            params.push(format!("page={page}"));
+        }
+        if let Some(order) = order {
+            params.push(format!("order={order}"));
+        }
+        if let Some(active_only) = active_only {
+            params.push(format!("active_only={active_only}"));
+        }
+        if let Some(query) = query {
+            params.push(format!("q={}", urlencoding::encode(query)));
         }
 
         if !params.is_empty() {
@@ -83,25 +106,44 @@ impl ValidatorsAppClient {
             url.push_str(&params.join("&"));
         }
 
-        let response = match self.api_key.as_ref() {
-            Some(api_key) => {
-                self.client
-                    .get(&url)
-                    .header("Token", api_key)
-                    .send()
-                    .await?
-            }
-            None => self.client.get(&url).send().await?,
-        };
+        let response = self
+            .client
+            .get(&url)
+            .header("Token", &self.api_token)
+            .send()
+            .await?;
 
         self.handle_response(response).await
     }
 
     /// Get specific validator
-    pub async fn get_validator(&self, vote_account: &str) -> Result<Validator, ValidatorsAppError> {
-        let url = format!("{}/validator/{}", self.base_url, vote_account);
+    ///
+    /// # Parameters
+    /// - account: Identity pubkey of validator
+    /// - with_history: Show validator histories
+    pub async fn get_validator(
+        &self,
+        account: &str,
+        with_history: Option<bool>,
+    ) -> Result<Validator, ValidatorsAppError> {
+        let network = match self.base_url.as_str() {
+            url if url.contains("mainnet") => "mainnet",
+            url if url.contains("testnet") => "testnet",
+            _ => "mainnet", // default
+        };
 
-        let response = self.client.get(&url).send().await?;
+        let mut url = format!("{}/validators/{}/{}.json", self.base_url, network, account);
+
+        if let Some(true) = with_history {
+            url.push_str("?with_history=true");
+        }
+
+        let response = self
+            .client
+            .get(&url)
+            .header("Token", &self.api_token)
+            .send()
+            .await?;
 
         self.handle_response(response).await
     }

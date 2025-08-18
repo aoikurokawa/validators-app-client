@@ -1,82 +1,148 @@
 use serde::{Deserialize, Serialize};
 
-use crate::{epoch_credits::EpochCredits, ping_entry::PingEntry, uptime_entry::UptimeEntry};
+// use crate::{epoch_credits::EpochCredits, ping_entry::PingEntry, uptime_entry::UptimeEntry};
 
-/// Response types based on API docs
+// Response types based on API docs
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Validator {
-    /// Vote account pubkey
-    vote_account: Option<String>,
+    /// Network
+    ///
+    /// 'mainnet', 'testnet' or 'pythnet'
+    pub network: Option<String>,
 
-    /// Validator's name
-    name: Option<String>,
+    /// Account
+    pub account: Option<String>,
+
+    /// Validator's Name
+    pub name: Option<String>,
 
     /// Keybase ID
-    keybase_id: Option<String>,
+    pub keybase_id: Option<String>,
 
     /// WWW URL
-    www_url: Option<String>,
+    pub www_url: Option<String>,
 
     /// Details
-    details: Option<String>,
+    pub details: Option<String>,
 
     /// Avatar URL
-    avatar_url: Option<String>,
+    pub avatar_url: Option<String>,
 
-    /// Comission
-    commission: f64,
+    /// Created At
+    pub created_at: Option<String>,
 
-    /// Stake
-    stake: u64,
+    /// Updated At
+    pub updated_at: Option<String>,
 
-    /// Active stake
-    active_stake: u64,
+    /// Admin Warning
+    pub admin_warning: Option<String>,
 
-    /// Marinade stake
-    marinade_stake: u64,
+    /// Is Jito Labs client
+    pub jito: Option<bool>,
 
-    /// Marinade native stake
-    marinade_native_stake: u64,
+    /// MEV commission
+    pub jito_commission: Option<u16>,
 
-    /// Foundation stake
-    foundation_stake: u64,
+    /// The list of stake pool
+    pub stake_pools_list: Option<Vec<String>>,
 
-    /// Epoch credits
-    epoch_credits: Option<EpochCredits>,
+    /// Is active
+    pub is_active: Option<bool>,
 
-    /// Version
-    version: Option<String>,
+    /// Is
+    pub is_dz: Option<bool>,
 
-    /// Activated stake
-    activated_stake: u64,
+    /// Active Stake
+    pub active_stake: Option<u64>,
 
-    /// Deactivated stake
-    deactivated_stake: u64,
+    /// Authorized Withdrawer Score
+    pub authorized_withdrawer_score: Option<f64>,
 
-    /// Epoch vote account
-    epoch_vote_account: bool,
+    /// Commission
+    pub commission: Option<u8>,
 
-    /// Root slot
-    root_slot: Option<u64>,
+    /// Data Center Concentration Score
+    pub data_center_concentration_score: Option<i64>,
 
-    /// Vote slots
-    vote_slots: Option<Vec<u64>>,
+    /// Delinquent
+    pub delinquent: Option<bool>,
 
-    /// Skip rate
-    skip_rate: Option<f64>,
+    /// Published Information Score
+    pub published_information_score: Option<i64>,
 
-    /// Uptime
-    uptime: Option<f64>,
+    /// Root Distance Score
+    pub root_distance_score: Option<i64>,
 
-    /// Uptimes
-    uptimes: Option<Vec<UptimeEntry>>,
+    /// Security Report Score
+    pub security_report_score: Option<i64>,
 
-    /// Ping time
-    ping_time: Option<f64>,
+    /// Skipped Slot Score
+    pub skipped_slot_score: Option<i64>,
 
-    /// Ping loss
-    ping_loss: Option<f64>,
+    /// Skipped After Score
+    pub skipped_after_score: Option<i64>,
 
-    /// Ping times
-    ping_times: Option<Vec<PingEntry>>,
+    /// Software Version
+    pub software_version: Option<String>,
+
+    /// Software Version Score
+    pub software_version_score: Option<i64>,
+
+    /// Stake Concentration Score
+    pub stake_concentration_score: Option<i64>,
+
+    /// Consensus Mods Score
+    pub consensus_mods_score: Option<i8>,
+
+    /// Total Score
+    pub total_score: Option<i64>,
+
+    /// Vote Distance Score
+    pub vote_distance_score: Option<i64>,
+
+    /// Software Client
+    pub software_client: Option<String>,
+
+    /// Software Client ID
+    pub software_client_id: Option<u16>,
+
+    /// IP Address
+    pub ip: Option<String>,
+
+    /// Data Center Key
+    pub data_center_key: Option<String>,
+
+    /// Autonomous System Number
+    pub autonomous_system_number: Option<i64>,
+
+    /// Latitude
+    pub latitude: Option<String>,
+
+    /// Longitude
+    pub longitude: Option<String>,
+
+    /// Data Center Host
+    pub data_center_host: Option<String>,
+
+    /// Vote Account
+    #[serde(default)]
+    pub vote_account: String,
+
+    /// Epoch Credits
+    pub epoch_credits: Option<u64>,
+
+    /// Epoch
+    pub epoch: Option<u64>,
+
+    /// Skipped Slots
+    pub skipped_slots: Option<u64>,
+
+    /// Skipped Slot Percent
+    pub skipped_slot_percent: Option<String>,
+
+    /// Ping Time
+    pub ping_time: Option<f64>,
+
+    /// URL
+    pub url: Option<String>,
 }
