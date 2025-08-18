@@ -2,7 +2,8 @@ use reqwest::Client;
 use serde::Deserialize;
 
 use crate::{
-    config::Config, error::ValidatorsAppError, network::Network, validator::Validator,
+    commission_changes::CommissionChangesResponse, config::Config, error::ValidatorsAppError,
+    network::Network, validator::Validator,
     validator_block_production_history::ValidatorBlockProductionHistory,
     validator_list_response::ValidatorListResponse,
 };
@@ -229,7 +230,7 @@ impl ValidatorsAppClient {
         per: Option<u16>,
         page: Option<u16>,
         query: Option<&str>,
-    ) -> Result<Vec<ValidatorBlockProductionHistory>, ValidatorsAppError> {
+    ) -> Result<CommissionChangesResponse, ValidatorsAppError> {
         let network = match self.base_url.as_str() {
             url if url.contains("mainnet") => "mainnet",
             url if url.contains("testnet") => "testnet",
@@ -238,7 +239,7 @@ impl ValidatorsAppClient {
 
         let mut params = Vec::new();
 
-        let mut url = format!("{}/commission-changes/{}.json", self.base_url, network,);
+        let mut url = format!("{}/commission-changes/{}.json", self.base_url, network);
 
         if let Some(date_from) = date_from {
             params.push(format!("date_from={date_from}"));

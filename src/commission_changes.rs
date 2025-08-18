@@ -2,34 +2,44 @@ use serde::{Deserialize, Serialize};
 
 /// Commission for a given period of time
 #[derive(Debug, Deserialize, Serialize)]
-pub struct CommissionChanges {
+pub struct CommissionChange {
     /// Created at
     created_at: String,
 
     /// Commission before
-    commission_before: f64,
+    commission_before: Option<f64>,
 
     /// Commission after
-    commission_after: f64,
+    commission_after: Option<f64>,
 
     /// Epoch
-    epoch: u64,
+    epoch: Option<u64>,
 
     /// Network
-    network: String,
+    network: Option<String>,
 
     /// Epoch completion
-    epoch_completion: f64,
+    epoch_completion: Option<f64>,
 
     /// Batch UUID
-    batch_uuid: String,
+    batch_uuid: Option<String>,
 
     /// Account pubkey
-    account: String,
+    account: Option<String>,
 
     /// Name
-    name: String,
+    name: Option<String>,
 
     /// Source from rewards
-    source_from_rewards: bool,
+    source_from_rewards: Option<bool>,
+}
+
+/// Commission changes response
+#[derive(Debug, Deserialize, Serialize)]
+pub struct CommissionChangesResponse {
+    /// Commission Histories
+    commission_histories: Vec<CommissionChange>,
+
+    /// Total count
+    total_count: u64,
 }
