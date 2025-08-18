@@ -2,11 +2,13 @@ use reqwest::Client;
 use serde::Deserialize;
 
 use crate::{
-    config::Config, error::ValidatorsAppError, network::Network, validator::Validator,
+    commission_changes::CommissionChangesResponse, config::Config, error::ValidatorsAppError,
+    network::Network, validator::Validator,
     validator_block_production_history::ValidatorBlockProductionHistory,
     validator_list_response::ValidatorListResponse,
 };
 
+mod commission_changes;
 pub mod config;
 mod error;
 pub mod network;
@@ -200,6 +202,63 @@ impl ValidatorsAppClient {
 
         if let Some(limit) = limit {
             params.push(format!("limit={limit}"));
+        }
+
+        if !params.is_empty() {
+            url.push('?');
+            url.push_str(&params.join("&"));
+        }
+
+        let response = self
+            .client
+            .get(&url)
+            .header("Token", &self.api_token)
+            .send()
+            .await?;
+
+        self.handle_response(response).await
+    }
+
+    /// Commission Changes
+    ///
+    /// The Commission Changes endpoint will return all the changes in commission for a given period of time.
+    /// Replace `:network` with either 'testnet', 'mainnet' or 'pythnet' as desired.
+    pub async fn get_commission_changes(
+        &self,
+        date_from: Option<&str>,
+        date_to: Option<&str>,
+        per: Option<u16>,
+        page: Option<u16>,
+        query: Option<&str>,
+    ) -> Result<CommissionChangesResponse, ValidatorsAppError> {
+        let network = match self.base_url.as_str() {
+            url if url.contains("mainnet") => "mainnet",
+            url if url.contains("testnet") => "testnet",
+            _ => "mainnet", // default
+        };
+
+        let mut params = Vec::new();
+
+        let mut url = format!("{}/commission-changes/{}.json", self.base_url, network);
+
+        if let Some(date_from) = date_from {
+            params.push(format!("date_from={date_from}"));
+        }
+
+        if let Some(date_to) = date_to {
+            params.push(format!("date_to={date_to}"));
+        }
+
+        if let Some(per) = per {
+            params.push(format!("per={per}"));
+        }
+
+        if let Some(page) = page {
+            params.push(format!("page={page}"));
+        }
+
+        if let Some(query) = query {
+            params.push(format!("query={query}"));
         }
 
         if !params.is_empty() {
