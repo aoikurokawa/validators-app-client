@@ -6,7 +6,7 @@ use validators_app_client::{ValidatorsAppClient, config::Config, network::Networ
 async fn main() {
     let config = Config::new(
         Network::Mainnet,
-        "tNfoWKvycrpSLJH4UYCFTL4R".to_string(),
+        "".to_string(),
         Some(Duration::from_secs(30)),
     );
     let validator_app_client = ValidatorsAppClient::new(config).unwrap();
