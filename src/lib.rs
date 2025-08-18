@@ -76,7 +76,7 @@ impl ValidatorsAppClient {
         order: Option<&str>,
         active_only: Option<bool>,
         query: Option<&str>,
-    ) -> Result<ValidatorListResponse, ValidatorsAppError> {
+    ) -> Result<Vec<Validator>, ValidatorsAppError> {
         let network = match self.base_url.as_str() {
             url if url.contains("mainnet") => "mainnet",
             url if url.contains("testnet") => "testnet",

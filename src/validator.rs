@@ -5,8 +5,13 @@ use serde::{Deserialize, Serialize};
 // Response types based on API docs
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Validator {
+    /// Network
+    ///
+    /// 'mainnet', 'testnet' or 'pythnet'
+    pub network: Option<String>,
+
     /// Account
-    pub account: String,
+    pub account: Option<String>,
 
     /// Validator's Name
     pub name: Option<String>,
@@ -14,7 +19,7 @@ pub struct Validator {
     /// Keybase ID
     pub keybase_id: Option<String>,
 
-    /// WWw URL
+    /// WWW URL
     pub www_url: Option<String>,
 
     /// Details
@@ -23,68 +28,92 @@ pub struct Validator {
     /// Avatar URL
     pub avatar_url: Option<String>,
 
+    /// Created At
+    pub created_at: Option<String>,
+
+    /// Updated At
+    pub updated_at: Option<String>,
+
+    /// Admin Warning
+    pub admin_warning: Option<String>,
+
+    /// Is Jito Labs client
+    pub jito: Option<bool>,
+
+    /// MEV commission
+    pub jito_commission: Option<u16>,
+
+    /// The list of stake pool
+    pub stake_pools_list: Option<Vec<String>>,
+
+    /// Is active
+    pub is_active: Option<bool>,
+
+    /// Is
+    pub is_dz: Option<bool>,
+
+    /// Active Stake
+    pub active_stake: Option<u64>,
+
+    /// Authorized Withdrawer Score
+    pub authorized_withdrawer_score: Option<f64>,
+
     /// Commission
-    pub commission: f64,
+    pub commission: Option<u8>,
 
-    /// Active stake
-    pub active_stake: u64,
-
-    /// Authorized withdrawer score
-    pub authorized_withdrawer_score: Option<i32>,
-
-    /// Data center concentration score
-    pub data_center_concentration_score: Option<i32>,
+    /// Data Center Concentration Score
+    pub data_center_concentration_score: Option<i64>,
 
     /// Delinquent
-    pub delinquent: bool,
+    pub delinquent: Option<bool>,
 
-    /// Published information score
-    pub published_information_score: Option<i32>,
+    /// Published Information Score
+    pub published_information_score: Option<i64>,
 
-    /// Root distance score
-    pub root_distance_score: Option<i32>,
+    /// Root Distance Score
+    pub root_distance_score: Option<i64>,
 
-    /// Security report score
-    pub security_report_score: Option<i32>,
+    /// Security Report Score
+    pub security_report_score: Option<i64>,
 
-    /// Skipped slot score
-    pub skipped_slot_score: Option<i32>,
+    /// Skipped Slot Score
+    pub skipped_slot_score: Option<i64>,
 
-    /// Skipped after score
-    pub skipped_after_score: Option<i32>,
+    /// Skipped After Score
+    pub skipped_after_score: Option<i64>,
 
-    /// Software version
+    /// Software Version
     pub software_version: Option<String>,
 
-    /// Software version score
-    pub software_version_score: Option<i32>,
+    /// Software Version Score
+    pub software_version_score: Option<i64>,
 
-    /// Stake concentration score
-    pub stake_concentration_score: Option<i32>,
+    /// Stake Concentration Score
+    pub stake_concentration_score: Option<i64>,
 
-    /// Consensus mods score
-    pub consensus_mods_score: Option<i32>,
+    /// Consensus Mods Score
+    pub consensus_mods_score: Option<i8>,
 
-    /// Total score
-    pub total_score: Option<i32>,
+    /// Total Score
+    pub total_score: Option<i64>,
 
-    /// Vote distance score
-    pub vote_distance_score: Option<i32>,
+    /// Vote Distance Score
+    pub vote_distance_score: Option<i64>,
 
-    /// Software client
+    /// Software Client
     pub software_client: Option<String>,
 
-    /// Software client ID
-    pub software_client_id: Option<i32>,
+    /// Software Client ID
+    pub software_client_id: Option<u16>,
 
-    /// IP address
+    /// IP Address
     pub ip: Option<String>,
 
-    /// Data center key
+    /// Data Center Key
     pub data_center_key: Option<String>,
 
-    /// Autonomous system number
-    pub autonomous_system_number: Option<i32>,
+    /// Autonomous System Number
+    pub autonomous_system_number: Option<i64>,
 
     /// Latitude
     pub latitude: Option<String>,
@@ -92,53 +121,27 @@ pub struct Validator {
     /// Longitude
     pub longitude: Option<String>,
 
-    /// Data center host
+    /// Data Center Host
     pub data_center_host: Option<String>,
 
-    /// Vote account
+    /// Vote Account
+    #[serde(default)]
     pub vote_account: String,
 
-    /// Epoch credits
+    /// Epoch Credits
     pub epoch_credits: Option<u64>,
 
-    /// Epoch number
+    /// Epoch
     pub epoch: Option<u64>,
 
-    /// Skipped slots
+    /// Skipped Slots
     pub skipped_slots: Option<u64>,
 
-    /// Skipped slot percent
+    /// Skipped Slot Percent
     pub skipped_slot_percent: Option<String>,
 
-    /// Ping time
-    pub ping_time: Option<String>,
-
-    /// Network
-    pub network: Option<String>,
-
-    /// Created at
-    pub created_at: Option<String>,
-
-    /// Updated at
-    pub updated_at: Option<String>,
-
-    /// Admin warning
-    pub admin_warning: Option<String>,
-
-    /// Jito client
-    pub jito: Option<bool>,
-
-    /// Jito commission
-    pub jito_commission: Option<u64>,
-
-    /// Stake pools list
-    pub stake_pools_list: Option<Vec<String>>,
-
-    /// Is active
-    pub is_active: Option<bool>,
-
-    /// Is DZ
-    pub is_dz: Option<bool>,
+    /// Ping Time
+    pub ping_time: Option<f64>,
 
     /// URL
     pub url: Option<String>,
