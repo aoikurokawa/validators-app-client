@@ -3,16 +3,15 @@ use serde::Deserialize;
 
 use crate::{
     config::Config, error::ValidatorsAppError, network::Network, validator::Validator,
+    validator_block_production_history::ValidatorBlockProductionHistory,
     validator_list_response::ValidatorListResponse,
 };
 
 pub mod config;
-mod epoch_credits;
 mod error;
 pub mod network;
-mod ping_entry;
-mod uptime_entry;
 mod validator;
+mod validator_block_production_history;
 mod validator_list_response;
 
 pub struct ValidatorsAppClient {
@@ -67,7 +66,11 @@ impl ValidatorsAppClient {
         })
     }
 
-    /// Get all validators
+    /// Validators List
+    ///
+    /// # Overview
+    ///
+    /// The Validators List endpoint will return a list of validators for the requested network. In the example below, replace `:network` with either 'testnet', 'mainnet' or 'pythnet' as desired.
     pub async fn get_validators(
         &self,
         limit: Option<f64>,
@@ -116,9 +119,15 @@ impl ValidatorsAppClient {
         self.handle_response(response).await
     }
 
-    /// Get specific validator
+    /// Validator Details
+    ///
+    /// # Overview
+    ///
+    /// The Validator Details endpoint will return a single validator for the requested network and account.
+    /// In the example below, replace `:network` with either 'testnet', 'mainnet' or 'pythnet' as desired. Replace `:account` with the desired account ID.
     ///
     /// # Parameters
+    ///
     /// - account: Identity pubkey of validator
     /// - with_history: Show validator histories
     pub async fn get_validator(
@@ -160,6 +169,50 @@ impl ValidatorsAppClient {
         );
 
         let response = self.client.get(&url).send().await?;
+
+        self.handle_response(response).await
+    }
+
+    /// Validator Block Production History
+    ///
+    /// # Overview
+    ///
+    /// The Validator Block History endpoint will return a history of block production stats for the requested network and account.
+    /// In the example below, replace `:network` with either 'testnet', 'mainnet' or 'pythnet' as desired.
+    /// Replace `:account` with the desired account ID. You can also include a `limit` parameter to request more or fewer datapoints.
+    pub async fn get_validator_block_production_history(
+        &self,
+        account: &str,
+        limit: Option<f64>,
+    ) -> Result<Vec<ValidatorBlockProductionHistory>, ValidatorsAppError> {
+        let network = match self.base_url.as_str() {
+            url if url.contains("mainnet") => "mainnet",
+            url if url.contains("testnet") => "testnet",
+            _ => "mainnet", // default
+        };
+
+        let mut params = Vec::new();
+
+        let mut url = format!(
+            "{}/validator-block-history/{}/{}.json",
+            self.base_url, network, account
+        );
+
+        if let Some(limit) = limit {
+            params.push(format!("limit={limit}"));
+        }
+
+        if !params.is_empty() {
+            url.push('?');
+            url.push_str(&params.join("&"));
+        }
+
+        let response = self
+            .client
+            .get(&url)
+            .header("Token", &self.api_token)
+            .send()
+            .await?;
 
         self.handle_response(response).await
     }
