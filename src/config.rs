@@ -10,8 +10,8 @@ pub struct Config {
     /// Supported network
     pub network: Network,
 
-    /// API Key
-    pub api_key: Option<String>,
+    /// API Token
+    pub api_token: String,
 
     /// Timeout duration
     pub timeout: Option<std::time::Duration>,

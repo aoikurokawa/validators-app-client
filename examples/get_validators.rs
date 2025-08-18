@@ -9,13 +9,13 @@ use validators_app_client::{
 async fn main() {
     let config = Config {
         network: Network::Mainnet,
-        api_key: Some("".to_string()),
+        api_token: "tNfoWKvycrpSLJH4UYCFTL4R".to_string(),
         timeout: Some(Duration::from_secs(30)),
     };
     let validator_app_client = ValidatorsAppClient::new(config).unwrap();
 
     let validators = validator_app_client
-        .get_validators(None, None)
+        .get_validators(None, None, None, None, None)
         .await
         .unwrap();
 
