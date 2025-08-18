@@ -8,7 +8,7 @@ use crate::{
     validator_list_response::ValidatorListResponse,
 };
 
-mod config;
+pub mod config;
 mod epoch_credits;
 mod error;
 mod ping_entry;
@@ -83,7 +83,16 @@ impl ValidatorsAppClient {
             url.push_str(&params.join("&"));
         }
 
-        let response = self.client.get(&url).send().await?;
+        let response = match self.api_key.as_ref() {
+            Some(api_key) => {
+                self.client
+                    .get(&url)
+                    .header("Token", api_key)
+                    .send()
+                    .await?
+            }
+            None => self.client.get(&url).send().await?,
+        };
 
         self.handle_response(response).await
     }
