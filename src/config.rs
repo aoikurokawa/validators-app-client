@@ -1,9 +1,4 @@
-/// Supported networks
-#[derive(Debug, Clone)]
-pub enum Network {
-    Mainnet,
-    Testnet,
-}
+use crate::network::Network;
 
 /// Configuration for the client
 pub struct Config {

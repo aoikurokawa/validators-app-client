@@ -2,15 +2,14 @@ use reqwest::Client;
 use serde::Deserialize;
 
 use crate::{
-    config::{Config, Network},
-    error::ValidatorsAppError,
-    validator::Validator,
+    config::Config, error::ValidatorsAppError, network::Network, validator::Validator,
     validator_list_response::ValidatorListResponse,
 };
 
 pub mod config;
 mod epoch_credits;
 mod error;
+pub mod network;
 mod ping_entry;
 mod uptime_entry;
 mod validator;
@@ -118,9 +117,13 @@ impl ValidatorsAppClient {
     }
 
     /// Get specific validator
+    ///
+    /// # Parameters
+    /// - account: Identity pubkey of validator
+    /// - with_history: Show validator histories
     pub async fn get_validator(
         &self,
-        vote_account: &str,
+        account: &str,
         with_history: Option<bool>,
     ) -> Result<Validator, ValidatorsAppError> {
         let network = match self.base_url.as_str() {
@@ -129,10 +132,7 @@ impl ValidatorsAppClient {
             _ => "mainnet", // default
         };
 
-        let mut url = format!(
-            "{}/validators/{}/{}.json",
-            self.base_url, network, vote_account
-        );
+        let mut url = format!("{}/validators/{}/{}.json", self.base_url, network, account);
 
         if let Some(true) = with_history {
             url.push_str("?with_history=true");

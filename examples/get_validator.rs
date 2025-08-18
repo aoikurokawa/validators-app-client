@@ -12,7 +12,7 @@ async fn main() {
     let validator_app_client = ValidatorsAppClient::new(config).unwrap();
 
     let validators = validator_app_client
-        .get_validators(Some(10.0), None, None, None, None)
+        .get_validator("CXPeim1wQMkcTvEHx9QdhgKREYYJD8bnaCCqPRwJ1to1", Some(true))
         .await
         .unwrap();
 
